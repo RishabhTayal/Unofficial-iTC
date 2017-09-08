@@ -9,9 +9,12 @@
 import UIKit
 
 class Review: NSObject {
-    var review: String = ""
+    
+    var title: String = ""
+    var review: String? = ""
     
     init(dict: [String: Any]) {
-        self.review = dict["review"] as! String
+        self.title = dict["title"] as! String
+        self.review = dict["review"] as? String
     }
 }

@@ -108,6 +108,7 @@
 				TargetAttributes = {
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = CEBY93VF85;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -276,6 +277,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = ReviewMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
@@ -288,6 +290,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = ReviewMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
