@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DZNEmptyDataSet
 
 class ReviewsViewController: UIViewController {
 
@@ -16,6 +17,10 @@ class ReviewsViewController: UIViewController {
     var app: App!
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        title = app.name
+        tableView.emptyDataSetSource = self
+        tableView.tableFooterView = UIView()
 
         getReviews()
     }
@@ -49,5 +54,11 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         ServiceCaller.postResponse(reviewId: "1033482593", bundleId: "com.rtayal.ChatApp", response: "text", completionBlock: nil)
+    }
+}
+
+extension ReviewsViewController: DZNEmptyDataSetSource {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No reviews yet.")
     }
 }
