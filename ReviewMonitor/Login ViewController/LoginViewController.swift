@@ -15,6 +15,12 @@ class LoginViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+    }
+
+    func cancelTapped() {
+        dismiss(animated: true, completion: nil)
     }
 
     @IBAction func signinTapped(_ sender: Any) {
