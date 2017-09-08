@@ -105,40 +105,48 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="103" id="BBF-QF-Dav" customClass="ReviewsListTableViewCell" customModule="ReviewMonitor" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="375" height="103"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" rowHeight="111" id="BBF-QF-Dav" customClass="ReviewsListTableViewCell" customModule="ReviewMonitor" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="111"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="BBF-QF-Dav" id="4XJ-BV-LU0">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="102.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="110.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="FbT-ZY-XoN">
-                                                    <rect key="frame" x="10" y="10.5" width="355" height="82"/>
+                                                    <rect key="frame" x="10" y="3.5" width="240" height="102"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I3b-2H-KBg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="355" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="240" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gl1-6j-kNo">
-                                                            <rect key="frame" x="0.0" y="20.5" width="355" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="20.5" width="240" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CW4-GV-jKZ">
-                                                            <rect key="frame" x="0.0" y="41" width="355" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="41" width="240" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ohq-35-HOS">
-                                                            <rect key="frame" x="0.0" y="61.5" width="355" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="61.5" width="240" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.9279449582" green="0.72265732289999995" blue="0.21573978660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ld-ZZ-ZP8" customClass="HCSStarRatingView">
+                                                            <rect key="frame" x="0.0" y="82" width="240" height="20"/>
+                                                            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="120" id="Hbi-YK-x3S"/>
+                                                                <constraint firstAttribute="height" constant="20" id="OOb-QP-Nqe"/>
+                                                            </constraints>
+                                                        </view>
                                                     </subviews>
                                                 </stackView>
                                             </subviews>
@@ -151,6 +159,7 @@
                                         <connections>
                                             <outlet property="authorLabel" destination="gl1-6j-kNo" id="etm-qB-gXt"/>
                                             <outlet property="devResponseFlagLabel" destination="ohq-35-HOS" id="33Q-rp-dz6"/>
+                                            <outlet property="ratingView" destination="6Ld-ZZ-ZP8" id="Ern-QY-doH"/>
                                             <outlet property="reviewLabel" destination="CW4-GV-jKZ" id="pc8-tx-93V"/>
                                             <outlet property="titleLabel" destination="I3b-2H-KBg" id="5BA-yC-jJF"/>
                                         </connections>
