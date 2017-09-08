@@ -139,7 +139,7 @@
                                                             <color key="textColor" red="0.9279449582" green="0.72265732289999995" blue="0.21573978660000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ld-ZZ-ZP8" customClass="HCSStarRatingView">
+                                                        <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Ld-ZZ-ZP8" customClass="HCSStarRatingView">
                                                             <rect key="frame" x="0.0" y="82" width="240" height="20"/>
                                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                             <constraints>
