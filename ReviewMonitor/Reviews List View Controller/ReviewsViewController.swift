@@ -27,22 +27,53 @@ class ReviewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
+    }
+
+    func filterTapped() {
     }
 
     func getReviews() {
         refreshControl.beginRefreshing()
         ServiceCaller.getReviews(app: app) { result, error in
             if let result = result as? [[String: Any]] {
+                self.reviews = []
                 for reviewDict in result {
                     let review = Review(dict: reviewDict)
                     self.reviews.append(review)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.refreshControl.endRefreshing()
-                }
             }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
+            }
+        }
+    }
+
+    func promptForResponse(review: Review) {
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alertController.addTextField { tf in
+            tf.placeholder = "Enter developer response"
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
+            let textField = alertController.textFields?.first
+            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: textField!.text!, completionBlock: { result, error in
+                DispatchQueue.main.async {
+                    self.getReviews()
+                }
+            })
+        }))
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func tweetReview(review: Review) {
+        var urlString = "https://twitter.com/intent/tweet?text=" + review.review!
+        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        let url = URL(string: urlString)!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 }
@@ -66,18 +97,8 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let review = reviews[indexPath.row]
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alertController.addTextField { tf in
-            tf.placeholder = "Enter developer response"
-        }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
-            let textField = alertController.textFields?.first
-            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: textField!.text!, completionBlock: { result, error in
-                self.getReviews()
-            })
-        }))
-        present(alertController, animated: true, completion: nil)
+        //        promptForResponse(review: review)
+        tweetReview(review: review)
     }
 }
 

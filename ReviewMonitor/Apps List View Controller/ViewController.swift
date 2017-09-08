@@ -18,11 +18,22 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        title = "My Apps"
         refreshControl.addTarget(self, action: #selector(getApps), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(manageAccountTapped))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getApps()
+    }
+
+    func manageAccountTapped() {
+        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+        let navC = UINavigationController(rootViewController: loginVC)
+        navigationController?.present(navC, animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -41,10 +52,10 @@ class ViewController: UIViewController {
                     let app = App(dict: appDict)
                     self.list.append(app)
                 }
-                DispatchQueue.main.async {
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
-                }
+            }
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
             }
         }
     }

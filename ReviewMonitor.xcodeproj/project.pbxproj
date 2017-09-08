@@ -17,6 +17,9 @@
 		693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAA1F61F23F00FD8859 /* Main.storyboard */; };
 		693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAD1F61F23F00FD8859 /* Assets.xcassets */; };
 		693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAF1F61F23F00FD8859 /* LaunchScreen.storyboard */; };
+		69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */; };
+		69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276D1F6343D600415AC8 /* LoginViewController.swift */; };
+		69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A6276E1F6343D600415AC8 /* LoginViewController.xib */; };
 		69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
 /* End PBXBuildFile section */
@@ -34,6 +37,9 @@
 		693F5FAD1F61F23F00FD8859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		693F5FB01F61F23F00FD8859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		693F5FB21F61F23F00FD8859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperResponse.swift; sourceTree = "<group>"; };
+		69A6276D1F6343D600415AC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		69A6276E1F6343D600415AC8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListTableViewCell.swift; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +80,7 @@
 			children = (
 				690DA5601F622067000DD28F /* App.swift */,
 				690DA5641F622177000DD28F /* Review.swift */,
+				69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -110,6 +117,7 @@
 			children = (
 				693F5FA61F61F23F00FD8859 /* AppDelegate.swift */,
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
+				69A627711F6343D900415AC8 /* Login ViewController */,
 				6909EEA81F622F59008221F9 /* Model */,
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
 				69BCAD2B1F63288900C65305 /* Reviews List View Controller */,
@@ -119,6 +127,15 @@
 				693F5FB21F61F23F00FD8859 /* Info.plist */,
 			);
 			path = ReviewMonitor;
+			sourceTree = "<group>";
+		};
+		69A627711F6343D900415AC8 /* Login ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69A6276D1F6343D600415AC8 /* LoginViewController.swift */,
+				69A6276E1F6343D600415AC8 /* LoginViewController.xib */,
+			);
+			path = "Login ViewController";
 			sourceTree = "<group>";
 		};
 		69BCAD2B1F63288900C65305 /* Reviews List View Controller */ = {
@@ -194,6 +211,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
 				693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */,
 				693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */,
@@ -258,11 +276,13 @@
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
+				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,12 +298,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
+				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
 				690DA5611F622067000DD28F /* App.swift in Sources */,
 				693F5FA71F61F23F00FD8859 /* AppDelegate.swift in Sources */,
 				690DA55F1F621EEC000DD28F /* ServiceCaller.swift in Sources */,
 				69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */,
 				690DA5651F622177000DD28F /* Review.swift in Sources */,
+				69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */,
 				6918E3841F6321F800709F2F /* AppsListTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -13,14 +13,18 @@ class Review: NSObject {
     var id: NSNumber
     var title: String = ""
     var review: String? = ""
-    var developerResponse: Any?
+    var rating: NSNumber? = 5
+    var storeFront: String? = ""
+    var developerResponse: DeveloperResponse?
     var rawDeveloperResponse: Any?
 
     init(dict: [String: Any]) {
         id = dict["id"] as! NSNumber
         title = dict["title"] as! String
         review = dict["review"] as? String
-        developerResponse = dict["developer_response"]
+        rating = dict["rating"] as? NSNumber
+        storeFront = dict["store_front"] as? String
+        developerResponse = DeveloperResponse(dict: dict["developer_response"] as! [String: Any])
         rawDeveloperResponse = dict["raw_developer_response"]
     }
 }
