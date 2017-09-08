@@ -48,5 +48,6 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        ServiceCaller.postResponse(reviewId: "1033482593", bundleId: "com.rtayal.ChatApp", response: "text", completionBlock: nil)
     }
 }
