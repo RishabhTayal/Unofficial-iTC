@@ -11,7 +11,7 @@ import UIKit
 class Review: NSObject {
     var review: String = ""
     
-    override init(dict: [String: Any]) {
+    init(dict: [String: Any]) {
         self.review = dict["review"] as! String
     }
 }

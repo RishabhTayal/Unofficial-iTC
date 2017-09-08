@@ -59,7 +59,7 @@
         <!--Reviews View Controller-->
         <scene sceneID="icH-NX-7jc">
             <objects>
-                <viewController id="9u9-Wp-zf0" customClass="ReviewsViewController" customModule="ReviewMonitor" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ReviewsViewController" id="9u9-Wp-zf0" customClass="ReviewsViewController" customModule="ReviewMonitor" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="0Bo-Wb-h6W"/>
                         <viewControllerLayoutGuide type="bottom" id="h7c-Iz-l3o"/>
