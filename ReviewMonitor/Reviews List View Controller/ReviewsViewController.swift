@@ -74,7 +74,9 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
             let textField = alertController.textFields?.first
             ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: textField!.text!, completionBlock: { result, error in
-                self.getReviews()
+                DispatchQueue.main.async {
+                    self.getReviews()
+                }
             })
         }))
         present(alertController, animated: true, completion: nil)
