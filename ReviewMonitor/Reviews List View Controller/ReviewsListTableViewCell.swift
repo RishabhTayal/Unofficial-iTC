@@ -24,6 +24,7 @@ class ReviewsListTableViewCell: UITableViewCell {
 
     func config(review: Review) {
         titleLabel.text = review.title
+        authorLabel.text = review.storeFront
         reviewLabel.text = review.review
         if review.rawDeveloperResponse is NSNull {
             devResponseFlagLabel.text = ""

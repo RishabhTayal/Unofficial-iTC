@@ -30,8 +30,8 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
     }
 
-    class func getReviews(app: App, completionBlock: CompletionBlock?) {
-        let params = ["bundle_id": app.bundleId]
+    class func getReviews(app: App, storeFront: String = "", completionBlock: CompletionBlock?) {
+        let params = ["bundle_id": app.bundleId, "store_front": storeFront]
         makeAPICall(endPoint: .ratings, params: params, completionBlock: completionBlock)
     }
 

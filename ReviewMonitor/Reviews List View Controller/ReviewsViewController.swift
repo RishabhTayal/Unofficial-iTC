@@ -27,13 +27,18 @@ class ReviewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
+    }
+
+    func filterTapped() {
     }
 
     func getReviews() {
         refreshControl.beginRefreshing()
         ServiceCaller.getReviews(app: app) { result, error in
             if let result = result as? [[String: Any]] {
+                self.reviews = []
                 for reviewDict in result {
                     let review = Review(dict: reviewDict)
                     self.reviews.append(review)
