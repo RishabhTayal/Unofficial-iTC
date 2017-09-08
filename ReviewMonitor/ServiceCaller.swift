@@ -13,7 +13,7 @@ class ServiceCaller: NSObject {
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
     class func getApps(completionBlock: @escaping CompletionBlock) {
-        URLSession.shared.dataTask(with: URL(string: "https://review-monitor.herokuapp.com")!) { d, r, e in
+        URLSession.shared.dataTask(with: URL(string: "https://review-monitor.herokuapp.com/apps")!) { d, r, e in
             if let d = d {
                 do {
                     let json = try JSONSerialization.jsonObject(with: d, options: JSONSerialization.ReadingOptions.allowFragments)
