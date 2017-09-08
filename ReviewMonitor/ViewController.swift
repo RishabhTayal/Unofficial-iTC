@@ -12,19 +12,19 @@ import SDWebImage
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var list: [App] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
         getApps()
     }
 
     func getApps() {
-        ServiceCaller.getApps { (result, error) in
+        ServiceCaller.getApps { result, error in
             if let result = result as? [[String: Any]] {
                 for appDict in result {
-                    let app = App.init(dict: appDict)
+                    let app = App(dict: appDict)
                     self.list.append(app)
                 }
                 DispatchQueue.main.async {
@@ -33,28 +33,26 @@ class ViewController: UIViewController {
             }
         }
     }
-
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = list[indexPath.row].name
         if let url = list[indexPath.row].previewUrl {
-        cell?.imageView?.sd_setImage(with: URL.init(string: url)!, completed: nil)
+            cell?.imageView?.sd_setImage(with: URL(string: url)!, completed: nil)
         } else {
             cell?.imageView?.image = nil
         }
         return cell!
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reviewVC = self.storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
-        self.navigationController?.pushViewController(reviewVC, animated: true)
+        let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
+        navigationController?.pushViewController(reviewVC, animated: true)
     }
-    
 }

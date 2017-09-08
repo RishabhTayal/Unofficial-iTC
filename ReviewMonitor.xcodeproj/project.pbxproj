@@ -113,6 +113,7 @@
 				693F5FA11F61F23F00FD8859 /* Resources */,
 				E78D79FFCF7520445B4BCCE7 /* [CP] Embed Pods Frameworks */,
 				417724DFEF1130E14BC1158D /* [CP] Copy Pods Resources */,
+				6909EEA71F622F13008221F9 /* Swiftformat */,
 			);
 			buildRules = (
 			);
@@ -186,6 +187,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor-resources.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		6909EEA71F622F13008221F9 /* Swiftformat */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftformat;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \".\" \"--disable\" \"unusedArguments\"";
 		};
 		8274AE0422947A0D3F4E4A79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

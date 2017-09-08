@@ -9,14 +9,14 @@
 import UIKit
 
 class Review: NSObject {
-    
+
     var title: String = ""
     var review: String? = ""
     var developerResponse: [String: Any]? = [:]
-    
+
     init(dict: [String: Any]) {
-        self.title = dict["title"] as! String
-        self.review = dict["review"] as? String
-        self.developerResponse = dict["developer_response"] as? [String: Any]
+        title = dict["title"] as! String
+        review = dict["review"] as? String
+        developerResponse = dict["developer_response"] as? [String: Any]
     }
 }

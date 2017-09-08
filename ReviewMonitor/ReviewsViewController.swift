@@ -11,20 +11,20 @@ import UIKit
 class ReviewsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-    
+
     var reviews: [Review] = []
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-getReviews()
+        getReviews()
     }
 
     func getReviews() {
-        ServiceCaller.getReviews { (result, error) in
+        ServiceCaller.getReviews { result, error in
             if let result = result as? [[String: Any]] {
                 for reviewDict in result {
-                    let review = Review.init(dict: reviewDict)
+                    let review = Review(dict: reviewDict)
                     self.reviews.append(review)
                 }
                 DispatchQueue.main.async {
@@ -33,14 +33,13 @@ getReviews()
             }
         }
     }
-
 }
 
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews.count
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = reviews[indexPath.row].title
