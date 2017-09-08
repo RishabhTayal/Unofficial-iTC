@@ -13,7 +13,7 @@ class ReviewsViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var reviews: [Review] = []
-
+    var app: App!
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -21,7 +21,7 @@ class ReviewsViewController: UIViewController {
     }
 
     func getReviews() {
-        ServiceCaller.getReviews { result, error in
+        ServiceCaller.getReviews(app: app) { result, error in
             if let result = result as? [[String: Any]] {
                 for reviewDict in result {
                     let review = Review(dict: reviewDict)

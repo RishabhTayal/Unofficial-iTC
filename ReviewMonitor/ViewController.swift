@@ -53,6 +53,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
+        reviewVC.app = list[indexPath.row]
         navigationController?.pushViewController(reviewVC, animated: true)
     }
 }

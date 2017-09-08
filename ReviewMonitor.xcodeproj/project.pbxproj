@@ -65,6 +65,15 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		6909EEA81F622F59008221F9 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				690DA5601F622067000DD28F /* App.swift */,
+				690DA5641F622177000DD28F /* Review.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		693F5F9A1F61F23F00FD8859 = {
 			isa = PBXGroup;
 			children = (
@@ -88,8 +97,7 @@
 			children = (
 				693F5FA61F61F23F00FD8859 /* AppDelegate.swift */,
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
-				690DA5601F622067000DD28F /* App.swift */,
-				690DA5641F622177000DD28F /* Review.swift */,
+				6909EEA81F622F59008221F9 /* Model */,
 				693F5FA81F61F23F00FD8859 /* ViewController.swift */,
 				690DA5621F622142000DD28F /* ReviewsViewController.swift */,
 				693F5FAA1F61F23F00FD8859 /* Main.storyboard */,

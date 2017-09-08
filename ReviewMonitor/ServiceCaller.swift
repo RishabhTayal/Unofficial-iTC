@@ -21,8 +21,8 @@ class ServiceCaller: NSObject {
         }.resume()
     }
 
-    class func getReviews(completionBlock: @escaping CompletionBlock) {
-        URLSession.shared.dataTask(with: URL(string: "https://review-monitor.herokuapp.com/ratings")!) { d, r, e in
+    class func getReviews(app: App, completionBlock: @escaping CompletionBlock) {
+        URLSession.shared.dataTask(with: URL(string: "https://review-monitor.herokuapp.com/ratings?bundle_id=" + app.bundleId)!) { d, r, e in
             if let d = d {
                 let json = try! JSONSerialization.jsonObject(with: d, options: JSONSerialization.ReadingOptions.allowFragments)
                 completionBlock(json, nil)
