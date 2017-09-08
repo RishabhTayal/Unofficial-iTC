@@ -43,10 +43,10 @@ class ReviewsViewController: UIViewController {
                     let review = Review(dict: reviewDict)
                     self.reviews.append(review)
                 }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                    self.refreshControl.endRefreshing()
-                }
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+                self.refreshControl.endRefreshing()
             }
         }
     }

@@ -23,6 +23,10 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(manageAccountTapped))
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         getApps()
     }
 
@@ -48,10 +52,10 @@ class ViewController: UIViewController {
                     let app = App(dict: appDict)
                     self.list.append(app)
                 }
-                DispatchQueue.main.async {
-                    self.refreshControl.endRefreshing()
-                    self.tableView.reloadData()
-                }
+            }
+            DispatchQueue.main.async {
+                self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
             }
         }
     }

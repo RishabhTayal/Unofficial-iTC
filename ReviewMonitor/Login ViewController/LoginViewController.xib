@@ -12,6 +12,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LoginViewController" customModule="ReviewMonitor" customModuleProvider="target">
             <connections>
+                <outlet property="passwordTextField" destination="TRM-Gc-qfz" id="phy-Nd-XVv"/>
+                <outlet property="userNameTextField" destination="IoK-HP-TVY" id="LMu-9M-fMG"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -37,7 +39,10 @@
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i5-Oh-cSp">
                             <rect key="frame" x="0.0" y="98" width="335" height="30"/>
-                            <state key="normal" title="Button"/>
+                            <state key="normal" title="Sign in"/>
+                            <connections>
+                                <action selector="signinTapped:" destination="-1" eventType="touchUpInside" id="GNH-ha-iVV"/>
+                            </connections>
                         </button>
                     </subviews>
                 </stackView>

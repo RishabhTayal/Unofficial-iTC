@@ -41,7 +41,10 @@ class ServiceCaller: NSObject {
     }
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
+        var params = params
         var url = BaseURL + endPoint.rawValue
+        params.updateValue(AppDelegate.currentUsername ?? "", forKey: "username")
+        params["password"] = AppDelegate.currentPassword
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         var request = URLRequest(url: URL(string: url)!)

@@ -24,5 +24,13 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signinTapped(_ sender: Any) {
+        AppDelegate.currentUsername = userNameTextField.text
+        AppDelegate.currentPassword = passwordTextField.text
+        if presentingViewController != nil {
+            dismiss(animated: true, completion: nil)
+        } else {
+            let appDelegate = UIApplication.shared.delegate as! AppDelegate
+            appDelegate.showAppView()
+        }
     }
 }
