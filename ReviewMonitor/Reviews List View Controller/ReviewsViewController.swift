@@ -15,17 +15,23 @@ class ReviewsViewController: UIViewController {
 
     var reviews: [Review] = []
     var app: App!
+
+    var refreshControl: UIRefreshControl = UIRefreshControl()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         title = app.name
         tableView.emptyDataSetSource = self
         tableView.tableFooterView = UIView()
+        refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
+        tableView.addSubview(refreshControl)
 
         getReviews()
     }
 
     func getReviews() {
+        refreshControl.beginRefreshing()
         ServiceCaller.getReviews(app: app) { result, error in
             if let result = result as? [[String: Any]] {
                 for reviewDict in result {
@@ -34,6 +40,7 @@ class ReviewsViewController: UIViewController {
                 }
                 DispatchQueue.main.async {
                     self.tableView.reloadData()
+                    self.refreshControl.endRefreshing()
                 }
             }
         }
@@ -43,7 +50,7 @@ class ReviewsViewController: UIViewController {
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 120
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -66,7 +73,9 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
         alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
             let textField = alertController.textFields?.first
-            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: (textField?.text)!, completionBlock: nil)
+            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: textField!.text!, completionBlock: { result, error in
+                self.getReviews()
+            })
         }))
         present(alertController, animated: true, completion: nil)
     }

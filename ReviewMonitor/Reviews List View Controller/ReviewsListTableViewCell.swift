@@ -15,6 +15,7 @@ class ReviewsListTableViewCell: UITableViewCell {
     @IBOutlet weak var ratingView: UIView!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var territoryImageView: UIImageView!
+    @IBOutlet weak var devResponseFlagLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,5 +25,10 @@ class ReviewsListTableViewCell: UITableViewCell {
     func config(review: Review) {
         titleLabel.text = review.title
         reviewLabel.text = review.review
+        if review.rawDeveloperResponse is NSNull {
+            devResponseFlagLabel.text = ""
+        } else {
+            devResponseFlagLabel.text = "Responded"
+        }
     }
 }
