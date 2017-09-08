@@ -41,19 +41,34 @@ class ReviewsViewController: UIViewController {
 }
 
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return reviews.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = reviews[indexPath.row].title
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ReviewsListTableViewCell
+        cell.config(review: reviews[indexPath.row])
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        ServiceCaller.postResponse(reviewId: "1033482593", bundleId: "com.rtayal.ChatApp", response: "text", completionBlock: nil)
+        let review = reviews[indexPath.row]
+        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
+        alertController.addTextField { tf in
+            tf.placeholder = "Enter developer response"
+        }
+        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
+        alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
+            let textField = alertController.textFields?.first
+            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: (textField?.text)!, completionBlock: nil)
+        }))
+        present(alertController, animated: true, completion: nil)
     }
 }
 

@@ -14,20 +14,28 @@ class ViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
 
     var list: [App] = []
+    var refreshControl = UIRefreshControl()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        refreshControl.addTarget(self, action: #selector(getApps), for: .valueChanged)
+        tableView.addSubview(refreshControl)
+
         getApps()
     }
 
     func getApps() {
+        refreshControl.beginRefreshing()
         ServiceCaller.getApps { result, error in
             if let result = result as? [[String: Any]] {
+                self.list = []
                 for appDict in result {
                     let app = App(dict: appDict)
                     self.list.append(app)
                 }
                 DispatchQueue.main.async {
+                    self.refreshControl.endRefreshing()
                     self.tableView.reloadData()
                 }
             }
@@ -36,19 +44,19 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return list.count
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
-        cell?.textLabel?.text = list[indexPath.row].name
-        if let url = list[indexPath.row].previewUrl {
-            cell?.imageView?.sd_setImage(with: URL(string: url)!, completed: nil)
-        } else {
-            cell?.imageView?.image = nil
-        }
-        return cell!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AppsListTableViewCell
+        cell.configure(app: list[indexPath.row])
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

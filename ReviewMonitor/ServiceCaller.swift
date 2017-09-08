@@ -35,14 +35,15 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .ratings, params: params, completionBlock: completionBlock)
     }
 
-    class func postResponse(reviewId: String, bundleId: String, response: String, completionBlock: CompletionBlock?) {
-        let params = ["rating_id": reviewId, "bundle_id": bundleId, "response_text": response]
+    class func postResponse(reviewId: NSNumber, bundleId: String, response: String, completionBlock: CompletionBlock?) {
+        let params = ["rating_id": reviewId, "bundle_id": bundleId, "response_text": response] as [String: Any]
         makeAPICall(endPoint: .response, params: params, httpMethod: .POST, completionBlock: completionBlock)
     }
 
-    private class func makeAPICall(endPoint: EndPoint, params: [String: String] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
+    private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var url = BaseURL + endPoint.rawValue
         url += "?" + convertToUrlParameter(params)
+        url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in
@@ -59,7 +60,7 @@ class ServiceCaller: NSObject {
         }.resume()
     }
 
-    private class func convertToUrlParameter(_ dict: [String: String]?) -> String {
+    private class func convertToUrlParameter(_ dict: [String: Any]?) -> String {
         var parameterString: String = ""
         var i: Int = 0
         if let dict = dict {
