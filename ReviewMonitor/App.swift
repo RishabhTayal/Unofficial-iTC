@@ -10,8 +10,10 @@ import UIKit
 
 class App: NSObject {
     var name: String = ""
+    var previewUrl: String? = ""
     
     init(dict: [String: Any]) {
         self.name = dict["name"] as! String
+        self.previewUrl = dict["app_icon_preview_url"] as? String
     }
 }

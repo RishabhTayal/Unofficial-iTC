@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class ViewController: UIViewController {
 
@@ -43,6 +44,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         cell?.textLabel?.text = list[indexPath.row].name
+        if let url = list[indexPath.row].previewUrl {
+        cell?.imageView?.sd_setImage(with: URL.init(string: url)!, completed: nil)
+        } else {
+            cell?.imageView?.image = nil
+        }
         return cell!
     }
     
