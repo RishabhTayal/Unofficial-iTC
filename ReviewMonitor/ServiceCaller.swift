@@ -13,6 +13,7 @@ class ServiceCaller: NSObject {
     private static let BaseURL = "https://review-monitor.herokuapp.com/"
 
     private enum EndPoint: String {
+        case login
         case apps
         case ratings
         case response
@@ -25,6 +26,10 @@ class ServiceCaller: NSObject {
     }
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
+
+    class func login(completion: CompletionBlock?) {
+        makeAPICall(endPoint: .login, httpMethod: .POST, completionBlock: completion)
+    }
 
     class func getApps(completionBlock: CompletionBlock?) {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
@@ -43,8 +48,8 @@ class ServiceCaller: NSObject {
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
         var url = BaseURL + endPoint.rawValue
-        params.updateValue(AppDelegate.currentUsername ?? "", forKey: "username")
-        params["password"] = AppDelegate.currentPassword
+        //        params.updateValue(AppDelegate.currentUsername ?? "", forKey: "username")
+        //        params["password"] = AppDelegate.currentPassword
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         var request = URLRequest(url: URL(string: url)!)

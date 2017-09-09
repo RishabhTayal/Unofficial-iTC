@@ -13,6 +13,8 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
+
     var list: [App] = []
     var refreshControl = UIRefreshControl()
 
@@ -31,8 +33,11 @@ class ViewController: UIViewController {
     }
 
     func manageAccountTapped() {
-        let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
-        let navC = UINavigationController(rootViewController: loginVC)
+        let accountsVC = AccountsViewController(nibName: "AccountsViewController", bundle: nil)
+        let navC = UINavigationController(rootViewController: accountsVC)
+        halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: navC)
+        navC.modalPresentationStyle = .custom
+        navC.transitioningDelegate = halfModalTransitioningDelegate
         navigationController?.present(navC, animated: true, completion: nil)
     }
 

@@ -13,13 +13,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    static var currentUsername: String? = "c"
-    static var currentPassword: String? = "a"
+    //    static var currentUsername: String? = "c"
+    //    static var currentPassword: String? = "a"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        if AppDelegate.currentUsername == nil {
+        if UserDefaults.standard.object(forKey: "username") == nil {
             window?.rootViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         } else {
             window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()
