@@ -12,13 +12,13 @@ class AccountsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var accounts: [String] = ["a", "b"]
+    var accounts: [Account] = []
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         tableView.tableFooterView = UIView()
-
+        accounts = KeychainManger.getAccountArray()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
     }
 
@@ -42,7 +42,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.textLabel?.text = "Add Account"
             cell?.textLabel?.textAlignment = .center
         } else {
-            cell?.textLabel?.text = "a"
+            cell?.textLabel?.text = accounts[indexPath.row].username
             cell?.textLabel?.textAlignment = .left
         }
         return cell!

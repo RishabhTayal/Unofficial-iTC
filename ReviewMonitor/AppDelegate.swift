@@ -19,7 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
 
         window = UIWindow(frame: UIScreen.main.bounds)
-        if UserDefaults.standard.object(forKey: "username") == nil {
+        if KeychainManger.getAccountArray().count == 0 {
             window?.rootViewController = LoginViewController(nibName: "LoginViewController", bundle: nil)
         } else {
             window?.rootViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController()

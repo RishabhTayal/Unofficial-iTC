@@ -13,8 +13,6 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
 
-    let keychainWrapper = KeychainWrapper()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -30,9 +28,8 @@ class LoginViewController: UIViewController {
             //            print(r)
             DispatchQueue.main.async {
 
-                UserDefaults.standard.setValue(self.userNameTextField.text, forKey: "username")
-                self.keychainWrapper.mySetObject(self.passwordTextField.text, forKey: kSecValueData)
-                self.keychainWrapper.writeToKeychain()
+                let account = Account(username: self.userNameTextField.text!, password: self.passwordTextField.text!)
+                KeychainManger.storeAccount(account: account)
 
                 if self.presentingViewController != nil {
                     self.dismiss(animated: true, completion: nil)
