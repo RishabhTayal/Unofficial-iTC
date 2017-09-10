@@ -16,6 +16,7 @@ class AccountsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Accounts"
 
         tableView.tableFooterView = UIView()
         accounts = KeychainManger.getAccountArray()

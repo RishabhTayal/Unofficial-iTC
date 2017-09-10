@@ -23,22 +23,28 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="19" translatesAutoresizingMaskIntoConstraints="NO" id="ROX-Ny-xzQ">
-                    <rect key="frame" x="20" y="70" width="335" height="128"/>
+                    <rect key="frame" x="20" y="70" width="335" height="148"/>
                     <subviews>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="IoK-HP-TVY">
-                            <rect key="frame" x="0.0" y="0.0" width="335" height="30"/>
+                            <rect key="frame" x="0.0" y="0.0" width="335" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Gi2-pA-18j"/>
+                            </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" textContentType="email"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TRM-Gc-qfz">
-                            <rect key="frame" x="0.0" y="49" width="335" height="30"/>
+                            <rect key="frame" x="0.0" y="59" width="335" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="Epu-t6-tu4"/>
+                            </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <textInputTraits key="textInputTraits" returnKeyType="go" secureTextEntry="YES" textContentType="password"/>
                         </textField>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2i5-Oh-cSp">
-                            <rect key="frame" x="0.0" y="98" width="335" height="30"/>
+                            <rect key="frame" x="0.0" y="118" width="335" height="30"/>
                             <state key="normal" title="Sign in"/>
                             <connections>
                                 <action selector="signinTapped:" destination="-1" eventType="touchUpInside" id="GNH-ha-iVV"/>

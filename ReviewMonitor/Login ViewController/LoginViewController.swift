@@ -16,7 +16,13 @@ class LoginViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
+        view.addGestureRecognizer(tap)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+    }
+
+    func tappedOnView() {
+        view.endEditing(true)
     }
 
     func cancelTapped() {
@@ -24,29 +30,27 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signinTapped(_ sender: Any) {
+        let account = Account(username: userNameTextField.text!, password: passwordTextField.text!, isCurrentAccount: true)
+        KeychainManger.storeAccount(account: account)
+        KeychainManger.setCurrentAccount(account: account)
+
         ServiceCaller.login { r, e in
-            //            print(r)
             DispatchQueue.main.async {
+                if r != nil {
 
-                let account = Account(username: self.userNameTextField.text!, password: self.passwordTextField.text!, isCurrentAccount: true)
-                KeychainManger.storeAccount(account: account)
-                KeychainManger.setCurrentAccount(account: account)
-
-                if self.presentingViewController != nil {
-                    self.dismiss(animated: true, completion: nil)
+                    if self.presentingViewController != nil {
+                        self.dismiss(animated: true, completion: nil)
+                    } else {
+                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+                        appDelegate.showAppView()
+                    }
                 } else {
-                    let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                    appDelegate.showAppView()
+                    KeychainManger.removeAccount(account: account)
+                    let alert = UIAlertController(title: "Login error", message: "Could not login. Please check your username and password.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                 }
             }
         }
-        //        AppDelegate.currentUsername = userNameTextField.text
-        //        AppDelegate.currentPassword = passwordTextField.text
-        //        if presentingViewController != nil {
-        //            dismiss(animated: true, completion: nil)
-        //        } else {
-        //            let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        //            appDelegate.showAppView()
-        //        }
     }
 }

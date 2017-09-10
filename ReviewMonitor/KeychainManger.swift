@@ -64,4 +64,15 @@ class KeychainManger: NSObject {
             storeAccount(account: a)
         }
     }
+
+    class func getCurrentAccount() -> Account? {
+        let accounts = getAccountArray()
+        var currentAccount: Account?
+        accounts.forEach { a in
+            if a.isCurrentAccount {
+                currentAccount = a
+            }
+        }
+        return currentAccount
+    }
 }

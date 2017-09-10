@@ -151,14 +151,22 @@
 			path = ReviewMonitor;
 			sourceTree = "<group>";
 		};
+		694282961F65F2530053BBF3 /* Accounts ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */,
+				69C845A71F6393E100C65AB2 /* AccountsViewController.swift */,
+				69C845A81F6393E100C65AB2 /* AccountsViewController.xib */,
+			);
+			path = "Accounts ViewController";
+			sourceTree = "<group>";
+		};
 		69A627711F6343D900415AC8 /* Login ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				69A6276D1F6343D600415AC8 /* LoginViewController.swift */,
 				69A6276E1F6343D600415AC8 /* LoginViewController.xib */,
-				69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */,
-				69C845A71F6393E100C65AB2 /* AccountsViewController.swift */,
-				69C845A81F6393E100C65AB2 /* AccountsViewController.xib */,
+				694282961F65F2530053BBF3 /* Accounts ViewController */,
 			);
 			path = "Login ViewController";
 			sourceTree = "<group>";
