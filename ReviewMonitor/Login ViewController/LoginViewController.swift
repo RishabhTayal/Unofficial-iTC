@@ -28,8 +28,9 @@ class LoginViewController: UIViewController {
             //            print(r)
             DispatchQueue.main.async {
 
-                let account = Account(username: self.userNameTextField.text!, password: self.passwordTextField.text!)
+                let account = Account(username: self.userNameTextField.text!, password: self.passwordTextField.text!, isCurrentAccount: true)
                 KeychainManger.storeAccount(account: account)
+                KeychainManger.setCurrentAccount(account: account)
 
                 if self.presentingViewController != nil {
                     self.dismiss(animated: true, completion: nil)

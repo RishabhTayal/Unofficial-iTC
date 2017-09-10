@@ -42,8 +42,14 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.textLabel?.text = "Add Account"
             cell?.textLabel?.textAlignment = .center
         } else {
+            let account = accounts[indexPath.row]
             cell?.textLabel?.text = accounts[indexPath.row].username
             cell?.textLabel?.textAlignment = .left
+            if account.isCurrentAccount {
+                cell?.accessoryType = .checkmark
+            } else {
+                cell?.accessoryType = .none
+            }
         }
         return cell!
     }
@@ -51,6 +57,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row < accounts.count {
+            KeychainManger.setCurrentAccount(account: accounts[indexPath.row])
             cancelTapped()
         } else {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
@@ -70,6 +77,8 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        let account = accounts[indexPath.row]
+        KeychainManger.removeAccount(account: account)
         accounts.remove(at: indexPath.row)
         self.tableView.reloadData()
     }
