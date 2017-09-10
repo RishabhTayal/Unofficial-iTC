@@ -34,6 +34,7 @@ class ViewController: UIViewController {
 
     func manageAccountTapped() {
         let accountsVC = AccountsViewController(nibName: "AccountsViewController", bundle: nil)
+        accountsVC.delegate = self
         let navC = UINavigationController(rootViewController: accountsVC)
         halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: navC)
         navC.modalPresentationStyle = .custom
@@ -86,5 +87,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
         reviewVC.app = list[indexPath.row]
         navigationController?.pushViewController(reviewVC, animated: true)
+    }
+}
+
+extension ViewController: AccountsViewControllerDelegate {
+    func accountsControllerDidDismiss() {
+        getApps()
     }
 }

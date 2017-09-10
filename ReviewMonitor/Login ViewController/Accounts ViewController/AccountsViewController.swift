@@ -8,11 +8,17 @@
 
 import UIKit
 
+protocol AccountsViewControllerDelegate: class {
+    func accountsControllerDidDismiss()
+}
+
 class AccountsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
     var accounts: [Account] = []
+
+    weak var delegate: AccountsViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +30,7 @@ class AccountsViewController: UIViewController {
     }
 
     func cancelTapped() {
+        delegate?.accountsControllerDidDismiss()
         dismiss(animated: true, completion: nil)
     }
 }
