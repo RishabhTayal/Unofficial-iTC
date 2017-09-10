@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import LocalAuthentication
 
-class KeychainManger: NSObject {
+class AccountManger: NSObject {
 
     private static let accountsKey = "Accounts"
 
@@ -74,5 +75,34 @@ class KeychainManger: NSObject {
             }
         }
         return currentAccount
+    }
+
+    func authenticateUser(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+        // Get the current authentication context
+        let context = LAContext()
+        var error: NSError?
+        let myLocalizedReasonString = "Authentification is required"
+
+        // Check if the device is compatible with TouchID and can evaluate the policy.
+        guard context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            DispatchQueue.main.async {
+                failure(error!)
+            }
+            return
+        }
+
+        context.evaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics,
+                               localizedReason: myLocalizedReasonString,
+                               reply: { status, error in
+                                   if status {
+                                       DispatchQueue.main.async {
+                                           success()
+                                       }
+                                   } else {
+                                       DispatchQueue.main.async {
+                                           failure(error as! NSError)
+                                       }
+                                   }
+        })
     }
 }

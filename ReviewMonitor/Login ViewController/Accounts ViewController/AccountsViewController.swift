@@ -25,7 +25,7 @@ class AccountsViewController: UIViewController {
         title = "Accounts"
 
         tableView.tableFooterView = UIView()
-        accounts = KeychainManger.getAccountArray()
+        accounts = AccountManger.getAccountArray()
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
     }
 
@@ -65,7 +65,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row < accounts.count {
-            KeychainManger.setCurrentAccount(account: accounts[indexPath.row])
+            AccountManger.setCurrentAccount(account: accounts[indexPath.row])
             cancelTapped()
         } else {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
@@ -86,7 +86,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         let account = accounts[indexPath.row]
-        KeychainManger.removeAccount(account: account)
+        AccountManger.removeAccount(account: account)
         accounts.remove(at: indexPath.row)
         self.tableView.reloadData()
     }

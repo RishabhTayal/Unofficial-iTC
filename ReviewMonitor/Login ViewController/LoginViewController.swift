@@ -31,8 +31,8 @@ class LoginViewController: UIViewController {
 
     @IBAction func signinTapped(_ sender: Any) {
         let account = Account(username: userNameTextField.text!, password: passwordTextField.text!, isCurrentAccount: true)
-        KeychainManger.storeAccount(account: account)
-        KeychainManger.setCurrentAccount(account: account)
+        AccountManger.storeAccount(account: account)
+        AccountManger.setCurrentAccount(account: account)
 
         ServiceCaller.login { r, e in
             DispatchQueue.main.async {
@@ -45,7 +45,7 @@ class LoginViewController: UIViewController {
                         appDelegate.showAppView()
                     }
                 } else {
-                    KeychainManger.removeAccount(account: account)
+                    AccountManger.removeAccount(account: account)
                     let alert = UIAlertController(title: "Login error", message: "Could not login. Please check your username and password.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)
