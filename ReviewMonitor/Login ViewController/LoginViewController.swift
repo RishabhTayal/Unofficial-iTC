@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 class LoginViewController: UIViewController {
 
@@ -34,8 +35,10 @@ class LoginViewController: UIViewController {
         AccountManger.storeAccount(account: account)
         AccountManger.setCurrentAccount(account: account)
 
+        MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.login { r, e in
             DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
                 if r != nil {
 
                     if self.presentingViewController != nil {

@@ -8,6 +8,7 @@
 
 import UIKit
 import SDWebImage
+import MBProgressHUD
 
 class ViewController: UIViewController {
 
@@ -21,14 +22,13 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "My Apps"
+
         refreshControl.addTarget(self, action: #selector(getApps), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        tableView.tableFooterView = UIView()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(manageAccountTapped))
-    }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         getApps()
     }
 
@@ -51,6 +51,7 @@ class ViewController: UIViewController {
 
     func getApps() {
         refreshControl.beginRefreshing()
+        MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.getApps { result, error in
             if let result = result as? [[String: Any]] {
                 self.list = []
@@ -60,6 +61,7 @@ class ViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.refreshControl.endRefreshing()
                 self.tableView.reloadData()
             }
@@ -92,6 +94,8 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension ViewController: AccountsViewControllerDelegate {
     func accountsControllerDidDismiss() {
+        list = []
+        tableView.reloadData()
         getApps()
     }
 }

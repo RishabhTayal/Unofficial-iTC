@@ -5,4 +5,5 @@ target 'ReviewMonitor' do
     pod 'SwiftFormat/CLI' # Swift code formatting
     pod 'DZNEmptyDataSet' # Shows empty view in UITableView
     pod 'HCSStarRatingView' # Shows review rating
+    pod 'MBProgressHUD' #Loading indicator for network calls
 end
