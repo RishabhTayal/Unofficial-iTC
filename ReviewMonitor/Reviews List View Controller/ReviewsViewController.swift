@@ -30,7 +30,7 @@ class ReviewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
     }
 
