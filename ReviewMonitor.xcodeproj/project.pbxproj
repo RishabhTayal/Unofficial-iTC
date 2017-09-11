@@ -212,6 +212,7 @@
 				E78D79FFCF7520445B4BCCE7 /* [CP] Embed Pods Frameworks */,
 				417724DFEF1130E14BC1158D /* [CP] Copy Pods Resources */,
 				6909EEA71F622F13008221F9 /* Swiftformat */,
+				69A5A4B61F6712DF00A3ED81 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -302,6 +303,19 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \".\" \"--disable\" \"unusedArguments\"";
+		};
+		69A5A4B61F6712DF00A3ED81 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
 		};
 		8274AE0422947A0D3F4E4A79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
