@@ -1,4 +1,5 @@
 use_frameworks!
+platform :ios, '10.0'
 
 target 'ReviewMonitor' do
     pod 'SDWebImage' # Image loading and caching from url
