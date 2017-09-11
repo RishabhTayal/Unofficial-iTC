@@ -30,7 +30,6 @@ class AccountsViewController: UIViewController {
     }
 
     func cancelTapped() {
-        delegate?.accountsControllerDidDismiss()
         dismiss(animated: true, completion: nil)
     }
 }
@@ -66,6 +65,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         if indexPath.row < accounts.count {
             AccountManger.setCurrentAccount(account: accounts[indexPath.row])
+            delegate?.accountsControllerDidDismiss()
             cancelTapped()
         } else {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
