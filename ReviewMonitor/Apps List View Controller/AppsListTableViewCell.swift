@@ -15,7 +15,8 @@ class AppsListTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        appIconImageView.addBorder(1 / UIScreen.main.scale, color: UIColor.lightGray)
+        appIconImageView.cornerRadius(8)
     }
 
     func configure(app: App) {

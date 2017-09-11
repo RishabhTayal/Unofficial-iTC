@@ -81,6 +81,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AppsListTableViewCell
+        cell.accessoryType = .disclosureIndicator
         cell.configure(app: list[indexPath.row])
         return cell
     }
