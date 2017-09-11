@@ -102,8 +102,8 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let review = reviews[indexPath.row]
-        //        promptForResponse(review: review)
-        tweetReview(review: review)
+        promptForResponse(review: review)
+        //        tweetReview(review: review)
     }
 }
 
