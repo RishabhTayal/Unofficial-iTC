@@ -17,10 +17,19 @@
 		693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAA1F61F23F00FD8859 /* Main.storyboard */; };
 		693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAD1F61F23F00FD8859 /* Assets.xcassets */; };
 		693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAF1F61F23F00FD8859 /* LaunchScreen.storyboard */; };
+		694282931F6464690053BBF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694282921F6464690053BBF3 /* Account.swift */; };
+		694282951F64747F0053BBF3 /* AccountManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694282941F64747F0053BBF3 /* AccountManger.swift */; };
 		69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */; };
 		69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276D1F6343D600415AC8 /* LoginViewController.swift */; };
 		69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A6276E1F6343D600415AC8 /* LoginViewController.xib */; };
+		69A627781F63909800415AC8 /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627771F63902500415AC8 /* HalfModalPresentationController.swift */; };
+		69A627791F6390A200415AC8 /* HalfModalInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */; };
+		69A6277A1F6390A200415AC8 /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */; };
+		69A6277B1F6390A200415AC8 /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */; };
+		69A6277D1F6391CE00415AC8 /* AccountsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */; };
 		69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */; };
+		69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C845A71F6393E100C65AB2 /* AccountsViewController.swift */; };
+		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -37,10 +46,19 @@
 		693F5FAD1F61F23F00FD8859 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		693F5FB01F61F23F00FD8859 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		693F5FB21F61F23F00FD8859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		694282921F6464690053BBF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
+		694282941F64747F0053BBF3 /* AccountManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManger.swift; sourceTree = "<group>"; };
 		69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperResponse.swift; sourceTree = "<group>"; };
 		69A6276D1F6343D600415AC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		69A6276E1F6343D600415AC8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalInteractiveTransition.swift; sourceTree = "<group>"; };
+		69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
+		69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
+		69A627771F63902500415AC8 /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
+		69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsNavigationController.swift; sourceTree = "<group>"; };
 		69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListTableViewCell.swift; sourceTree = "<group>"; };
+		69C845A71F6393E100C65AB2 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
+		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.debug.xcconfig"; sourceTree = "<group>"; };
@@ -81,6 +99,7 @@
 				690DA5601F622067000DD28F /* App.swift */,
 				690DA5641F622177000DD28F /* Review.swift */,
 				69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */,
+				694282921F6464690053BBF3 /* Account.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -117,6 +136,9 @@
 			children = (
 				693F5FA61F61F23F00FD8859 /* AppDelegate.swift */,
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
+				694282941F64747F0053BBF3 /* AccountManger.swift */,
+				69A627761F63902500415AC8 /* Presentation */,
+				69A627721F63902500415AC8 /* Transitioning */,
 				69A627711F6343D900415AC8 /* Login ViewController */,
 				6909EEA81F622F59008221F9 /* Model */,
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
@@ -129,13 +151,42 @@
 			path = ReviewMonitor;
 			sourceTree = "<group>";
 		};
+		694282961F65F2530053BBF3 /* Accounts ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */,
+				69C845A71F6393E100C65AB2 /* AccountsViewController.swift */,
+				69C845A81F6393E100C65AB2 /* AccountsViewController.xib */,
+			);
+			path = "Accounts ViewController";
+			sourceTree = "<group>";
+		};
 		69A627711F6343D900415AC8 /* Login ViewController */ = {
 			isa = PBXGroup;
 			children = (
 				69A6276D1F6343D600415AC8 /* LoginViewController.swift */,
 				69A6276E1F6343D600415AC8 /* LoginViewController.xib */,
+				694282961F65F2530053BBF3 /* Accounts ViewController */,
 			);
 			path = "Login ViewController";
+			sourceTree = "<group>";
+		};
+		69A627721F63902500415AC8 /* Transitioning */ = {
+			isa = PBXGroup;
+			children = (
+				69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */,
+				69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */,
+				69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */,
+			);
+			path = Transitioning;
+			sourceTree = "<group>";
+		};
+		69A627761F63902500415AC8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				69A627771F63902500415AC8 /* HalfModalPresentationController.swift */,
+			);
+			path = Presentation;
 			sourceTree = "<group>";
 		};
 		69BCAD2B1F63288900C65305 /* Reviews List View Controller */ = {
@@ -178,13 +229,14 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = "Tayal, Rishabh";
 				TargetAttributes = {
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = CEBY93VF85;
-						ProvisioningStyle = Automatic;
+						LastSwiftMigration = 0900;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -212,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
+				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
 				693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */,
 				693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */,
@@ -277,12 +330,14 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -298,13 +353,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
+				69A6277D1F6391CE00415AC8 /* AccountsNavigationController.swift in Sources */,
 				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
+				694282931F6464690053BBF3 /* Account.swift in Sources */,
+				69A627781F63909800415AC8 /* HalfModalPresentationController.swift in Sources */,
 				690DA5611F622067000DD28F /* App.swift in Sources */,
+				69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */,
 				693F5FA71F61F23F00FD8859 /* AppDelegate.swift in Sources */,
 				690DA55F1F621EEC000DD28F /* ServiceCaller.swift in Sources */,
+				69A6277B1F6390A200415AC8 /* HalfModalTransitioningDelegate.swift in Sources */,
 				69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */,
+				69A627791F6390A200415AC8 /* HalfModalInteractiveTransition.swift in Sources */,
+				69A6277A1F6390A200415AC8 /* HalfModalTransitionAnimator.swift in Sources */,
 				690DA5651F622177000DD28F /* Review.swift in Sources */,
+				694282951F64747F0053BBF3 /* AccountManger.swift in Sources */,
 				69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */,
 				6918E3841F6321F800709F2F /* AppsListTableViewCell.swift in Sources */,
 			);
@@ -342,7 +405,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -350,7 +415,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -392,7 +461,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -400,7 +471,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -430,11 +505,17 @@
 			baseConfigurationReference = EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = ReviewMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "2c69db49-d566-47a1-adf7-64789e75470b";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -444,11 +525,17 @@
 			baseConfigurationReference = 9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = ReviewMonitor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "f432fe31-969a-4ebe-ba2e-3932dc1ea3cf";
+				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.rtayal.ReviewMonitor";
+				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

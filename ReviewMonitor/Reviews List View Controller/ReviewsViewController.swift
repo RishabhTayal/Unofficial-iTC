@@ -8,6 +8,7 @@
 
 import UIKit
 import DZNEmptyDataSet
+import MBProgressHUD
 
 class ReviewsViewController: UIViewController {
 
@@ -23,11 +24,13 @@ class ReviewsViewController: UIViewController {
 
         title = app.name
         tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+
         tableView.tableFooterView = UIView()
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
     }
 
@@ -36,6 +39,7 @@ class ReviewsViewController: UIViewController {
 
     func getReviews() {
         refreshControl.beginRefreshing()
+        MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.getReviews(app: app) { result, error in
             if let result = result as? [[String: Any]] {
                 self.reviews = []
@@ -45,8 +49,9 @@ class ReviewsViewController: UIViewController {
                 }
             }
             DispatchQueue.main.async {
-                self.tableView.reloadData()
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.refreshControl.endRefreshing()
+                self.tableView.reloadData()
             }
         }
     }
@@ -81,7 +86,7 @@ class ReviewsViewController: UIViewController {
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 120
+        return 160
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -102,8 +107,12 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension ReviewsViewController: DZNEmptyDataSetSource {
+extension ReviewsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
     func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
         return NSAttributedString(string: "No reviews yet.")
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return !refreshControl.isRefreshing
     }
 }
