@@ -27,7 +27,7 @@ class ViewController: UIViewController {
         tableView.addSubview(refreshControl)
         tableView.tableFooterView = UIView()
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.organize, target: self, action: #selector(manageAccountTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "accounts"), style: .plain, target: self, action: #selector(manageAccountTapped))
 
         getApps()
     }
