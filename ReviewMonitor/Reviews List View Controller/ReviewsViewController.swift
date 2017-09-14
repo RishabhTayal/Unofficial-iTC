@@ -57,20 +57,9 @@ class ReviewsViewController: UIViewController {
     }
 
     func promptForResponse(review: Review) {
-        let alertController = UIAlertController(title: "", message: "", preferredStyle: .alert)
-        alertController.addTextField { tf in
-            tf.placeholder = "Enter developer response"
-        }
-        alertController.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.cancel, handler: nil))
-        alertController.addAction(UIAlertAction(title: "Send", style: UIAlertActionStyle.default, handler: { action in
-            let textField = alertController.textFields?.first
-            ServiceCaller.postResponse(reviewId: review.id, bundleId: self.app.bundleId, response: textField!.text!, completionBlock: { result, error in
-                DispatchQueue.main.async {
-                    self.getReviews()
-                }
-            })
-        }))
-        present(alertController, animated: true, completion: nil)
+        let textEditor = ResponseEditorViewController(nibName: "ResponseEditorViewController", bundle: nil)
+        textEditor.review = review
+        navigationController?.pushViewController(textEditor, animated: true)
     }
 
     func tweetReview(review: Review) {
@@ -86,7 +75,7 @@ class ReviewsViewController: UIViewController {
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 160
+        return 170
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69015E191F69FE0100D2EFF2 /* ResponseEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */; };
+		69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */; };
 		690DA55F1F621EEC000DD28F /* ServiceCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA55E1F621EEC000DD28F /* ServiceCaller.swift */; };
 		690DA5611F622067000DD28F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5601F622067000DD28F /* App.swift */; };
 		690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5621F622142000DD28F /* ReviewsViewController.swift */; };
@@ -34,6 +36,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEditorViewController.swift; sourceTree = "<group>"; };
+		69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResponseEditorViewController.xib; sourceTree = "<group>"; };
 		690DA55E1F621EEC000DD28F /* ServiceCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCaller.swift; sourceTree = "<group>"; };
 		690DA5601F622067000DD28F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		690DA5621F622142000DD28F /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
@@ -194,6 +198,8 @@
 			children = (
 				690DA5621F622142000DD28F /* ReviewsViewController.swift */,
 				69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */,
+				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
+				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
 			);
 			path = "Reviews List View Controller";
 			sourceTree = "<group>";
@@ -236,7 +242,7 @@
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = CEBY93VF85;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -264,6 +270,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */,
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
 				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
@@ -372,6 +379,7 @@
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
 				694282931F6464690053BBF3 /* Account.swift in Sources */,
 				69A627781F63909800415AC8 /* HalfModalPresentationController.swift in Sources */,
+				69015E191F69FE0100D2EFF2 /* ResponseEditorViewController.swift in Sources */,
 				690DA5611F622067000DD28F /* App.swift in Sources */,
 				69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */,
 				693F5FA71F61F23F00FD8859 /* AppDelegate.swift in Sources */,
