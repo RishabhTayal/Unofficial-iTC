@@ -24,7 +24,7 @@ class ReviewsListTableViewCell: UITableViewCell {
         super.awakeFromNib()
 
         containerView.cornerRadius(4)
-        containerView.backgroundColor = .lightGray
+        containerView.backgroundColor = UIColor(white: 0.9, alpha: 1)
     }
 
     func config(review: Review) {
