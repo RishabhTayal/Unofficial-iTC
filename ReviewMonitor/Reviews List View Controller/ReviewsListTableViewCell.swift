@@ -28,10 +28,10 @@ class ReviewsListTableViewCell: UITableViewCell {
         authorLabel.text = review.storeFront
         reviewLabel.text = review.review
         ratingView.value = review.rating as! CGFloat
-        if review.rawDeveloperResponse is NSNull {
-            devResponseFlagLabel.text = ""
+        if let response = review.developerResponse, response.response != nil {
+            devResponseFlagLabel.text = response.state?.description
         } else {
-            devResponseFlagLabel.text = "Responded"
+            devResponseFlagLabel.text = ""
         }
     }
 }

@@ -59,6 +59,7 @@ class ReviewsViewController: UIViewController {
     func promptForResponse(review: Review) {
         let textEditor = ResponseEditorViewController(nibName: "ResponseEditorViewController", bundle: nil)
         textEditor.review = review
+        textEditor.app = app
         navigationController?.pushViewController(textEditor, animated: true)
     }
 
