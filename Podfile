@@ -7,4 +7,6 @@ target 'ReviewMonitor' do
     pod 'DZNEmptyDataSet' # Shows empty view in UITableView
     pod 'HCSStarRatingView' # Shows review rating
     pod 'MBProgressHUD' #Loading indicator for network calls
+    pod 'Fabric'
+    pod 'Answers'
 end

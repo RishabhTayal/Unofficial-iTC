@@ -8,6 +8,8 @@
 
 import UIKit
 import LocalAuthentication
+import Fabric
+import Answers
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var blurEffectView: UIVisualEffectView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Fabric.with([Answers.self])
 
         window = UIWindow(frame: UIScreen.main.bounds)
         if AccountManger.getAccountArray().count == 0 {
