@@ -11,6 +11,7 @@ import HCSStarRatingView
 
 class ReviewsListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var ratingView: HCSStarRatingView!
@@ -20,7 +21,9 @@ class ReviewsListTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        containerView.cornerRadius(4)
+        containerView.backgroundColor = .lightGray
     }
 
     func config(review: Review) {
