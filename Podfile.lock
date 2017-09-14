@@ -1,5 +1,5 @@
 PODS:
-  - Answers (1.3.6):
+  - Crashlytics (3.8.6):
     - Fabric (~> 1.6.3)
   - DZNEmptyDataSet (1.8.1)
   - Fabric (1.6.13)
@@ -11,7 +11,7 @@ PODS:
   - SwiftFormat/CLI (0.29.5)
 
 DEPENDENCIES:
-  - Answers
+  - Crashlytics
   - DZNEmptyDataSet
   - Fabric
   - HCSStarRatingView
@@ -20,7 +20,7 @@ DEPENDENCIES:
   - SwiftFormat/CLI
 
 SPEC CHECKSUMS:
-  Answers: ef6af16bc75366334db6323a87f37ea54e2dab71
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
   DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
@@ -28,6 +28,6 @@ SPEC CHECKSUMS:
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
   SwiftFormat: 9aadf994b01d08400d3d1b0112116d50e468ebd7
 
-PODFILE CHECKSUM: 6e6b40ff57b6644176c1a781f4ccf97803fc98cb
+PODFILE CHECKSUM: b46106f1b5b11402a038dce6029e25e90c15edc0
 
 COCOAPODS: 1.3.1

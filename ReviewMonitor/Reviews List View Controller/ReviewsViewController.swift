@@ -76,7 +76,7 @@ class ReviewsViewController: UIViewController {
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 180
+        return 220
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

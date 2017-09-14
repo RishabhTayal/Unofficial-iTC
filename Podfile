@@ -8,5 +8,5 @@ target 'ReviewMonitor' do
     pod 'HCSStarRatingView' # Shows review rating
     pod 'MBProgressHUD' #Loading indicator for network calls
     pod 'Fabric'
-    pod 'Answers'
+    pod 'Crashlytics'
 end

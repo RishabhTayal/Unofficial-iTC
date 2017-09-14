@@ -18,6 +18,7 @@ class ReviewsListTableViewCell: UITableViewCell {
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var territoryImageView: UIImageView!
     @IBOutlet weak var devResponseFlagLabel: UILabel!
+    @IBOutlet weak var developerResponseLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -33,8 +34,10 @@ class ReviewsListTableViewCell: UITableViewCell {
         ratingView.value = review.rating as! CGFloat
         if let response = review.developerResponse, response.response != nil {
             devResponseFlagLabel.text = response.state?.description
+            developerResponseLabel.text = response.response
         } else {
             devResponseFlagLabel.text = ""
+            developerResponseLabel.text = ""
         }
     }
 }
