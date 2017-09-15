@@ -9,15 +9,22 @@
 import UIKit
 import SDWebImage
 import MBProgressHUD
+import Presentr
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-    var halfModalTransitioningDelegate: HalfModalTransitioningDelegate?
-
     var list: [App] = []
     var refreshControl = UIRefreshControl()
+
+    let presenter: Presentr = {
+        let presenter = Presentr(presentationType: .bottomHalf)
+        presenter.transitionType = TransitionType.coverVertical
+        presenter.dismissOnSwipe = true
+        presenter.blurBackground = true
+        return presenter
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,10 +43,7 @@ class ViewController: UIViewController {
         let accountsVC = AccountsViewController(nibName: "AccountsViewController", bundle: nil)
         accountsVC.delegate = self
         let navC = UINavigationController(rootViewController: accountsVC)
-        halfModalTransitioningDelegate = HalfModalTransitioningDelegate(viewController: self, presentingViewController: navC)
-        navC.modalPresentationStyle = .custom
-        navC.transitioningDelegate = halfModalTransitioningDelegate
-        navigationController?.present(navC, animated: true, completion: nil)
+        customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {

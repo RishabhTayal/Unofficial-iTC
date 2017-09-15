@@ -11,16 +11,20 @@ import HCSStarRatingView
 
 class ReviewsListTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var ratingView: HCSStarRatingView!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var territoryImageView: UIImageView!
     @IBOutlet weak var devResponseFlagLabel: UILabel!
+    @IBOutlet weak var developerResponseLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+
+        containerView.cornerRadius(4)
+        containerView.backgroundColor = UIColor(white: 0.9, alpha: 1)
     }
 
     func config(review: Review) {
@@ -28,10 +32,12 @@ class ReviewsListTableViewCell: UITableViewCell {
         authorLabel.text = review.storeFront
         reviewLabel.text = review.review
         ratingView.value = review.rating as! CGFloat
-        if review.rawDeveloperResponse is NSNull {
-            devResponseFlagLabel.text = ""
+        if let response = review.developerResponse, response.response != nil {
+            devResponseFlagLabel.text = response.state?.description
+            developerResponseLabel.text = response.response
         } else {
-            devResponseFlagLabel.text = "Responded"
+            devResponseFlagLabel.text = ""
+            developerResponseLabel.text = ""
         }
     }
 }

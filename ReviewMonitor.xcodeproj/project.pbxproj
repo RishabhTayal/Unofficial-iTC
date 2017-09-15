@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		69015E191F69FE0100D2EFF2 /* ResponseEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */; };
+		69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */; };
 		690DA55F1F621EEC000DD28F /* ServiceCaller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA55E1F621EEC000DD28F /* ServiceCaller.swift */; };
 		690DA5611F622067000DD28F /* App.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5601F622067000DD28F /* App.swift */; };
 		690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5621F622142000DD28F /* ReviewsViewController.swift */; };
@@ -22,11 +24,6 @@
 		69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */; };
 		69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276D1F6343D600415AC8 /* LoginViewController.swift */; };
 		69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A6276E1F6343D600415AC8 /* LoginViewController.xib */; };
-		69A627781F63909800415AC8 /* HalfModalPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627771F63902500415AC8 /* HalfModalPresentationController.swift */; };
-		69A627791F6390A200415AC8 /* HalfModalInteractiveTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */; };
-		69A6277A1F6390A200415AC8 /* HalfModalTransitionAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */; };
-		69A6277B1F6390A200415AC8 /* HalfModalTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */; };
-		69A6277D1F6391CE00415AC8 /* AccountsNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */; };
 		69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */; };
 		69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C845A71F6393E100C65AB2 /* AccountsViewController.swift */; };
 		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
@@ -34,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseEditorViewController.swift; sourceTree = "<group>"; };
+		69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ResponseEditorViewController.xib; sourceTree = "<group>"; };
 		690DA55E1F621EEC000DD28F /* ServiceCaller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceCaller.swift; sourceTree = "<group>"; };
 		690DA5601F622067000DD28F /* App.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = App.swift; sourceTree = "<group>"; };
 		690DA5621F622142000DD28F /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
@@ -51,11 +50,6 @@
 		69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperResponse.swift; sourceTree = "<group>"; };
 		69A6276D1F6343D600415AC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		69A6276E1F6343D600415AC8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalInteractiveTransition.swift; sourceTree = "<group>"; };
-		69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitionAnimator.swift; sourceTree = "<group>"; };
-		69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalTransitioningDelegate.swift; sourceTree = "<group>"; };
-		69A627771F63902500415AC8 /* HalfModalPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfModalPresentationController.swift; sourceTree = "<group>"; };
-		69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsNavigationController.swift; sourceTree = "<group>"; };
 		69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListTableViewCell.swift; sourceTree = "<group>"; };
 		69C845A71F6393E100C65AB2 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
@@ -137,8 +131,6 @@
 				693F5FA61F61F23F00FD8859 /* AppDelegate.swift */,
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
 				694282941F64747F0053BBF3 /* AccountManger.swift */,
-				69A627761F63902500415AC8 /* Presentation */,
-				69A627721F63902500415AC8 /* Transitioning */,
 				69A627711F6343D900415AC8 /* Login ViewController */,
 				6909EEA81F622F59008221F9 /* Model */,
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
@@ -154,7 +146,6 @@
 		694282961F65F2530053BBF3 /* Accounts ViewController */ = {
 			isa = PBXGroup;
 			children = (
-				69A6277C1F6391CE00415AC8 /* AccountsNavigationController.swift */,
 				69C845A71F6393E100C65AB2 /* AccountsViewController.swift */,
 				69C845A81F6393E100C65AB2 /* AccountsViewController.xib */,
 			);
@@ -171,29 +162,13 @@
 			path = "Login ViewController";
 			sourceTree = "<group>";
 		};
-		69A627721F63902500415AC8 /* Transitioning */ = {
-			isa = PBXGroup;
-			children = (
-				69A627731F63902500415AC8 /* HalfModalInteractiveTransition.swift */,
-				69A627741F63902500415AC8 /* HalfModalTransitionAnimator.swift */,
-				69A627751F63902500415AC8 /* HalfModalTransitioningDelegate.swift */,
-			);
-			path = Transitioning;
-			sourceTree = "<group>";
-		};
-		69A627761F63902500415AC8 /* Presentation */ = {
-			isa = PBXGroup;
-			children = (
-				69A627771F63902500415AC8 /* HalfModalPresentationController.swift */,
-			);
-			path = Presentation;
-			sourceTree = "<group>";
-		};
 		69BCAD2B1F63288900C65305 /* Reviews List View Controller */ = {
 			isa = PBXGroup;
 			children = (
 				690DA5621F622142000DD28F /* ReviewsViewController.swift */,
 				69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */,
+				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
+				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
 			);
 			path = "Reviews List View Controller";
 			sourceTree = "<group>";
@@ -212,6 +187,8 @@
 				E78D79FFCF7520445B4BCCE7 /* [CP] Embed Pods Frameworks */,
 				417724DFEF1130E14BC1158D /* [CP] Copy Pods Resources */,
 				6909EEA71F622F13008221F9 /* Swiftformat */,
+				69A5A4B61F6712DF00A3ED81 /* ShellScript */,
+				69F5A8611F6B2AAB004CAF25 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -235,7 +212,7 @@
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = CEBY93VF85;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0830;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -263,6 +240,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */,
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
 				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
@@ -303,6 +281,32 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \".\" \"--disable\" \"unusedArguments\"";
 		};
+		69A5A4B61F6712DF00A3ED81 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"";
+		};
+		69F5A8611F6B2AAB004CAF25 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Fabric/run\" 02d3f7db22ac1a3e538528547a694d5230eb8278 af6ede98bc0742057c556b0ed733e4c57ae435cd7cc81f516bb2b4e456b7e234";
+		};
 		8274AE0422947A0D3F4E4A79 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -331,6 +335,7 @@
 				"${BUILT_PRODUCTS_DIR}/DZNEmptyDataSet/DZNEmptyDataSet.framework",
 				"${BUILT_PRODUCTS_DIR}/HCSStarRatingView/HCSStarRatingView.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -338,6 +343,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DZNEmptyDataSet.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HCSStarRatingView.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -353,19 +359,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
-				69A6277D1F6391CE00415AC8 /* AccountsNavigationController.swift in Sources */,
 				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
 				694282931F6464690053BBF3 /* Account.swift in Sources */,
-				69A627781F63909800415AC8 /* HalfModalPresentationController.swift in Sources */,
+				69015E191F69FE0100D2EFF2 /* ResponseEditorViewController.swift in Sources */,
 				690DA5611F622067000DD28F /* App.swift in Sources */,
 				69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */,
 				693F5FA71F61F23F00FD8859 /* AppDelegate.swift in Sources */,
 				690DA55F1F621EEC000DD28F /* ServiceCaller.swift in Sources */,
-				69A6277B1F6390A200415AC8 /* HalfModalTransitioningDelegate.swift in Sources */,
 				69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */,
-				69A627791F6390A200415AC8 /* HalfModalInteractiveTransition.swift in Sources */,
-				69A6277A1F6390A200415AC8 /* HalfModalTransitionAnimator.swift in Sources */,
 				690DA5651F622177000DD28F /* Review.swift in Sources */,
 				694282951F64747F0053BBF3 /* AccountManger.swift in Sources */,
 				69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */,
