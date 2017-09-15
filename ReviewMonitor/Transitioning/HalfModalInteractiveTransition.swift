@@ -23,7 +23,7 @@ class HalfModalInteractiveTransition: UIPercentDrivenInteractiveTransition {
         super.init()
 
         panGestureRecognizer.addTarget(self, action: #selector(onPan))
-        //        view.addGestureRecognizer(panGestureRecognizer)
+//        view.addGestureRecognizer(panGestureRecognizer)
     }
 
     override func startInteractiveTransition(_ transitionContext: UIViewControllerContextTransitioning) {
