@@ -27,6 +27,10 @@ class ReviewsListTableViewCell: UITableViewCell {
         containerView.backgroundColor = UIColor(white: 0.9, alpha: 1)
     }
 
+    override var canBecomeFirstResponder: Bool {
+        return true
+    }
+
     func config(review: Review) {
         titleLabel.text = review.title
         authorLabel.text = review.storeFront

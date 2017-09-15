@@ -18,6 +18,7 @@ class ReviewsViewController: UIViewController {
     var app: App!
 
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    var savedIndexPathForLongPressedCell: IndexPath?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +64,16 @@ class ReviewsViewController: UIViewController {
         navigationController?.pushViewController(textEditor, animated: true)
     }
 
-    func tweetReview(review: Review) {
-        var urlString = "https://twitter.com/intent/tweet?text=" + review.review!
-        urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
-        let url = URL(string: urlString)!
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+    func tweetReview(_ menu: UIMenuController) {
+        if let indexPath = savedIndexPathForLongPressedCell {
+            let review = reviews[indexPath.row]
+            let tweetText = (review.rating?.stringValue)! + " Star Review: \"" + review.review! + "\""
+            var urlString = "https://twitter.com/intent/tweet?text=" + tweetText
+            urlString = urlString.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+            let url = URL(string: urlString)!
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
         }
     }
 }
@@ -86,6 +91,10 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! ReviewsListTableViewCell
         cell.config(review: reviews[indexPath.row])
+        if cell.gestureRecognizers == nil {
+            let recognizer = UILongPressGestureRecognizer(target: self, action: #selector(longPress(_:)))
+            cell.addGestureRecognizer(recognizer)
+        }
         return cell
     }
 
@@ -93,7 +102,20 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         tableView.deselectRow(at: indexPath, animated: true)
         let review = reviews[indexPath.row]
         promptForResponse(review: review)
-        //        tweetReview(review: review)
+    }
+
+    func longPress(_ recognizer: UILongPressGestureRecognizer) {
+        if recognizer.state == .began {
+            let tableViewCell = recognizer.view as! ReviewsListTableViewCell
+            tableViewCell.becomeFirstResponder()
+            savedIndexPathForLongPressedCell = tableView.indexPath(for: tableViewCell)
+
+            let tweet = UIMenuItem(title: "Tweet", action: #selector(tweetReview(_:)))
+            let menu = UIMenuController.shared
+            menu.menuItems = [tweet]
+            menu.setTargetRect(tableViewCell.frame, in: (tableViewCell.superview)!)
+            menu.setMenuVisible(true, animated: true)
+        }
     }
 }
 
