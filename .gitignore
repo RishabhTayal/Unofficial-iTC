@@ -6,3 +6,7 @@ ReviewMonitor.xcodeproj/xcuserdata/
 Pods/
 
 fastlane/report.xml
+
+ReviewMonitor.app.dSYM.zip
+
+ReviewMonitor.ipa
