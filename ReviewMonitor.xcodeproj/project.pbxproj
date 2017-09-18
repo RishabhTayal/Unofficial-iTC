@@ -21,12 +21,15 @@
 		693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 693F5FAF1F61F23F00FD8859 /* LaunchScreen.storyboard */; };
 		694282931F6464690053BBF3 /* Account.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694282921F6464690053BBF3 /* Account.swift */; };
 		694282951F64747F0053BBF3 /* AccountManger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 694282941F64747F0053BBF3 /* AccountManger.swift */; };
+		696235D81F6F7AB600176A60 /* ReviewFilterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 696235D61F6F7AB600176A60 /* ReviewFilterViewController.swift */; };
+		696235D91F6F7AB600176A60 /* ReviewFilterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 696235D71F6F7AB600176A60 /* ReviewFilterViewController.xib */; };
 		69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */; };
 		69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276D1F6343D600415AC8 /* LoginViewController.swift */; };
 		69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A6276E1F6343D600415AC8 /* LoginViewController.xib */; };
 		69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */; };
 		69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C845A71F6393E100C65AB2 /* AccountsViewController.swift */; };
 		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
+		69E3EAAA1F6F867800788918 /* ReviewFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E3EAA91F6F867800788918 /* ReviewFilter.swift */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
 /* End PBXBuildFile section */
 
@@ -47,12 +50,15 @@
 		693F5FB21F61F23F00FD8859 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		694282921F6464690053BBF3 /* Account.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Account.swift; sourceTree = "<group>"; };
 		694282941F64747F0053BBF3 /* AccountManger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountManger.swift; sourceTree = "<group>"; };
+		696235D61F6F7AB600176A60 /* ReviewFilterViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReviewFilterViewController.swift; sourceTree = "<group>"; };
+		696235D71F6F7AB600176A60 /* ReviewFilterViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ReviewFilterViewController.xib; sourceTree = "<group>"; };
 		69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperResponse.swift; sourceTree = "<group>"; };
 		69A6276D1F6343D600415AC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		69A6276E1F6343D600415AC8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListTableViewCell.swift; sourceTree = "<group>"; };
 		69C845A71F6393E100C65AB2 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
+		69E3EAA91F6F867800788918 /* ReviewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilter.swift; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,6 +100,7 @@
 				690DA5641F622177000DD28F /* Review.swift */,
 				69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */,
 				694282921F6464690053BBF3 /* Account.swift */,
+				69E3EAA91F6F867800788918 /* ReviewFilter.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -152,6 +159,24 @@
 			path = "Accounts ViewController";
 			sourceTree = "<group>";
 		};
+		696235D21F6F7A6400176A60 /* Editor View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
+				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
+			);
+			path = "Editor View Controller";
+			sourceTree = "<group>";
+		};
+		696235D31F6F7A9100176A60 /* Filter View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				696235D61F6F7AB600176A60 /* ReviewFilterViewController.swift */,
+				696235D71F6F7AB600176A60 /* ReviewFilterViewController.xib */,
+			);
+			path = "Filter View Controller";
+			sourceTree = "<group>";
+		};
 		69A627711F6343D900415AC8 /* Login ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +192,8 @@
 			children = (
 				690DA5621F622142000DD28F /* ReviewsViewController.swift */,
 				69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */,
-				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
-				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
+				696235D31F6F7A9100176A60 /* Filter View Controller */,
+				696235D21F6F7A6400176A60 /* Editor View Controller */,
 			);
 			path = "Reviews List View Controller";
 			sourceTree = "<group>";
@@ -242,6 +267,7 @@
 			files = (
 				69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */,
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
+				696235D91F6F7AB600176A60 /* ReviewFilterViewController.xib in Resources */,
 				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
 				693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */,
@@ -337,6 +363,7 @@
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/Presentr/Presentr.framework",
 				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+				"${BUILT_PRODUCTS_DIR}/TTRangeSlider/TTRangeSlider.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -345,6 +372,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Presentr.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TTRangeSlider.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -361,7 +389,9 @@
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
 				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
+				696235D81F6F7AB600176A60 /* ReviewFilterViewController.swift in Sources */,
 				694282931F6464690053BBF3 /* Account.swift in Sources */,
+				69E3EAAA1F6F867800788918 /* ReviewFilter.swift in Sources */,
 				69015E191F69FE0100D2EFF2 /* ResponseEditorViewController.swift in Sources */,
 				690DA5611F622067000DD28F /* App.swift in Sources */,
 				69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */,

@@ -7,7 +7,7 @@ ENV['DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS'] = '-t DAV'
 platform :ios do
   before_all do
     # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    # ENV['DEVELOPER_DIR'] = '/Applications/Xcode old/Xcode-beta.app/Contents/Developer'
+    ENV['DEVELOPER_DIR'] = '/Applications/Xcode old/Xcode 9 GM.app/Contents/Developer'
     cocoapods
     
   end

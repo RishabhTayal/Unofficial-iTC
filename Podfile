@@ -8,6 +8,7 @@ target 'ReviewMonitor' do
     pod 'HCSStarRatingView' # Shows review rating
     pod 'MBProgressHUD' #Loading indicator for network calls
     pod 'Presentr' # Presentation animation for accounts screen
+    pod 'TTRangeSlider' # Two thumb slider
     pod 'Fabric'
     pod 'Crashlytics'
 end

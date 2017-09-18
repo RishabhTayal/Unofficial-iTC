@@ -14,8 +14,10 @@ class ReviewsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
+    var originalReviews: [Review] = []
     var reviews: [Review] = []
     var app: App!
+    var appliedFilter: ReviewFilter!
 
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var savedIndexPathForLongPressedCell: IndexPath?
@@ -31,11 +33,15 @@ class ReviewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
     }
 
     func filterTapped() {
+        let filterVC = ReviewFilterViewController(nibName: "ReviewFilterViewController", bundle: nil)
+        filterVC.delegate = self
+        filterVC.filter = appliedFilter
+        present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
     }
 
     func getReviews() {
@@ -48,6 +54,7 @@ class ReviewsViewController: UIViewController {
                     let review = Review(dict: reviewDict)
                     self.reviews.append(review)
                 }
+                self.originalReviews = self.reviews
             }
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
@@ -126,5 +133,23 @@ extension ReviewsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return !refreshControl.isRefreshing
+    }
+}
+
+extension ReviewsViewController: ReviewFilterViewControllerDelegate {
+    func reviewFilterDidSelectFilter(filter: ReviewFilter) {
+        appliedFilter = filter
+        reviews = originalReviews
+        reviews = reviews.filter({ (review) -> Bool in
+            (review.rating?.floatValue)! <= filter.maxRating && review.rating!.floatValue >= filter.minRating
+        })
+        reviews = reviews.filter({ (review) -> Bool in
+            if filter.developerResponded {
+                return review.rawDeveloperResponse != nil
+            } else {
+                return review.rawDeveloperResponse == nil
+            }
+        })
+        tableView.reloadData()
     }
 }
