@@ -8,16 +8,29 @@
 
 import UIKit
 
+protocol ReviewFilterViewControllerDelegate: class {
+    func reviewFilterDidSelectFilter(filter: ReviewFilter)
+}
+
 class ReviewFilterViewController: UIViewController {
+
+    var filter: ReviewFilter?
+
+    weak var delegate: ReviewFilterViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Apply", style: .plain, target: self, action: #selector(applyTapped(_:)))
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func cancelTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
+
+    func applyTapped(_ sender: Any) {
+        delegate?.reviewFilterDidSelectFilter(filter: filter!)
+        dismiss(animated: true, completion: nil)
     }
 }

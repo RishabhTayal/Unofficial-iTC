@@ -31,11 +31,14 @@ class ReviewsViewController: UIViewController {
         refreshControl.addTarget(self, action: #selector(getReviews), for: .valueChanged)
         tableView.addSubview(refreshControl)
 
-        //        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Filter", style: .plain, target: self, action: #selector(filterTapped))
         getReviews()
     }
 
     func filterTapped() {
+        let filterVC = ReviewFilterViewController(nibName: "ReviewFilterViewController", bundle: nil)
+        filterVC.delegate = self
+        present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
     }
 
     func getReviews() {
@@ -126,5 +129,10 @@ extension ReviewsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
 
     func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
         return !refreshControl.isRefreshing
+    }
+}
+
+extension ReviewsViewController: ReviewFilterViewControllerDelegate {
+    func reviewFilterDidSelectFilter(filter: ReviewFilter) {
     }
 }
