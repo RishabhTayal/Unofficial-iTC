@@ -1,17 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13196" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13189.4" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13196"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13165.3"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ReviewFilterViewController" customModule="ReviewMonitor" customModuleProvider="target">
             <connections>
+                <outlet property="respondedSwitch" destination="YVZ-qd-SeP" id="AK7-C3-cvC"/>
+                <outlet property="slider" destination="NBN-0D-Jnl" id="anb-ao-DaF"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,24 +22,54 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Coq-3v-A31" customClass="HCSStarRatingView">
-                    <rect key="frame" x="67" y="20" width="240" height="44"/>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NBN-0D-Jnl" customClass="TTRangeSlider">
+                    <rect key="frame" x="36" y="20" width="303" height="65"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="allowsHalfStars" value="NO"/>
+                        <userDefinedRuntimeAttribute type="number" keyPath="minValue">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedMinimum">
+                            <real key="value" value="1"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="selectedMaximum">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
+                        <userDefinedRuntimeAttribute type="number" keyPath="maxValue">
+                            <real key="value" value="5"/>
+                        </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="ratingChanged:" destination="-1" eventType="valueChanged" id="4NI-8x-5na"/>
+                        <action selector="ratingChanged:" destination="-1" eventType="valueChanged" id="T0Z-X7-7XP"/>
+                        <outlet property="delegate" destination="-1" id="uYR-me-4kg"/>
                     </connections>
                 </view>
+                <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="YVZ-qd-SeP">
+                    <rect key="frame" x="310" y="139" width="51" height="31"/>
+                    <connections>
+                        <action selector="respondedSwitchToggled:" destination="-1" eventType="valueChanged" id="AsX-dG-GmF"/>
+                    </connections>
+                </switch>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Responded?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NHZ-36-QdB">
+                    <rect key="frame" x="16" y="144" width="264" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <nil key="textColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="Coq-3v-A31" secondAttribute="trailing" constant="68" id="5bW-DA-Erg"/>
-                <constraint firstItem="Coq-3v-A31" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="67" id="Nmb-Jt-miA"/>
-                <constraint firstItem="Coq-3v-A31" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="20" id="c9p-hj-KMB"/>
+                <constraint firstItem="YVZ-qd-SeP" firstAttribute="centerY" secondItem="NHZ-36-QdB" secondAttribute="centerY" id="6r0-vE-TsL"/>
+                <constraint firstItem="NBN-0D-Jnl" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="20" id="7JX-mz-Pxq"/>
+                <constraint firstItem="YVZ-qd-SeP" firstAttribute="leading" secondItem="NHZ-36-QdB" secondAttribute="trailing" constant="30" id="7lo-40-fG8"/>
+                <constraint firstItem="NBN-0D-Jnl" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="20" id="8Vo-Zi-W0M"/>
+                <constraint firstItem="NHZ-36-QdB" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="afr-M3-8XA"/>
+                <constraint firstAttribute="trailingMargin" secondItem="NBN-0D-Jnl" secondAttribute="trailing" constant="20" id="c4l-VF-C7G"/>
+                <constraint firstAttribute="trailing" secondItem="YVZ-qd-SeP" secondAttribute="trailing" constant="16" id="eHF-lb-5CQ"/>
+                <constraint firstItem="NHZ-36-QdB" firstAttribute="top" secondItem="NBN-0D-Jnl" secondAttribute="bottom" constant="59" id="gYA-Rs-cC4"/>
             </constraints>
             <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+            <point key="canvasLocation" x="26.5" y="52.5"/>
         </view>
     </objects>
 </document>

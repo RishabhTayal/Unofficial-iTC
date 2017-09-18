@@ -10,7 +10,9 @@ import UIKit
 
 class ReviewFilter: NSObject {
 
-    var rating: Float = 0
+    var minRating: Float = 0
+    var maxRating: Float = 5
+    var developerResponded = false
 
     override init() {
         super.init()
