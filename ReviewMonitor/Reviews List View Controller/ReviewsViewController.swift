@@ -134,5 +134,9 @@ extension ReviewsViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate 
 
 extension ReviewsViewController: ReviewFilterViewControllerDelegate {
     func reviewFilterDidSelectFilter(filter: ReviewFilter) {
+        reviews = reviews.filter({ (review) -> Bool in
+            review.rating!.floatValue >= filter.rating
+        })
+        tableView.reloadData()
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import HCSStarRatingView
 
 protocol ReviewFilterViewControllerDelegate: class {
     func reviewFilterDidSelectFilter(filter: ReviewFilter)
@@ -14,7 +15,7 @@ protocol ReviewFilterViewControllerDelegate: class {
 
 class ReviewFilterViewController: UIViewController {
 
-    var filter: ReviewFilter?
+    var filter: ReviewFilter = ReviewFilter()
 
     weak var delegate: ReviewFilterViewControllerDelegate?
 
@@ -30,7 +31,11 @@ class ReviewFilterViewController: UIViewController {
     }
 
     func applyTapped(_ sender: Any) {
-        delegate?.reviewFilterDidSelectFilter(filter: filter!)
+        delegate?.reviewFilterDidSelectFilter(filter: filter)
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func ratingChanged(_ sender: HCSStarRatingView) {
+        filter.rating = Float(sender.value)
     }
 }
