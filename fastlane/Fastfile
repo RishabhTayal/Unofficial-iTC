@@ -30,7 +30,7 @@ platform :ios do
     # match(type: "appstore")
     # snapshot
     gym # Build your app - more options available
-    deliver(force: true)
+    deliver(force: true, skip_metadata: true)
     # frameit
   end
 
