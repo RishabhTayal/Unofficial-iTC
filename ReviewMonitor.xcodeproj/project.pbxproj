@@ -152,6 +152,15 @@
 			path = "Accounts ViewController";
 			sourceTree = "<group>";
 		};
+		696235D21F6F7A6400176A60 /* Editor View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
+				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
+			);
+			name = "Editor View Controller";
+			sourceTree = "<group>";
+		};
 		69A627711F6343D900415AC8 /* Login ViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -167,8 +176,7 @@
 			children = (
 				690DA5621F622142000DD28F /* ReviewsViewController.swift */,
 				69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */,
-				69015E171F69FE0100D2EFF2 /* ResponseEditorViewController.swift */,
-				69015E181F69FE0100D2EFF2 /* ResponseEditorViewController.xib */,
+				696235D21F6F7A6400176A60 /* Editor View Controller */,
 			);
 			path = "Reviews List View Controller";
 			sourceTree = "<group>";
