@@ -1,6 +1,5 @@
 source "https://rubygems.org"
 
-# gem "fastlane"
-
-gemspec path: File.expand_path("/Users/rtayal/Desktop/Forks/fastlane")
-gem 'cocoapods'
+gem "cocoapods"
+# gemspec path: File.expand_path("<PATH_TO_YOUR_LOCAL_FASTLANE_CLONE>")
+gem 'fastlane', '~> 2.56.0'
