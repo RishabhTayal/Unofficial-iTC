@@ -36,6 +36,10 @@ class AccountsViewController: UIViewController {
 
 extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 54
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return accounts.count + 1
     }
