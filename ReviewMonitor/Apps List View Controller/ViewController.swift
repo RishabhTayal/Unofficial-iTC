@@ -39,7 +39,7 @@ class ViewController: UIViewController {
         getApps()
     }
 
-    func manageAccountTapped() {
+    @objc func manageAccountTapped() {
         let accountsVC = AccountsViewController(nibName: "AccountsViewController", bundle: nil)
         accountsVC.delegate = self
         let navC = UINavigationController(rootViewController: accountsVC)
@@ -53,7 +53,7 @@ class ViewController: UIViewController {
         }
     }
 
-    func getApps() {
+    @objc func getApps() {
         refreshControl.beginRefreshing()
         MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.getApps { result, error in

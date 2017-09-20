@@ -7,7 +7,7 @@ target 'ReviewMonitor' do
     pod 'DZNEmptyDataSet' # Shows empty view in UITableView
     pod 'HCSStarRatingView' # Shows review rating
     pod 'MBProgressHUD' #Loading indicator for network calls
-    pod 'Presentr' # Presentation animation for accounts screen
+    pod 'Presentr', :git => 'https://github.com/fpg1503/Presentr.git', :branch => 'swift4' # Presentation animation for accounts screen
     pod 'TTRangeSlider' # Two thumb slider
     pod 'Fabric'
     pod 'Crashlytics'

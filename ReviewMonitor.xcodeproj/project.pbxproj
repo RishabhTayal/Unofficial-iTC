@@ -237,7 +237,7 @@
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = CEBY93VF85;
-						LastSwiftMigration = 0830;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
 				};
@@ -539,6 +539,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Manual;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = ReviewMonitor/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -549,7 +550,8 @@
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -570,7 +572,8 @@
 				PROVISIONING_PROFILE = "f432fe31-969a-4ebe-ba2e-3932dc1ea3cf";
 				PROVISIONING_PROFILE_SPECIFIER = "match AppStore io.rtayal.ReviewMonitor";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_VERSION = 3.0;
+				SWIFT_SWIFT3_OBJC_INFERENCE = On;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};

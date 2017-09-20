@@ -44,7 +44,7 @@ class ReviewsViewController: UIViewController {
         present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
     }
 
-    func getReviews() {
+    @objc func getReviews() {
         refreshControl.beginRefreshing()
         MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.getReviews(app: app) { result, error in
@@ -71,7 +71,7 @@ class ReviewsViewController: UIViewController {
         navigationController?.pushViewController(textEditor, animated: true)
     }
 
-    func tweetReview(_ menu: UIMenuController) {
+    @objc func tweetReview(_ menu: UIMenuController) {
         if let indexPath = savedIndexPathForLongPressedCell {
             let review = reviews[indexPath.row]
             let tweetText = (review.rating?.stringValue)! + " Star Review: \"" + review.review! + "\""
@@ -111,7 +111,7 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         promptForResponse(review: review)
     }
 
-    func longPress(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
             let tableViewCell = recognizer.view as! ReviewsListTableViewCell
             tableViewCell.becomeFirstResponder()

@@ -29,7 +29,7 @@ class AccountsViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
     }
 
-    func cancelTapped() {
+    @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
     }
 }

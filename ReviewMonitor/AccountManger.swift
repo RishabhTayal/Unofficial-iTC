@@ -77,7 +77,7 @@ class AccountManger: NSObject {
         return currentAccount
     }
 
-    func authenticateUser(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+    func authenticateUser(success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
         // Get the current authentication context
         let context = LAContext()
         var error: NSError?
@@ -100,7 +100,7 @@ class AccountManger: NSObject {
                                        }
                                    } else {
                                        DispatchQueue.main.async {
-                                           failure(error as! NSError)
+                                           failure(error!)
                                        }
                                    }
         })

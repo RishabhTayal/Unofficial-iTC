@@ -42,11 +42,11 @@ class ReviewFilterViewController: UIViewController {
         }
     }
 
-    func cancelTapped(_ sender: Any) {
+    @objc func cancelTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
     }
 
-    func applyTapped(_ sender: Any) {
+    @objc func applyTapped(_ sender: Any) {
         delegate?.reviewFilterDidSelectFilter(filter: filter)
         dismiss(animated: true, completion: nil)
     }

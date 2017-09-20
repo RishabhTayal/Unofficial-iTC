@@ -22,11 +22,11 @@ class LoginViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
     }
 
-    func tappedOnView() {
+    @objc func tappedOnView() {
         view.endEditing(true)
     }
 
-    func cancelTapped() {
+    @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
     }
 
