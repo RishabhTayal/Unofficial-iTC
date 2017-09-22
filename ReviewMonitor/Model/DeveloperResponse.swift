@@ -10,12 +10,15 @@ import UIKit
 
 enum DeveloperResponseState: String {
     case pendingCreate = "PENDING_CREATE"
+    case pendingDelete = "PENDING_DELETE"
     case none = "NONE"
 
     var description: String {
         switch self {
         case .pendingCreate:
             return "Pending"
+        case .pendingDelete:
+            return "Pending Delete"
         default:
             return "Responded"
         }

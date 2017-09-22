@@ -83,6 +83,17 @@ class ReviewsViewController: UIViewController {
             }
         }
     }
+
+    @objc func deleteResponse(_ menu: UIMenuController) {
+        if let indexPath = savedIndexPathForLongPressedCell {
+            let review = reviews[indexPath.row]
+            ServiceCaller.deleteResponse(reviewId: review.id, bundleId: app.bundleId, responseId: (review.developerResponse?.id)!, completionBlock: { result, error in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
+        }
+    }
 }
 
 extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
@@ -116,10 +127,15 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
             let tableViewCell = recognizer.view as! ReviewsListTableViewCell
             tableViewCell.becomeFirstResponder()
             savedIndexPathForLongPressedCell = tableView.indexPath(for: tableViewCell)
+            let review = reviews[(savedIndexPathForLongPressedCell?.row)!]
 
             let tweet = UIMenuItem(title: "Tweet", action: #selector(tweetReview(_:)))
             let menu = UIMenuController.shared
             menu.menuItems = [tweet]
+            if review.rawDeveloperResponse != nil {
+                let deleteResponseMenu = UIMenuItem(title: "Delete Response", action: #selector(deleteResponse(_:)))
+                menu.menuItems?.append(deleteResponseMenu)
+            }
             menu.setTargetRect(tableViewCell.frame, in: (tableViewCell.superview)!)
             menu.setMenuVisible(true, animated: true)
         }

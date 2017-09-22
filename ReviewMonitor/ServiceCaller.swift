@@ -45,6 +45,11 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .response, params: params, httpMethod: .POST, completionBlock: completionBlock)
     }
 
+    class func deleteResponse(reviewId: NSNumber, bundleId: String, responseId: NSNumber, completionBlock: CompletionBlock?) {
+        let params = ["rating_id": reviewId, "bundle_id": bundleId, "response_id": responseId] as [String: Any]
+        makeAPICall(endPoint: .response, params: params, httpMethod: .Delete, completionBlock: completionBlock)
+    }
+
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
         var url = BaseURL + endPoint.rawValue
