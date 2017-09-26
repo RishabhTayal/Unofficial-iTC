@@ -31,15 +31,19 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signinTapped(_ sender: Any) {
-        let account = Account(username: userNameTextField.text!, password: passwordTextField.text!, isCurrentAccount: true)
-        AccountManger.storeAccount(account: account)
-        AccountManger.setCurrentAccount(account: account)
 
         MBProgressHUD.showAdded(to: view, animated: true)
-        ServiceCaller.login { r, e in
+        ServiceCaller.login(username: userNameTextField.text!, password: passwordTextField.text!) { r, e in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
-                if r != nil {
+                if let accounts = r as? [[String: Any]] {
+                    for accountDict in accounts {
+                        if let contentProvider = accountDict["contentProvider"] as? [String: Any] {
+                            let account = Account(username: self.userNameTextField.text!, password: self.passwordTextField.text!, isCurrentAccount: false, teamId: contentProvider["contentProviderId"] as! NSNumber, teamName: contentProvider["name"] as! String)
+                            AccountManger.storeAccount(account: account)
+                            AccountManger.setCurrentAccount(account: account)
+                        }
+                    }
 
                     if self.presentingViewController != nil {
                         self.dismiss(animated: true, completion: nil)
@@ -48,7 +52,6 @@ class LoginViewController: UIViewController {
                         appDelegate.showAppView()
                     }
                 } else {
-                    AccountManger.removeAccount(account: account)
                     let alert = UIAlertController(title: "Login error", message: "Could not login. Please check your username and password.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
                     self.present(alert, animated: true, completion: nil)

@@ -47,14 +47,15 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         }
         if indexPath.row >= accounts.count {
             cell?.textLabel?.text = "Add Account"
             cell?.textLabel?.textAlignment = .center
         } else {
             let account = accounts[indexPath.row]
-            cell?.textLabel?.text = accounts[indexPath.row].username
+            cell?.textLabel?.text = accounts[indexPath.row].teamName
+            cell?.detailTextLabel?.text = accounts[indexPath.row].teamId.stringValue
             cell?.textLabel?.textAlignment = .left
             if account.isCurrentAccount {
                 cell?.accessoryType = .checkmark

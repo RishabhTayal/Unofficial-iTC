@@ -35,7 +35,7 @@ class AccountManger: NSObject {
         var accounts = getAccountArray()
         var index = 0
         accounts.forEach { a in
-            if account.username == a.username {
+            if account.teamId == a.teamId {
                 if let i = accounts.index(of: a) {
                     index = i
                 }
@@ -57,7 +57,7 @@ class AccountManger: NSObject {
         let accounts = getAccountArray()
         clearAccounts()
         accounts.forEach { a in
-            if account.username == a.username {
+            if account.teamId == a.teamId {
                 a.isCurrentAccount = true
             } else {
                 a.isCurrentAccount = false

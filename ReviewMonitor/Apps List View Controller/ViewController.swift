@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "My Apps"
+        title = AccountManger.getCurrentAccount()?.teamName
 
         refreshControl.addTarget(self, action: #selector(getApps), for: .valueChanged)
         tableView.addSubview(refreshControl)
@@ -91,9 +91,10 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let reviewVC = storyboard?.instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
-        reviewVC.app = list[indexPath.row]
-        navigationController?.pushViewController(reviewVC, animated: true)
+
+        let appDetail = AppDetailViewController(nibName: "AppDetailViewController", bundle: nil)
+        appDetail.app = list[indexPath.row]
+        navigationController?.pushViewController(appDetail, animated: true)
     }
 }
 

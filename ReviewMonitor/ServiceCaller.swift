@@ -17,6 +17,7 @@ class ServiceCaller: NSObject {
         case apps
         case ratings
         case response
+        case testers
     }
 
     private enum HTTPMethod: String {
@@ -27,8 +28,9 @@ class ServiceCaller: NSObject {
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
-    class func login(completion: CompletionBlock?) {
-        makeAPICall(endPoint: .login, httpMethod: .POST, completionBlock: completion)
+    class func login(username: String, password: String, completion: CompletionBlock?) {
+        let params = ["username": username, "password": password]
+        makeAPICall(endPoint: .login, params: params, httpMethod: .POST, completionBlock: completion)
     }
 
     class func getApps(completionBlock: CompletionBlock?) {
@@ -50,12 +52,19 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .response, params: params, httpMethod: .Delete, completionBlock: completionBlock)
     }
 
+    class func getTesters(bundleId: String, completion: CompletionBlock?) {
+        let params = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .testers, params: params, completionBlock: completion)
+    }
+
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
         var url = BaseURL + endPoint.rawValue
-        let account = AccountManger.getCurrentAccount()!
-        params.updateValue(account.username, forKey: "username")
-        params["password"] = account.password
+        if let account = AccountManger.getCurrentAccount() {
+            params.updateValue(account.username, forKey: "username")
+            params["password"] = account.password
+            params["team_id"] = account.teamId
+        }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         var request = URLRequest(url: URL(string: url)!)
