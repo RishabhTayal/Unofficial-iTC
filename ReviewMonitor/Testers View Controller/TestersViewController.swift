@@ -53,10 +53,11 @@ extension TestersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .subtitle, reuseIdentifier: "cell")
         }
         let tester = testers[indexPath.row]
         cell?.textLabel?.text = tester.firstName + " " + tester.lastName
+        cell?.detailTextLabel?.text = tester.email
         return cell!
     }
 }
