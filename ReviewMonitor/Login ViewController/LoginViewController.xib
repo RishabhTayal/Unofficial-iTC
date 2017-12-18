@@ -32,7 +32,7 @@
                             </constraints>
                             <nil key="textColor"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                            <textInputTraits key="textInputTraits" keyboardType="emailAddress"/>
+                            <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
                         </textField>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password*" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="TRM-Gc-qfz">
                             <rect key="frame" x="0.0" y="59" width="335" height="40"/>
@@ -57,7 +57,7 @@
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="ROX-Ny-xzQ" secondAttribute="trailingMargin" constant="20" id="4lt-CI-c7S"/>
                 <constraint firstItem="ROX-Ny-xzQ" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leadingMargin" constant="4" id="9oA-gk-LeK"/>
-                <constraint firstItem="ROX-Ny-xzQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="70" id="HAM-Kz-dbL"/>
+                <constraint firstItem="ROX-Ny-xzQ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" constant="50" id="HAM-Kz-dbL"/>
             </constraints>
         </view>
     </objects>

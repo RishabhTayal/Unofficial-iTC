@@ -44,7 +44,7 @@ class ReviewsViewController: UIViewController {
         present(UINavigationController(rootViewController: filterVC), animated: true, completion: nil)
     }
 
-    func getReviews() {
+    @objc func getReviews() {
         refreshControl.beginRefreshing()
         MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.getReviews(app: app) { result, error in
@@ -71,7 +71,7 @@ class ReviewsViewController: UIViewController {
         navigationController?.pushViewController(textEditor, animated: true)
     }
 
-    func tweetReview(_ menu: UIMenuController) {
+    @objc func tweetReview(_ menu: UIMenuController) {
         if let indexPath = savedIndexPathForLongPressedCell {
             let review = reviews[indexPath.row]
             let tweetText = (review.rating?.stringValue)! + " Star Review: \"" + review.review! + "\""
@@ -81,6 +81,17 @@ class ReviewsViewController: UIViewController {
             if UIApplication.shared.canOpenURL(url) {
                 UIApplication.shared.open(url, options: [:], completionHandler: nil)
             }
+        }
+    }
+
+    @objc func deleteResponse(_ menu: UIMenuController) {
+        if let indexPath = savedIndexPathForLongPressedCell {
+            let review = reviews[indexPath.row]
+            ServiceCaller.deleteResponse(reviewId: review.id, bundleId: app.bundleId, responseId: (review.developerResponse?.id)!, completionBlock: { result, error in
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            })
         }
     }
 }
@@ -111,15 +122,20 @@ extension ReviewsViewController: UITableViewDataSource, UITableViewDelegate {
         promptForResponse(review: review)
     }
 
-    func longPress(_ recognizer: UILongPressGestureRecognizer) {
+    @objc func longPress(_ recognizer: UILongPressGestureRecognizer) {
         if recognizer.state == .began {
             let tableViewCell = recognizer.view as! ReviewsListTableViewCell
             tableViewCell.becomeFirstResponder()
             savedIndexPathForLongPressedCell = tableView.indexPath(for: tableViewCell)
+            let review = reviews[(savedIndexPathForLongPressedCell?.row)!]
 
             let tweet = UIMenuItem(title: "Tweet", action: #selector(tweetReview(_:)))
             let menu = UIMenuController.shared
             menu.menuItems = [tweet]
+            if review.rawDeveloperResponse != nil {
+                let deleteResponseMenu = UIMenuItem(title: "Delete Response", action: #selector(deleteResponse(_:)))
+                menu.menuItems?.append(deleteResponseMenu)
+            }
             menu.setTargetRect(tableViewCell.frame, in: (tableViewCell.superview)!)
             menu.setMenuVisible(true, animated: true)
         }

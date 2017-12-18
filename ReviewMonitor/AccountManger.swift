@@ -35,7 +35,7 @@ class AccountManger: NSObject {
         var accounts = getAccountArray()
         var index = 0
         accounts.forEach { a in
-            if account.username == a.username {
+            if account.teamId == a.teamId {
                 if let i = accounts.index(of: a) {
                     index = i
                 }
@@ -57,7 +57,7 @@ class AccountManger: NSObject {
         let accounts = getAccountArray()
         clearAccounts()
         accounts.forEach { a in
-            if account.username == a.username {
+            if account.teamId == a.teamId {
                 a.isCurrentAccount = true
             } else {
                 a.isCurrentAccount = false
@@ -77,11 +77,11 @@ class AccountManger: NSObject {
         return currentAccount
     }
 
-    func authenticateUser(success: @escaping () -> Void, failure: @escaping (NSError) -> Void) {
+    func authenticateUser(success: @escaping () -> Void, failure: @escaping (Error) -> Void) {
         // Get the current authentication context
         let context = LAContext()
         var error: NSError?
-        let myLocalizedReasonString = "Authentification is required"
+        let myLocalizedReasonString = "Authentication is required"
 
         // Check if the device is compatible with TouchID and can evaluate the policy.
         guard context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
@@ -100,7 +100,7 @@ class AccountManger: NSObject {
                                        }
                                    } else {
                                        DispatchQueue.main.async {
-                                           failure(error as! NSError)
+                                           failure(error!)
                                        }
                                    }
         })

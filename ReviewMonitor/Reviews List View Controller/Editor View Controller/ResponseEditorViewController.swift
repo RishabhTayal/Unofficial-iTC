@@ -24,7 +24,7 @@ class ResponseEditorViewController: UIViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postTapped))
     }
 
-    func postTapped() {
+    @objc func postTapped() {
         navigationItem.rightBarButtonItem?.isEnabled = false
         MBProgressHUD.showAdded(to: view, animated: true)
         ServiceCaller.postResponse(reviewId: (review?.id)!, bundleId: (app?.bundleId)!, response: textView.text) { r, e in
