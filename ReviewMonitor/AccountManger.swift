@@ -81,7 +81,7 @@ class AccountManger: NSObject {
         // Get the current authentication context
         let context = LAContext()
         var error: NSError?
-        let myLocalizedReasonString = "Authentification is required"
+        let myLocalizedReasonString = "Authentication is required"
 
         // Check if the device is compatible with TouchID and can evaluate the policy.
         guard context.canEvaluatePolicy(LAPolicy.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
