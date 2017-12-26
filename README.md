@@ -15,3 +15,6 @@ This project aims to make an iOS app which is more powerful than the Apple's off
 [Download](https://itc-onboarding.herokuapp.com)
 
 #### Looking for some contributors who can help with some more features. Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested.
+
+## Join Slack
+https://itc-manager-slack-invite.herokuapp.com
