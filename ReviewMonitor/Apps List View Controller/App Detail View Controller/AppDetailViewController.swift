@@ -13,6 +13,7 @@ class AppDetailViewController: UIViewController {
     enum RowType: Int {
         case testers
         case reviews
+        case processingBuilds
         case count
 
         var description: String {
@@ -21,6 +22,8 @@ class AppDetailViewController: UIViewController {
                 return "Testers"
             case .reviews:
                 return "Reviews"
+            case .processingBuilds:
+                return "Processing Builds"
             default:
                 return ""
             }
@@ -29,6 +32,7 @@ class AppDetailViewController: UIViewController {
 
     var tableView: UITableView!
     var app: App?
+    var processingBuildCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,6 +42,19 @@ class AppDetailViewController: UIViewController {
         tableView.delegate = self
         tableView.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleWidth.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue)))
         view.addSubview(tableView)
+
+        getProcessingBuilds()
+    }
+
+    func getProcessingBuilds() {
+        ServiceCaller.getProcessingBuilds(bundleId: (app?.bundleId)!) { result, e in
+            DispatchQueue.main.async {
+                if let r = result as? [[String: Any]] {
+                    self.processingBuildCount = r.count
+                    self.tableView.reloadData()
+                }
+            }
+        }
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -59,7 +76,12 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
-        cell?.textLabel?.text = RowType(rawValue: indexPath.row)?.description
+        let rowType = RowType(rawValue: indexPath.row)!
+        if rowType == .processingBuilds {
+            cell?.textLabel?.text = String(processingBuildCount) + " builds processing"
+        } else {
+            cell?.textLabel?.text = rowType.description
+        }
         return cell!
     }
 
@@ -74,6 +96,7 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
             reviewVC.app = app
             navigationController?.pushViewController(reviewVC, animated: true)
         default:
+            tableView.deselectRow(at: indexPath, animated: true)
             break
         }
     }

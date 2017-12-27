@@ -10,7 +10,13 @@ import UIKit
 
 class ServiceCaller: NSObject {
 
-    private static let BaseURL = "https://review-monitor.herokuapp.com/"
+    private static let BaseUrl: String = {
+        #if DEBUG
+            return "http://127.0.0.1:4567/"
+        #else
+            return "https://review-monitor.herokuapp.com/"
+        #endif
+    }()
 
     private enum EndPoint: String {
         case login = "login/v2"
@@ -18,6 +24,7 @@ class ServiceCaller: NSObject {
         case ratings
         case response
         case testers
+        case processing_builds
     }
 
     private enum HTTPMethod: String {
@@ -57,9 +64,14 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .testers, params: params, completionBlock: completion)
     }
 
+    class func getProcessingBuilds(bundleId: String, completion: CompletionBlock?) {
+        let params = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .processing_builds, params: params, completionBlock: completion)
+    }
+
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
-        var url = BaseURL + endPoint.rawValue
+        var url = BaseUrl + endPoint.rawValue
         if let account = AccountManger.getCurrentAccount() {
             params.updateValue(account.username, forKey: "username")
             params["password"] = account.password
