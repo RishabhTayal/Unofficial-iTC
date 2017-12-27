@@ -153,10 +153,7 @@
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
 				69BCAD2B1F63288900C65305 /* Reviews List View Controller */,
 				694C9D881F7A140400736F5A /* Testers View Controller */,
-				693F5FAA1F61F23F00FD8859 /* Main.storyboard */,
-				693F5FAD1F61F23F00FD8859 /* Assets.xcassets */,
-				693F5FAF1F61F23F00FD8859 /* LaunchScreen.storyboard */,
-				693F5FB21F61F23F00FD8859 /* Info.plist */,
+				69C0ED3C1FF34C42008C7B23 /* Supporting Files */,
 			);
 			path = ReviewMonitor;
 			sourceTree = "<group>";
@@ -224,6 +221,17 @@
 				696235D21F6F7A6400176A60 /* Editor View Controller */,
 			);
 			path = "Reviews List View Controller";
+			sourceTree = "<group>";
+		};
+		69C0ED3C1FF34C42008C7B23 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				693F5FAA1F61F23F00FD8859 /* Main.storyboard */,
+				693F5FAD1F61F23F00FD8859 /* Assets.xcassets */,
+				693F5FAF1F61F23F00FD8859 /* LaunchScreen.storyboard */,
+				693F5FB21F61F23F00FD8859 /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,7 +581,7 @@
 				CODE_SIGN_STYLE = Manual;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CEBY93VF85;
-				INFOPLIST_FILE = ReviewMonitor/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReviewMonitor/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
@@ -597,7 +605,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				DEVELOPMENT_TEAM = CEBY93VF85;
-				INFOPLIST_FILE = ReviewMonitor/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/ReviewMonitor/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
