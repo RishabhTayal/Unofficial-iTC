@@ -14,7 +14,5 @@ This project aims to make an iOS app which is more powerful than the Apple's off
 # Download from TestFlight
 [Download](https://itc-onboarding.herokuapp.com)
 
-#### Looking for some contributors who can help with some more features. Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested.
-
-## Join Slack
-https://itc-manager-slack-invite.herokuapp.com
+# Contributing
+Want to see something implemented in teh app? We are always looking for some contributors who can help with some more features. Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested. Want to get involved in discussions? Join our [Slack channel](https://itc-manager-slack-invite.herokuapp.com)
