@@ -13,7 +13,7 @@ class ServiceCaller: NSObject {
     private static let BaseURL = "https://review-monitor.herokuapp.com/"
 
     private enum EndPoint: String {
-        case login
+        case login = "login/v2"
         case apps
         case ratings
         case response
