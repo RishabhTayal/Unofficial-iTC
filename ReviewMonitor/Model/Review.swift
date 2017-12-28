@@ -12,6 +12,7 @@ class Review: NSObject {
 
     var id: NSNumber
     var title: String = ""
+    var lastModified: NSNumber = 0
     var review: String? = ""
     var rating: NSNumber? = 5
     var storeFront: String? = ""
@@ -21,6 +22,7 @@ class Review: NSObject {
     init(dict: [String: Any]) {
         id = dict["id"] as! NSNumber
         title = dict["title"] as! String
+        lastModified = dict["last_modified"] as! NSNumber
         review = dict["review"] as? String
         rating = dict["rating"] as? NSNumber
         storeFront = dict["store_front"] as? String
