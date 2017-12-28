@@ -30,6 +30,7 @@
 		69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */; };
 		69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69A6276D1F6343D600415AC8 /* LoginViewController.swift */; };
 		69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69A6276E1F6343D600415AC8 /* LoginViewController.xib */; };
+		69BBC5A01FF58EBF00A41450 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BBC59F1FF58EBF00A41450 /* SettingsViewController.swift */; };
 		69BCAD2D1F63289A00C65305 /* ReviewsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */; };
 		69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C845A71F6393E100C65AB2 /* AccountsViewController.swift */; };
 		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
@@ -63,6 +64,7 @@
 		69A6276B1F633EFB00415AC8 /* DeveloperResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeveloperResponse.swift; sourceTree = "<group>"; };
 		69A6276D1F6343D600415AC8 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		69A6276E1F6343D600415AC8 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		69BBC59F1FF58EBF00A41450 /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		69BCAD2C1F63289A00C65305 /* ReviewsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsListTableViewCell.swift; sourceTree = "<group>"; };
 		69C845A71F6393E100C65AB2 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
@@ -149,6 +151,7 @@
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
 				694282941F64747F0053BBF3 /* AccountManger.swift */,
 				6909EEA81F622F59008221F9 /* Model */,
+				69BBC5A11FF58EC400A41450 /* Settings View Controller */,
 				69A627711F6343D900415AC8 /* Login ViewController */,
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
 				69BCAD2B1F63288900C65305 /* Reviews List View Controller */,
@@ -210,6 +213,14 @@
 				694282961F65F2530053BBF3 /* Accounts ViewController */,
 			);
 			path = "Login ViewController";
+			sourceTree = "<group>";
+		};
+		69BBC5A11FF58EC400A41450 /* Settings View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				69BBC59F1FF58EBF00A41450 /* SettingsViewController.swift */,
+			);
+			path = "Settings View Controller";
 			sourceTree = "<group>";
 		};
 		69BCAD2B1F63288900C65305 /* Reviews List View Controller */ = {
@@ -426,6 +437,7 @@
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
 				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
+				69BBC5A01FF58EBF00A41450 /* SettingsViewController.swift in Sources */,
 				696235D81F6F7AB600176A60 /* ReviewFilterViewController.swift in Sources */,
 				69591E111F7A0DE4003D7E27 /* TestersViewController.swift in Sources */,
 				694282931F6464690053BBF3 /* Account.swift in Sources */,
