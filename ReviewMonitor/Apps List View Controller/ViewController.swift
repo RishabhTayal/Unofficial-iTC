@@ -28,8 +28,8 @@ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = AccountManger.getCurrentAccount()?.teamName
 
+        configureView()
         refreshControl.addTarget(self, action: #selector(getApps), for: .valueChanged)
         tableView.addSubview(refreshControl)
         tableView.tableFooterView = UIView()
@@ -51,6 +51,10 @@ class ViewController: UIViewController {
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+
+    func configureView() {
+        title = AccountManger.getCurrentAccount()?.teamName
     }
 
     @objc func getApps() {
@@ -102,6 +106,7 @@ extension ViewController: AccountsViewControllerDelegate {
     func accountsControllerDidDismiss() {
         list = []
         tableView.reloadData()
+        configureView()
         getApps()
     }
 }
