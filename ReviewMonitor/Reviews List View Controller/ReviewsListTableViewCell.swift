@@ -13,6 +13,7 @@ class ReviewsListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
     @IBOutlet weak var ratingView: HCSStarRatingView!
     @IBOutlet weak var reviewLabel: UILabel!
@@ -33,6 +34,10 @@ class ReviewsListTableViewCell: UITableViewCell {
 
     func config(review: Review) {
         titleLabel.text = review.title
+        let date = Date(timeIntervalSince1970: review.lastModified.doubleValue / 1000)
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd, yyyy"
+        timeStampLabel.text = formatter.string(from: date)
         authorLabel.text = review.storeFront
         reviewLabel.text = review.review
         ratingView.value = review.rating as! CGFloat
