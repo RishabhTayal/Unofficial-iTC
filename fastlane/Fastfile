@@ -1,4 +1,4 @@
-update_fastlane
+# update_fastlane
 
 default_platform :ios
 
@@ -19,10 +19,15 @@ platform :ios do
 
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
-  lane :beta do
+  lane :beta do |options|
+    if options[:release_notes] == nil
+      release_notes = prompt(text: "Enter release notes for TestFlight")
+    else
+      release_notes = options[:release_notes]
+    end
     match(type: "appstore") # more information: https://codesigning.guide
     gym # Build your app - more options available
-    pilot(distribute_external: true)
+    pilot(distribute_external: true, changelog: release_notes, groups: 'Review Monitor External Testers')
   end
 
   desc "Deploy a new version to the App Store"
