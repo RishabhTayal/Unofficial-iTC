@@ -31,9 +31,16 @@ class LoginViewController: UIViewController {
     }
 
     @IBAction func signinTapped(_ sender: Any) {
-
+        guard let username = userNameTextField.text, username.count != 0 else {
+            showErrorMessage(message: "Enter Apple ID")
+            return
+        }
+        guard let password = passwordTextField.text, password.count != 0 else {
+            showErrorMessage(message: "Enter password")
+            return
+        }
         MBProgressHUD.showAdded(to: view, animated: true)
-        ServiceCaller.login(username: userNameTextField.text!, password: passwordTextField.text!) { r, e in
+        ServiceCaller.login(username: username, password: password) { r, e in
             DispatchQueue.main.async {
                 MBProgressHUD.hide(for: self.view, animated: true)
                 if let accounts = r as? [[String: Any]] {
@@ -58,5 +65,11 @@ class LoginViewController: UIViewController {
                 }
             }
         }
+    }
+
+    func showErrorMessage(message: String) {
+        let alert = UIAlertController(title: "", message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alert, animated: true, completion: nil)
     }
 }
