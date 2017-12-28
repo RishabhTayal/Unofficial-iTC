@@ -35,8 +35,13 @@ class ViewController: UIViewController {
         tableView.tableFooterView = UIView()
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "accounts"), style: .plain, target: self, action: #selector(manageAccountTapped))
-
+        navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings"), style: .plain, target: self, action: #selector(settingsTapped))
         getApps()
+    }
+
+    @objc func settingsTapped() {
+        let settingsVC = SettingsViewController()
+        present(UINavigationController(rootViewController: settingsVC), animated: true, completion: nil)
     }
 
     @objc func manageAccountTapped() {
