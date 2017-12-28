@@ -24,6 +24,8 @@ class SettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = "Settings"
+
         tableView = UITableView(frame: view.bounds)
         tableView.dataSource = self
         tableView.delegate = self
