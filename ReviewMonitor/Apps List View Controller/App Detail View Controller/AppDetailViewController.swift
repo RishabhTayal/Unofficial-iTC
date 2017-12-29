@@ -84,6 +84,10 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
         return RowType.count.rawValue
     }
 
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "App Store/TestFlight"
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
