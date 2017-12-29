@@ -26,10 +26,10 @@ class SettingsViewController: UIViewController {
 
         title = "Settings"
 
-        tableView = UITableView(frame: view.bounds)
+        tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.tableFooterView = UIView()
+        tableView.tableFooterView = tableFooterView()
         view.addSubview(tableView)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
@@ -44,6 +44,18 @@ class SettingsViewController: UIViewController {
 
     @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
+    }
+
+    func tableFooterView() -> UIView {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.size.width, height: 50))
+        let label = UILabel(frame: footerView.bounds)
+        let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+        let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+        label.text = "Version: " + appVersionString + " (" + buildNumber + ")"
+        label.textAlignment = .center
+        label.textColor = UIColor.darkGray
+        footerView.addSubview(label)
+        return footerView
     }
 }
 

@@ -54,6 +54,7 @@ class AppDetailViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
         getProcessingBuilds()
