@@ -8,6 +8,7 @@
 
 import UIKit
 import HCSStarRatingView
+import FlagKit
 
 class ReviewsListTableViewCell: UITableViewCell {
 
@@ -15,6 +16,7 @@ class ReviewsListTableViewCell: UITableViewCell {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeStampLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
+    @IBOutlet weak var countryImageView: UIImageView!
     @IBOutlet weak var ratingView: HCSStarRatingView!
     @IBOutlet weak var reviewLabel: UILabel!
     @IBOutlet weak var territoryImageView: UIImageView!
@@ -39,6 +41,7 @@ class ReviewsListTableViewCell: UITableViewCell {
         formatter.dateFormat = "MMM dd, yyyy"
         timeStampLabel.text = formatter.string(from: date)
         authorLabel.text = review.storeFront
+        countryImageView.image = Flag(countryCode: review.storeFront!)?.originalImage
         reviewLabel.text = review.review
         ratingView.value = review.rating as! CGFloat
         if let response = review.developerResponse, response.response != nil {
