@@ -30,14 +30,28 @@ class AppDetailViewController: UIViewController {
         }
     }
 
-    var tableView: UITableView!
+    @IBOutlet var tableView: UITableView!
+    @IBOutlet var appImageView: UIImageView!
+    @IBOutlet var appNameLabel: UILabel!
+    @IBOutlet var platformLabel: UILabel!
+
     var app: App?
     var processingBuildCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = app?.name
 
-        tableView = UITableView(frame: view.frame)
+        appImageView.addBorder(1 / UIScreen.main.scale, color: UIColor.lightGray)
+        appImageView.cornerRadius(8)
+        if let imageUrl = app?.previewUrl {
+            appImageView.sd_setImage(with: URL(string: imageUrl)!, completed: nil)
+        } else {
+            appImageView.image = UIImage(named: "empty_app_icon")
+        }
+        appNameLabel.text = app?.name
+        platformLabel.text = app?.platforms.joined(separator: ", ")
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleWidth.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue)))
