@@ -54,6 +54,7 @@ class AppDetailViewController: UIViewController {
 
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
         getProcessingBuilds()
@@ -81,6 +82,10 @@ class AppDetailViewController: UIViewController {
 extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return RowType.count.rawValue
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "App Store/TestFlight"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
