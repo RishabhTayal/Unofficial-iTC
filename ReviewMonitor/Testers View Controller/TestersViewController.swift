@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import DZNEmptyDataSet
 
 class TestersViewController: UIViewController {
 
@@ -16,12 +17,18 @@ class TestersViewController: UIViewController {
     var app: App?
     var testers: [Tester] = []
 
+    var isLoading = true
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        title = app?.name
+
         tableView = UITableView(frame: view.frame)
         tableView.dataSource = self
-        //        tableView.delegate = self
+        tableView.emptyDataSetSource = self
+        tableView.emptyDataSetDelegate = self
+        tableView.tableFooterView = UIView()
         tableView.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleWidth.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue)))
         view.addSubview(tableView)
         getTesters()
@@ -29,7 +36,9 @@ class TestersViewController: UIViewController {
 
     func getTesters() {
         MBProgressHUD.showAdded(to: view, animated: true)
+        isLoading = true
         ServiceCaller.getTesters(bundleId: (app?.bundleId)!) { result, error in
+            self.isLoading = false
             if let result = result as? [[String: Any]] {
                 self.testers = []
                 for testerDict in result {
@@ -59,5 +68,15 @@ extension TestersViewController: UITableViewDataSource {
         cell?.textLabel?.text = tester.firstName + " " + tester.lastName
         cell?.detailTextLabel?.text = tester.email
         return cell!
+    }
+}
+
+extension TestersViewController: DZNEmptyDataSetSource, DZNEmptyDataSetDelegate {
+    func title(forEmptyDataSet scrollView: UIScrollView!) -> NSAttributedString! {
+        return NSAttributedString(string: "No testers.")
+    }
+
+    func emptyDataSetShouldDisplay(_ scrollView: UIScrollView!) -> Bool {
+        return !isLoading
     }
 }
