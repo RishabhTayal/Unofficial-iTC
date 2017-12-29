@@ -33,12 +33,14 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var tableView: UITableView!
     @IBOutlet var appImageView: UIImageView!
     @IBOutlet var appNameLabel: UILabel!
+    @IBOutlet var platformLabel: UILabel!
 
     var app: App?
     var processingBuildCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = app?.name
 
         appImageView.addBorder(1 / UIScreen.main.scale, color: UIColor.lightGray)
         appImageView.cornerRadius(8)
@@ -48,6 +50,8 @@ class AppDetailViewController: UIViewController {
             appImageView.image = UIImage(named: "empty_app_icon")
         }
         appNameLabel.text = app?.name
+        platformLabel.text = app?.platforms.joined(separator: ", ")
+
         tableView.dataSource = self
         tableView.delegate = self
         view.addSubview(tableView)
