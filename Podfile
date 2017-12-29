@@ -11,4 +11,5 @@ target 'ReviewMonitor' do
     pod 'TTRangeSlider' # Two thumb slider
     pod 'Fabric'
     pod 'Crashlytics'
+    pod 'FlagKit' # Show flags for the country locale
 end
