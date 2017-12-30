@@ -30,7 +30,7 @@ platform :ios do
       release_notes = options[:release_notes]
     end
     match(type: "appstore") # more information: https://codesigning.guide
-    gym # Build your app - more options available
+    gym(scheme: 'ReviewMonitor') # Build your app - more options available
     pilot(distribute_external: true, changelog: release_notes, groups: 'Review Monitor External Testers')
   end
 

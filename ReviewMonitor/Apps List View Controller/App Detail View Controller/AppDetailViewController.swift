@@ -35,33 +35,41 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var appNameLabel: UILabel!
     @IBOutlet var platformLabel: UILabel!
 
-    var app: App?
+    var app: App!
     var processingBuildCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = app?.name
+        title = app.name
 
         appImageView.addBorder(1 / UIScreen.main.scale, color: UIColor.lightGray)
         appImageView.cornerRadius(8)
-        if let imageUrl = app?.previewUrl {
+        if let imageUrl = app.previewUrl {
             appImageView.sd_setImage(with: URL(string: imageUrl)!, completed: nil)
         } else {
             appImageView.image = UIImage(named: "empty_app_icon")
         }
-        appNameLabel.text = app?.name
-        platformLabel.text = app?.platforms.joined(separator: ", ")
+        appNameLabel.text = app.name
+        platformLabel.text = app.platforms.joined(separator: ", ")
 
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
         getProcessingBuilds()
     }
 
+    @objc func viewInAppStoreTapped() {
+        let url = URL(string: "https://itunes.apple.com/us/app/app/" + app.appId)!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
     func getProcessingBuilds() {
-        ServiceCaller.getProcessingBuilds(bundleId: (app?.bundleId)!) { result, e in
+        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
             DispatchQueue.main.async {
                 if let r = result as? [[String: Any]] {
                     self.processingBuildCount = r.count
