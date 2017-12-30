@@ -24,6 +24,11 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
+    if options[:distribute_external] == nil
+      distribute_external = prompt(text: "Distribute to External Testers?", boolean: true)
+    else
+      distribute_external = options[:distribute_external]
+    end
     if options[:release_notes] == nil
       release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
     else
@@ -31,7 +36,10 @@ platform :ios do
     end
     match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: 'ReviewMonitor') # Build your app - more options available
-    pilot(distribute_external: true, changelog: release_notes, groups: 'Review Monitor External Testers')
+    pilot(distribute_external: distribute_external,
+      skip_waiting_for_build_processing: !distribute_external,
+      changelog: release_notes, 
+      groups: 'Review Monitor External Testers')
   end
 
   desc "Deploy a new version to the App Store"
