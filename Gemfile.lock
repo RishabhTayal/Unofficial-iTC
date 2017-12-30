@@ -103,6 +103,7 @@ GEM
     faraday_middleware (0.12.2)
       faraday (>= 0.7.4, < 1.0)
     fastimage (2.1.1)
+    fastlane-plugin-changelog (0.9.0)
     fourflusher (2.0.1)
     fuzzy_match (2.0.4)
     gh_inspector (1.0.3)
@@ -196,6 +197,7 @@ PLATFORMS
 DEPENDENCIES
   cocoapods
   fastlane!
+  fastlane-plugin-changelog
 
 BUNDLED WITH
    1.16.0

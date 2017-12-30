@@ -29,17 +29,23 @@ platform :ios do
     else
       distribute_external = options[:distribute_external]
     end
-    if options[:release_notes] == nil
-      release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
-    else
-      release_notes = options[:release_notes]
-    end
+    changelog = read_changelog
+    # if options[:release_notes] == nil 
+    #   release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
+    # else
+    #   release_notes = options[:release_notes]
+    # end
     match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: 'ReviewMonitor') # Build your app - more options available
     pilot(distribute_external: distribute_external,
       skip_waiting_for_build_processing: !distribute_external,
-      changelog: release_notes, 
+      changelog: changelog, 
       groups: 'Review Monitor External Testers')
+    version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
+    build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
+    if distribute_external 
+      stamp_changelog(section_identifier: "Version #{version_number}(#{build_number})")
+    end
   end
 
   desc "Deploy a new version to the App Store"
