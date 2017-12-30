@@ -12,6 +12,7 @@ class App: NSObject {
     var name: String = ""
     var previewUrl: String? = ""
     var bundleId: String = ""
+    var appId: String = ""
     var platforms: [String] = []
 
     init(dict: [String: Any]) {
@@ -19,5 +20,6 @@ class App: NSObject {
         bundleId = dict["bundle_id"] as? String ?? "-"
         previewUrl = dict["app_icon_preview_url"] as? String
         platforms = dict["platforms"] as! [String]
+        appId = dict["apple_id"] as! String
     }
 }
