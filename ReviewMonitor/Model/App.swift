@@ -17,7 +17,7 @@ class App: NSObject {
 
     init(dict: [String: Any]) {
         name = dict["name"] as! String
-        bundleId = dict["bundle_id"] as! String
+        bundleId = dict["bundle_id"] as? String ?? "-"
         previewUrl = dict["app_icon_preview_url"] as? String
         platforms = dict["platforms"] as! [String]
         appId = dict["apple_id"] as! String
