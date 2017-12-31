@@ -80,6 +80,7 @@ class ServiceCaller: NSObject {
         }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+        print(url)
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in

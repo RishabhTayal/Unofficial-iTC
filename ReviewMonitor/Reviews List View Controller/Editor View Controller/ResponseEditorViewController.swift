@@ -9,7 +9,7 @@
 import UIKit
 import MBProgressHUD
 
-class ResponseEditorViewController: UIViewController {
+class ResponseEditorViewController: UIViewController, UITextViewDelegate {
 
     @IBOutlet weak var textView: UITextView!
 
@@ -18,10 +18,25 @@ class ResponseEditorViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        textView.text = review?.developerResponse?.response
-        textView.becomeFirstResponder()
+        textView.delegate = self
+        if review?.developerResponse?.response == nil {
+            textView.text = "Write your response here:"
+            textView.textColor = UIColor.lightGray
+            //textView.text = review?.developerResponse?.response
+        } else {
+            textView.text = review?.developerResponse?.response
+        }
+
+        //textView.becomeFirstResponder()
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postTapped))
+    }
+
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
 
     @objc func postTapped() {

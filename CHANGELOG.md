@@ -6,5 +6,6 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - UI improvements in app detail screen
+- Added TouchId/FaceId authentication
 
 [Unreleased]: https://github.com/RishabhTayal/ReviewMonitor/compare/master...HEAD
