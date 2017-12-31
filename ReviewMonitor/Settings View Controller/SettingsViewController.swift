@@ -8,8 +8,32 @@
 
 import UIKit
 import SafariServices
+import LocalAuthentication
 
 class SettingsViewController: UIViewController {
+
+    var biometricType: BiometricType {
+        let context = LAContext()
+        var error: NSError?
+
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            print(error?.localizedDescription ?? "")
+            return .none
+        }
+
+        if #available(iOS 11.0, *) {
+            switch context.biometryType {
+            case .none:
+                return .none
+            case .touchID:
+                return .touchID
+            case .faceID:
+                return .faceID
+            }
+        } else {
+            return .touchID
+        }
+    }
 
     var tableView: UITableView!
 
@@ -30,9 +54,10 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = tableFooterView()
+        tableView.register(AuthCell.nib, forCellReuseIdentifier: "auth")
         view.addSubview(tableView)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(cancelTapped))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -41,6 +66,8 @@ class SettingsViewController: UIViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+
+    let def = UserDefaults.standard
 
     @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
@@ -59,9 +86,15 @@ class SettingsViewController: UIViewController {
     }
 }
 
+enum BiometricType {
+    case none
+    case touchID
+    case faceID
+}
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,13 +103,59 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
-        cell?.textLabel?.text = "Report a Bug"
+
+        let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
+        if indexPath.row == 0 {
+            configureBiorMetricsCell(cell: cell2)
+            return cell2
+        }
+        if indexPath.row == 1 {
+            cell?.textLabel?.text = "Report a Bug"
+            return cell!
+        }
         return cell!
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
-        let safari = SFSafariViewController(url: url)
-        present(safari, animated: true, completion: nil)
+    @objc func switchChanged(_ mySwitch: UISwitch) {
+        switch mySwitch.isOn {
+        case true:
+            def.set(true, forKey: "useBiometrics")
+        case false:
+            def.set(false, forKey: "useBiometrics")
+        }
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
+            let safari = SFSafariViewController(url: url)
+            present(safari, animated: true, completion: nil)
+        }
+    }
+}
+
+// Configure TableView Cells
+extension SettingsViewController {
+    func configureBiorMetricsCell(cell: AuthCell) {
+        if def.bool(forKey: "useBiometrics") {
+            cell.onOff.setOn(true, animated: true)
+        } else {
+            cell.onOff.setOn(false, animated: true)
+        }
+        if biometricType == .faceID {
+            cell.title.text = "Unlock with Face ID"
+        } else if biometricType == .touchID {
+            cell.title.text = "Unlock with Touch ID"
+        } else {
+            cell.isHidden = true
+        }
+        cell.onOff.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+    }
+}
+
+class AuthCell: UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var onOff: UISwitch!
+
+    static let nib = UINib(nibName: "AuthCell", bundle: nil)
 }
