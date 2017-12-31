@@ -47,9 +47,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                             print("Success")
                         } else {
                             print("FAIL")
-                            //                            let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
-                            //                            ac.addAction(UIAlertAction(title: "OK", style: .default))
-                            //                            self.present(ac, animated: true)
                         }
                     }
                 }
