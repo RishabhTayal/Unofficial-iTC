@@ -54,6 +54,7 @@ class SettingsViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = tableFooterView()
+        tableView.register(AuthCell.nib, forCellReuseIdentifier: "auth")
         view.addSubview(tableView)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(cancelTapped))
@@ -65,6 +66,8 @@ class SettingsViewController: UIViewController {
             tableView.deselectRow(at: indexPath, animated: true)
         }
     }
+
+    let def = UserDefaults.standard
 
     @objc func cancelTapped() {
         dismiss(animated: true, completion: nil)
@@ -100,24 +103,52 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
+
+        let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
         if indexPath.row == 0 {
-            if biometricType == .faceID {
-                cell?.textLabel?.text = "Unlock with Face ID"
-            } else if biometricType == .touchID {
-                cell?.textLabel?.text = "Unlock with Touch ID"
+            if def.bool(forKey: "useBiometrics") {
+                cell2.onOff.setOn(true, animated: true)
             } else {
-                cell?.isHidden = true
+                cell2.onOff.setOn(false, animated: true)
             }
+            if biometricType == .faceID {
+                cell2.title.text = "Unlock with Face ID"
+            } else if biometricType == .touchID {
+                cell2.title.text = "Unlock with Touch ID"
+            } else {
+                cell2.isHidden = true
+            }
+            cell2.onOff.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+            return cell2
         }
         if indexPath.row == 1 {
             cell?.textLabel?.text = "Report a Bug"
+            return cell!
         }
         return cell!
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
-        let safari = SFSafariViewController(url: url)
-        present(safari, animated: true, completion: nil)
+    @objc func switchChanged(_ mySwitch: UISwitch) {
+        switch mySwitch.isOn {
+        case true:
+            def.set(true, forKey: "useBiometrics")
+        case false:
+            def.set(false, forKey: "useBiometrics")
+        }
+        // Do something
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        if indexPath.row == 1 {
+            let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
+            let safari = SFSafariViewController(url: url)
+            present(safari, animated: true, completion: nil)
+        }
+    }
+}
+
+class AuthCell: UITableViewCell {
+    @IBOutlet weak var title: UILabel!
+    @IBOutlet weak var onOff: UISwitch!
+    static let nib = UINib(nibName: "AuthCell", bundle: nil)
 }

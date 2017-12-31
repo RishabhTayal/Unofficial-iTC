@@ -8,11 +8,6 @@
 
 import UIKit
 
-class AuthenticationManager {
-    static let sharedInstance = AuthenticationManager()
-    var needsAuthentication = false
-}
-
 class ServiceCaller: NSObject {
 
     private static let BaseUrl: String = {
