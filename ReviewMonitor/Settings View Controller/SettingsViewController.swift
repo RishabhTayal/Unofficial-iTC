@@ -8,8 +8,32 @@
 
 import UIKit
 import SafariServices
+import LocalAuthentication
 
 class SettingsViewController: UIViewController {
+
+    var biometricType: BiometricType {
+        let context = LAContext()
+        var error: NSError?
+
+        guard context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) else {
+            print(error?.localizedDescription ?? "")
+            return .none
+        }
+
+        if #available(iOS 11.0, *) {
+            switch context.biometryType {
+            case .none:
+                return .none
+            case .touchID:
+                return .touchID
+            case .faceID:
+                return .faceID
+            }
+        } else {
+            return .touchID
+        }
+    }
 
     var tableView: UITableView!
 
@@ -59,9 +83,15 @@ class SettingsViewController: UIViewController {
     }
 }
 
+enum BiometricType {
+    case none
+    case touchID
+    case faceID
+}
+
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,7 +100,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
-        cell?.textLabel?.text = "Report a Bug"
+        if indexPath.row == 0 {
+            if biometricType == .faceID {
+                cell?.textLabel?.text = "Unlock with Face ID"
+            } else if biometricType == .touchID {
+                cell?.textLabel?.text = "Unlock with Touch ID"
+            } else {
+                cell?.isHidden = true
+            }
+        }
+        if indexPath.row == 1 {
+            cell?.textLabel?.text = "Report a Bug"
+        }
         return cell!
     }
 
