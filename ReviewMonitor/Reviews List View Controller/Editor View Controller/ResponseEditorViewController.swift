@@ -23,14 +23,7 @@ class ResponseEditorViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postTapped))
     }
-
-    func textViewDidBeginEditing(_ textView: UITextView) {
-        if textView.textColor == UIColor.lightGray {
-            textView.text = nil
-            textView.textColor = UIColor.black
-        }
-    }
-
+    
     @objc func postTapped() {
         navigationItem.rightBarButtonItem?.isEnabled = false
         MBProgressHUD.showAdded(to: view, animated: true)
