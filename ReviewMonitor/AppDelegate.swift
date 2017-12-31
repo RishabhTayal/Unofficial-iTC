@@ -53,6 +53,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         blurEffectView?.removeFromSuperview()
     }
 
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        print(Date())
+        addBlueView()
+    }
+
+    func applicationWillEnterForeground(_ application: UIApplication) {
+        removeBlurView()
+    }
+
     //    func applicationWillEnterForeground(_ application: UIApplication) {
     //        let touchIDManager = AccountManger()
     //
