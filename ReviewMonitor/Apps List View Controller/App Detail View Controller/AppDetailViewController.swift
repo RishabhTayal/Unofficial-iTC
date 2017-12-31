@@ -10,24 +10,16 @@ import UIKit
 
 class AppDetailViewController: UIViewController {
 
-    enum RowType: Int {
-        case testers
-        case reviews
-        case processingBuilds
-        case count
+    enum SectionType: Int {
+        case appStore
+        case testflight
 
-        var description: String {
-            switch self {
-            case .testers:
-                return "Testers"
-            case .reviews:
-                return "Reviews"
-            case .processingBuilds:
-                return "Processing Builds"
-            default:
-                return ""
-            }
-        }
+        static var numberOfSections = 2
+    }
+
+    struct Rows {
+        static var appstore = ["Reviews"]
+        static var testflight = ["Testers"]
     }
 
     @IBOutlet var tableView: UITableView!
@@ -35,33 +27,41 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var appNameLabel: UILabel!
     @IBOutlet var platformLabel: UILabel!
 
-    var app: App?
+    var app: App!
     var processingBuildCount = 0
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = app?.name
+        title = app.name
 
         appImageView.addBorder(1 / UIScreen.main.scale, color: UIColor.lightGray)
         appImageView.cornerRadius(8)
-        if let imageUrl = app?.previewUrl {
+        if let imageUrl = app.previewUrl {
             appImageView.sd_setImage(with: URL(string: imageUrl)!, completed: nil)
         } else {
             appImageView.image = UIImage(named: "empty_app_icon")
         }
-        appNameLabel.text = app?.name
-        platformLabel.text = app?.platforms.joined(separator: ", ")
+        appNameLabel.text = app.name
+        platformLabel.text = app.platforms.joined(separator: ", ")
 
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
         view.addSubview(tableView)
 
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
         getProcessingBuilds()
     }
 
+    @objc func viewInAppStoreTapped() {
+        let url = URL(string: "https://itunes.apple.com/us/app/app/" + app.appId)!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+
     func getProcessingBuilds() {
-        ServiceCaller.getProcessingBuilds(bundleId: (app?.bundleId)!) { result, e in
+        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
             DispatchQueue.main.async {
                 if let r = result as? [[String: Any]] {
                     self.processingBuildCount = r.count
@@ -80,12 +80,23 @@ class AppDetailViewController: UIViewController {
 }
 
 extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return SectionType.numberOfSections
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return RowType.count.rawValue
+        if section == SectionType.appStore.rawValue {
+            return Rows.appstore.count
+        }
+        return Rows.testflight.count
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "App Store/TestFlight"
+        if section == SectionType.appStore.rawValue {
+            return "App Store"
+        }
+        return "TestFlight"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -94,28 +105,27 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
             cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
-        let rowType = RowType(rawValue: indexPath.row)!
-        if rowType == .processingBuilds {
-            cell?.textLabel?.text = String(processingBuildCount) + " builds processing"
+        if indexPath.section == SectionType.appStore.rawValue {
+            cell?.textLabel?.text = Rows.appstore[indexPath.row]
+        } else if indexPath.section == SectionType.testflight.rawValue {
+            cell?.textLabel?.text = Rows.testflight[indexPath.row]
         } else {
-            cell?.textLabel?.text = rowType.description
         }
+
         return cell!
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        switch RowType(rawValue: indexPath.row)! {
-        case RowType.testers:
-            let testersVC = TestersViewController()
-            testersVC.app = app
-            navigationController?.pushViewController(testersVC, animated: true)
-        case RowType.reviews:
+        if indexPath.section == SectionType.appStore.rawValue {
             let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
             reviewVC.app = app
             navigationController?.pushViewController(reviewVC, animated: true)
-        default:
+        } else if indexPath.section == SectionType.testflight.rawValue {
+            let testersVC = TestersViewController()
+            testersVC.app = app
+            navigationController?.pushViewController(testersVC, animated: true)
+        } else {
             tableView.deselectRow(at: indexPath, animated: true)
-            break
         }
     }
 }

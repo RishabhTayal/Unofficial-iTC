@@ -24,14 +24,28 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
-    if options[:release_notes] == nil
-      release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
+    if options[:distribute_external] == nil
+      distribute_external = prompt(text: "Distribute to External Testers?", boolean: true)
     else
-      release_notes = options[:release_notes]
+      distribute_external = options[:distribute_external]
     end
+    changelog = read_changelog
+    # if options[:release_notes] == nil 
+    #   release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
+    # else
+    #   release_notes = options[:release_notes]
+    # end
     match(type: "appstore") # more information: https://codesigning.guide
-    gym # Build your app - more options available
-    pilot(distribute_external: true, changelog: release_notes, groups: 'Review Monitor External Testers')
+    gym(scheme: 'ReviewMonitor') # Build your app - more options available
+    pilot(distribute_external: distribute_external,
+      skip_waiting_for_build_processing: !distribute_external,
+      changelog: changelog, 
+      groups: 'Review Monitor External Testers')
+    version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
+    build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
+    if distribute_external 
+      stamp_changelog(section_identifier: "Version #{version_number}(#{build_number})")
+    end
   end
 
   desc "Deploy a new version to the App Store"
