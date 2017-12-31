@@ -36,6 +36,7 @@
 		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
 		69E3EAAA1F6F867800788918 /* ReviewFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E3EAA91F6F867800788918 /* ReviewFilter.swift */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
+		C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97D38D01FF902F600EBFA35 /* AuthCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -70,6 +71,7 @@
 		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
 		69E3EAA91F6F867800788918 /* ReviewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilter.swift; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
+		C97D38D01FF902F600EBFA35 /* AuthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthCell.xib; sourceTree = "<group>"; };
 		E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReviewMonitor.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -219,6 +221,7 @@
 			isa = PBXGroup;
 			children = (
 				69BBC59F1FF58EBF00A41450 /* SettingsViewController.swift */,
+				C97D38D01FF902F600EBFA35 /* AuthCell.xib */,
 			);
 			path = "Settings View Controller";
 			sourceTree = "<group>";
@@ -316,6 +319,7 @@
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
 				696235D91F6F7AB600176A60 /* ReviewFilterViewController.xib in Resources */,
 				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
+				C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */,
 				693F5FB11F61F23F00FD8859 /* LaunchScreen.storyboard in Resources */,
 				693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */,
 				693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */,
