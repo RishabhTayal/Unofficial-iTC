@@ -106,19 +106,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
         let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
         if indexPath.row == 0 {
-            if def.bool(forKey: "useBiometrics") {
-                cell2.onOff.setOn(true, animated: true)
-            } else {
-                cell2.onOff.setOn(false, animated: true)
-            }
-            if biometricType == .faceID {
-                cell2.title.text = "Unlock with Face ID"
-            } else if biometricType == .touchID {
-                cell2.title.text = "Unlock with Touch ID"
-            } else {
-                cell2.isHidden = true
-            }
-            cell2.onOff.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+            configureBiorMetricsCell(cell: cell2)
             return cell2
         }
         if indexPath.row == 1 {
@@ -135,7 +123,6 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         case false:
             def.set(false, forKey: "useBiometrics")
         }
-        // Do something
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -147,8 +134,28 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// Configure TableView Cells
+extension SettingsViewController {
+    func configureBiorMetricsCell(cell: AuthCell) {
+        if def.bool(forKey: "useBiometrics") {
+            cell.onOff.setOn(true, animated: true)
+        } else {
+            cell.onOff.setOn(false, animated: true)
+        }
+        if biometricType == .faceID {
+            cell.title.text = "Unlock with Face ID"
+        } else if biometricType == .touchID {
+            cell.title.text = "Unlock with Touch ID"
+        } else {
+            cell.isHidden = true
+        }
+        cell.onOff.addTarget(self, action: #selector(switchChanged), for: UIControlEvents.valueChanged)
+    }
+}
+
 class AuthCell: UITableViewCell {
     @IBOutlet weak var title: UILabel!
     @IBOutlet weak var onOff: UISwitch!
+
     static let nib = UINib(nibName: "AuthCell", bundle: nil)
 }

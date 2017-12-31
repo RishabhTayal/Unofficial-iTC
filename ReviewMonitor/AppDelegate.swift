@@ -89,7 +89,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        if Date().timeIntervalSince(startBack) >= 120 && UserDefaults.standard.bool(forKey: "useBiometrics") {
+        if Date().timeIntervalSince(startBack) >= 30 && UserDefaults.standard.bool(forKey: "useBiometrics") {
             print("Auth")
             let context = LAContext()
             var error: NSError?
@@ -121,47 +121,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
         print(Date().timeIntervalSince(startBack))
     }
-
-    //    func applicationWillEnterForeground(_ application: UIApplication) {
-    //        let touchIDManager = AccountManger()
-    //
-    //        addBlueView()
-    //
-    //        touchIDManager.authenticateUser(success: { () -> Void in
-    //            OperationQueue.main.addOperation({ () -> Void in
-    //                //                self.loadDada()
-    //                self.removeBlurView()
-    //            })
-    //        }, failure: { (evaluationError: NSError) -> Void in
-    //            switch evaluationError.code {
-    //            case LAError.Code.systemCancel.rawValue:
-    //                print("Authentication cancelled by the system")
-    //                //                self.statusLabel.text = "Authentication cancelled by the system"
-    //            case LAError.Code.userCancel.rawValue:
-    //                print("Authentication cancelled by the user")
-    //                //                self.statusLabel.text = "Authentication cancelled by the user"
-    //            case LAError.Code.userFallback.rawValue:
-    //                print("User wants to use a password")
-    //                //                self.statusLabel.text = "User wants to use a password"
-    //                // We show the alert view in the main thread (always update the UI in the main thread)
-    //                OperationQueue.main.addOperation({ () -> Void in
-    //                    //                    self.showPasswordAlert()
-    //                })
-    //            case LAError.Code.touchIDNotEnrolled.rawValue:
-    //                print("TouchID not enrolled")
-    //                //                self.statusLabel.text = "TouchID not enrolled"
-    //            case LAError.Code.passcodeNotSet.rawValue:
-    //                print("Passcode not set")
-    //                //                self.statusLabel.text = "Passcode not set"
-    //            default:
-    //                print("Authentication failed")
-    //                //                self.statusLabel.text = "Authentication failed"
-    //                OperationQueue.main.addOperation({ () -> Void in
-    //                    //                    self.showPasswordAlert()
-    //                })
-    //            }
-    //        })
-    //    }
 }
 
 extension UIView {
