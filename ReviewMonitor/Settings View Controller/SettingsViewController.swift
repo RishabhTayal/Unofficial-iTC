@@ -94,13 +94,13 @@ enum BiometricType {
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
 
@@ -110,10 +110,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             return cell2
         }
         if indexPath.row == 1 {
-            cell?.textLabel?.text = "Report a Bug"
+            cell?.textLabel?.text = "Server url"
+            cell?.detailTextLabel?.text = ServiceCaller.getBaseUrl()
         }
         if indexPath.row == 2 {
+            cell?.textLabel?.text = "Report a Bug"
+            cell?.detailTextLabel?.text = ""
+        }
+        if indexPath.row == 3 {
             cell?.textLabel?.text = "Share App"
+            cell?.detailTextLabel?.text = ""
         }
         return cell!
     }
@@ -129,11 +135,24 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            let alert = UIAlertController(title: "Enter server url", message: nil, preferredStyle: .alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                let tf = alert.textFields?.first
+                ServiceCaller.setBaseUrl(url: (tf?.text)!)
+                self.tableView.reloadData()
+            }))
+            alert.addTextField(configurationHandler: { tf in
+                tf.text = ServiceCaller.getBaseUrl()
+            })
+            present(alert, animated: true, completion: nil)
+        }
+        if indexPath.row == 2 {
             let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
             let safari = SFSafariViewController(url: url)
             present(safari, animated: true, completion: nil)
         }
-        if indexPath.row == 2 {
+        if indexPath.row == 3 {
             let shareSheet = UIActivityViewController(activityItems: ["Download ReviewMonitor, an iTunes Connect manager app from TestFlight.\nhttp://itc-onboarding.herokuapp.com"], applicationActivities: nil)
             present(shareSheet, animated: true, completion: nil)
         }

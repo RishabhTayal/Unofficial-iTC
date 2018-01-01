@@ -10,14 +10,17 @@ import UIKit
 
 class ServiceCaller: NSObject {
 
-    private static let BaseUrl: String = {
-        /* #if DEBUG
-         return "http://127.0.0.1:4567/"
-         #else
-         return "https://review-monitor.herokuapp.com/"
-         #endif */
-        "https://review-monitor.herokuapp.com/"
-    }()
+    static func getBaseUrl() -> String {
+        if let url = UserDefaults.standard.string(forKey: "baseURL") {
+            return url
+        }
+        return ""
+    }
+
+    static func setBaseUrl(url: String) {
+        UserDefaults.standard.set(url, forKey: "baseURL")
+        UserDefaults.standard.synchronize()
+    }
 
     private enum EndPoint: String {
         case login = "login/v2"
@@ -72,7 +75,7 @@ class ServiceCaller: NSObject {
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
-        var url = BaseUrl + endPoint.rawValue
+        var url = getBaseUrl() + endPoint.rawValue
         if let account = AccountManger.getCurrentAccount() {
             params.updateValue(account.username, forKey: "username")
             params["password"] = account.password
