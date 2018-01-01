@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
         tableView.register(AuthCell.nib, forCellReuseIdentifier: "auth")
         view.addSubview(tableView)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(cancelTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(cancelTapped))
     }
 
     override func viewDidAppear(_ animated: Bool) {
