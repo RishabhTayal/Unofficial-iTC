@@ -11,12 +11,12 @@ import UIKit
 class ServiceCaller: NSObject {
 
     private static let BaseUrl: String = {
-        /* #if DEBUG
-         return "http://127.0.0.1:4567/"
-         #else
-         return "https://review-monitor.herokuapp.com/"
-         #endif */
-        "https://review-monitor.herokuapp.com/"
+        #if DEBUG
+            return "http://localhost:4567/"
+        #else
+            return "https://review-monitor.herokuapp.com/"
+        #endif
+        //        "https://review-monitor.herokuapp.com/"
     }()
 
     private enum EndPoint: String {

@@ -23,7 +23,7 @@ class ResponseEditorViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Post", style: .plain, target: self, action: #selector(postTapped))
     }
-    
+
     @objc func postTapped() {
         navigationItem.rightBarButtonItem?.isEnabled = false
         MBProgressHUD.showAdded(to: view, animated: true)

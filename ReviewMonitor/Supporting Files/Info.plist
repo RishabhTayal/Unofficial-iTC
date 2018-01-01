@@ -17,11 +17,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.2</string>
 	<key>CFBundleVersion</key>
-<<<<<<< HEAD
-	<string>423</string>
-=======
-	<string>415</string>
->>>>>>> b87d732e1ac1eb187f36a16756a895eb70d7a688
+	<string>426</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
