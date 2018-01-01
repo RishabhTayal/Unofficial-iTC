@@ -94,7 +94,7 @@ enum BiometricType {
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 3
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -104,14 +104,16 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             cell?.accessoryType = .disclosureIndicator
         }
 
-        let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
         if indexPath.row == 0 {
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
             configureBiorMetricsCell(cell: cell2)
             return cell2
         }
         if indexPath.row == 1 {
             cell?.textLabel?.text = "Report a Bug"
-            return cell!
+        }
+        if indexPath.row == 2 {
+            cell?.textLabel?.text = "Share App"
         }
         return cell!
     }
@@ -130,6 +132,10 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
             let safari = SFSafariViewController(url: url)
             present(safari, animated: true, completion: nil)
+        }
+        if indexPath.row == 2 {
+            let shareSheet = UIActivityViewController(activityItems: ["Download ReviewMonitor, an iTunes Connect manager app from TestFlight.\nhttp://itc-onboarding.herokuapp.com"], applicationActivities: nil)
+            present(shareSheet, animated: true, completion: nil)
         }
     }
 }
