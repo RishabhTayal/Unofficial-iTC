@@ -34,7 +34,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         if UserDefaults.standard.bool(forKey: "useBiometrics") {
             let context = LAContext()
             var error: NSError?
-            addBlueView()
+            addBlurView()
             if context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: &error) {
                 let reason = "Please authenticate."
                 context.localizedFallbackTitle = ""
@@ -65,13 +65,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window?.makeKeyAndVisible()
     }
 
-    func addBlueView() {
+    func addBlurView() {
         let blurEffect = UIBlurEffect(style: UIBlurEffectStyle.dark)
         blurEffectView = UIVisualEffectView(effect: blurEffect)
         let view = window?.rootViewController?.view
         blurEffectView?.frame = (view?.bounds)!
         blurEffectView?.autoresizingMask = [.flexibleWidth, .flexibleHeight] // for supporting device rotation
-        view?.addSubview(blurEffectView!)
+        if !view!.subviews.contains(blurEffectView!) {
+            view?.addSubview(blurEffectView!)
+        }
     }
 
     func removeBlurView() {
@@ -82,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationDidEnterBackground(_ application: UIApplication) {
         print(Date())
         startBack = Date()
-        addBlueView()
+        addBlurView()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
