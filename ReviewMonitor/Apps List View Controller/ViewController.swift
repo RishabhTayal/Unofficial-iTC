@@ -39,13 +39,7 @@ class ViewController: UIViewController {
         getApps()
 
         if ServiceCaller.getBaseUrl().count == 0 {
-            let alert = UIAlertController(title: "Enter server url", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-                let tf = alert.textFields?.first
-                ServiceCaller.setBaseUrl(url: (tf?.text)!)
-            }))
-            alert.addTextField(configurationHandler: nil)
-            present(alert, animated: true, completion: nil)
+            ServiceCaller.askForBaseURL(controller: self)
         }
     }
 

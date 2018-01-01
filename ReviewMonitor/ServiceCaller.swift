@@ -39,6 +39,23 @@ class ServiceCaller: NSObject {
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
+    class func askForBaseURL(controller: UIViewController) {
+        let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            let tf = alert.textFields?.first
+            ServiceCaller.setBaseUrl(url: (tf?.text)!)
+        }))
+        alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
+            if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
+                UIApplication.shared.open(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addTextField(configurationHandler: { tf in
+            tf.text = ServiceCaller.getBaseUrl()
+        })
+        controller.present(alert, animated: true, completion: nil)
+    }
+
     class func login(username: String, password: String, completion: CompletionBlock?) {
         let params = ["username": username, "password": password]
         makeAPICall(endPoint: .login, params: params, httpMethod: .POST, completionBlock: completion)

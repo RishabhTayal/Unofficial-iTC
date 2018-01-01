@@ -136,16 +136,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
             tableView.deselectRow(at: indexPath, animated: true)
-            let alert = UIAlertController(title: "Enter server url", message: nil, preferredStyle: .alert)
-            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
-                let tf = alert.textFields?.first
-                ServiceCaller.setBaseUrl(url: (tf?.text)!)
-                self.tableView.reloadData()
-            }))
-            alert.addTextField(configurationHandler: { tf in
-                tf.text = ServiceCaller.getBaseUrl()
-            })
-            present(alert, animated: true, completion: nil)
+            ServiceCaller.askForBaseURL(controller: self)
         }
         if indexPath.row == 2 {
             let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
