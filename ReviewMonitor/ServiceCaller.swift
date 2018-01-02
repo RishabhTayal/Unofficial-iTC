@@ -12,11 +12,10 @@ class ServiceCaller: NSObject {
 
     private static let BaseUrl: String = {
         #if DEBUG
-            return "http://localhost:4567/"
+            return "http://192.168.1.26:4567/"
         #else
             return "https://review-monitor.herokuapp.com/"
         #endif
-        //        "https://review-monitor.herokuapp.com/"
     }()
 
     private enum EndPoint: String {
@@ -26,6 +25,7 @@ class ServiceCaller: NSObject {
         case response
         case testers
         case processing_builds
+        case meta = "app/metadata"
     }
 
     private enum HTTPMethod: String {
@@ -43,6 +43,14 @@ class ServiceCaller: NSObject {
 
     class func getApps(completionBlock: CompletionBlock?) {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
+    }
+
+    @available(*, deprecated, message: "Use getMeta()")
+    class func getAppInfo(bundleId: String, completionBlock: CompletionBlock?) {}
+
+    class func getMeta(bundleId: String, completionBlock: CompletionBlock?) {
+        let param = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .meta, params: param, httpMethod: .GET, completionBlock: completionBlock)
     }
 
     class func getReviews(app: App, storeFront: String = "", completionBlock: CompletionBlock?) {

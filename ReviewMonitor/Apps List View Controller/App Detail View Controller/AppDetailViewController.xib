@@ -17,6 +17,7 @@
                 <outlet property="appNameLabel" destination="bEb-OM-ZwP" id="e4d-EG-RZz"/>
                 <outlet property="platformLabel" destination="TK8-2E-OAt" id="eeg-M4-Fe6"/>
                 <outlet property="tableView" destination="5fl-4l-MK8" id="CNO-nC-Vr8"/>
+                <outlet property="textBack" destination="XbR-Hu-EXW" id="atL-ea-hFH"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -55,21 +56,34 @@
                     </subviews>
                 </stackView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="grouped" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="18" sectionFooterHeight="18" translatesAutoresizingMaskIntoConstraints="NO" id="5fl-4l-MK8">
-                    <rect key="frame" x="0.0" y="120" width="375" height="547"/>
+                    <rect key="frame" x="0.0" y="120" width="375" height="418"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
                 </tableView>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XbR-Hu-EXW">
+                    <rect key="frame" x="0.0" y="546" width="375" height="121"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="121" id="9HR-R0-4Yj"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="TQ1-Vi-hac" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="10" id="1p3-Sc-KJ4"/>
+                <constraint firstItem="XbR-Hu-EXW" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="257-b2-8tS"/>
+                <constraint firstItem="XbR-Hu-EXW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="5HI-fM-oId"/>
                 <constraint firstItem="5fl-4l-MK8" firstAttribute="top" secondItem="TQ1-Vi-hac" secondAttribute="bottom" constant="10" id="EP2-OO-RsW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="XbR-Hu-EXW" secondAttribute="trailing" id="GsO-zr-Dco"/>
+                <constraint firstItem="XbR-Hu-EXW" firstAttribute="top" secondItem="5fl-4l-MK8" secondAttribute="bottom" constant="8" id="IFf-RB-Mur"/>
                 <constraint firstItem="TQ1-Vi-hac" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="10" id="MFV-YC-xEI"/>
                 <constraint firstItem="5fl-4l-MK8" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rbh-7c-qlw"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="5fl-4l-MK8" secondAttribute="bottom" id="fOp-l1-Ubg"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="5fl-4l-MK8" secondAttribute="trailing" id="i4d-wo-T0t"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TQ1-Vi-hac" secondAttribute="trailing" constant="10" id="we1-8l-e9m"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="139.5"/>
         </view>
     </objects>
 </document>

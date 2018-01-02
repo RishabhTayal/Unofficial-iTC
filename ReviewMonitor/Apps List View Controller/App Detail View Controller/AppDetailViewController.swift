@@ -44,6 +44,8 @@ class AppDetailViewController: UIViewController {
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
 
+        metaData()
+
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
@@ -51,6 +53,47 @@ class AppDetailViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
         getProcessingBuilds()
+    }
+
+    var meta: [Meta] = []
+    @IBOutlet weak var textBack: UITextView!
+    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n"]
+    func metaData() {
+        textBack.isEditable = false
+        textBack.isSelectable = false
+
+        ServiceCaller.getMeta(bundleId: app.bundleId) { result, e in
+            DispatchQueue.main.async {
+
+                if let result = result as? [[String: Any]] {
+                    self.meta = []
+                    for metaDict in result {
+                        let meta = Meta(dict: metaDict)
+                        self.meta.append(meta)
+                    }
+                    guard let ver = self.meta[0].version else {
+                        return self.phrases[0] = ""
+                    }
+                    guard let copyright = self.meta[0].copyright else {
+                        return self.phrases[1] = ""
+                    }
+                    guard let status = self.meta[0].status else {
+                        return self.phrases[2] = ""
+                    }
+                    var avail = ""
+                    switch self.meta[0].live {
+                    case true?:
+                        avail = "Available"
+                    case false?:
+                        avail = "Not Available"
+                    case .none:
+                        break
+                    }
+
+                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))"
+                }
+            }
+        }
     }
 
     @objc func viewInAppStoreTapped() {
