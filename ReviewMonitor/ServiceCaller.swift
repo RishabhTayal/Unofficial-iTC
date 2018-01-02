@@ -91,17 +91,16 @@ class ServiceCaller: NSObject {
     }
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
-        var params = params
         var url = getBaseUrl() + endPoint.rawValue
+        var request = URLRequest(url: URL(string: url)!)
         if let account = AccountManger.getCurrentAccount() {
-            params.updateValue(account.username, forKey: "username")
-            params["password"] = account.password
-            params["team_id"] = account.teamId
+            request.setValue(account.password, forHTTPHeaderField: "password")
+            request.setValue(account.teamId.stringValue, forHTTPHeaderField: "team_id")
+            request.setValue(account.username, forHTTPHeaderField: "username")
         }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         print(url)
-        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in
             if let d = d {
