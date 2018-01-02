@@ -49,6 +49,8 @@ platform :ios do
     version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
     build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
     version = "#{version_number}(#{build_number})"
+
+    changelog = read_changelog
     stamp_changelog(section_identifier: "Version #{version_number}(#{build_number})")
 
     # Then push to git remote
@@ -60,7 +62,6 @@ platform :ios do
     #
     github_release = get_github_release(url: "RishabhTayal/ReviewMonitor", version: version)
     if (github_release || {}).fetch('body', '').length == 0
-      changelog = read_changelog
 
       description = changelog
 
