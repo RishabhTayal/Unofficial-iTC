@@ -5,7 +5,10 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [Version 1.2(367)] - 2018-01-01
+- Hosted API server
+
+## [Version 1.2(367)] - 2017-12-31
 - UI improvements in app detail screen
 - Added TouchId/FaceId authentication (by Eliott)
-
-[Unreleased]: https://github.com/RishabhTayal/ReviewMonitor/compare/master...HEAD

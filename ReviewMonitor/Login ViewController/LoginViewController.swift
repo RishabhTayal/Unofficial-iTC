@@ -22,6 +22,13 @@ class LoginViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if ServiceCaller.getBaseUrl().count == 0 {
+            ServiceCaller.askForBaseURL(controller: self)
+        }
+    }
+
     @objc func tappedOnView() {
         view.endEditing(true)
     }

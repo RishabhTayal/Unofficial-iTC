@@ -57,7 +57,7 @@ class SettingsViewController: UIViewController {
         tableView.register(AuthCell.nib, forCellReuseIdentifier: "auth")
         view.addSubview(tableView)
 
-        navigationItem.leftBarButtonItem = UIBarButtonItem(title: "X", style: .plain, target: self, action: #selector(cancelTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(cancelTapped))
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -94,24 +94,32 @@ enum BiometricType {
 
 extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return 4
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
 
-        let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
         if indexPath.row == 0 {
+            let cell2 = tableView.dequeueReusableCell(withIdentifier: "auth", for: indexPath) as! AuthCell
             configureBiorMetricsCell(cell: cell2)
             return cell2
         }
         if indexPath.row == 1 {
+            cell?.textLabel?.text = "Server url"
+            cell?.detailTextLabel?.text = ServiceCaller.getBaseUrl()
+        }
+        if indexPath.row == 2 {
             cell?.textLabel?.text = "Report a Bug"
-            return cell!
+            cell?.detailTextLabel?.text = ""
+        }
+        if indexPath.row == 3 {
+            cell?.textLabel?.text = "Share App"
+            cell?.detailTextLabel?.text = ""
         }
         return cell!
     }
@@ -127,9 +135,17 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.row == 1 {
+            tableView.deselectRow(at: indexPath, animated: true)
+            ServiceCaller.askForBaseURL(controller: self)
+        }
+        if indexPath.row == 2 {
             let url = URL(string: "https://github.com/RishabhTayal/ReviewMonitor/issues/new")!
             let safari = SFSafariViewController(url: url)
             present(safari, animated: true, completion: nil)
+        }
+        if indexPath.row == 3 {
+            let shareSheet = UIActivityViewController(activityItems: ["Download ReviewMonitor, an iTunes Connect manager app from TestFlight.\nhttp://itc-onboarding.herokuapp.com"], applicationActivities: nil)
+            present(shareSheet, animated: true, completion: nil)
         }
     }
 }

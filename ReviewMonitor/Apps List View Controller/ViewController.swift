@@ -53,6 +53,9 @@ class ViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        if ServiceCaller.getBaseUrl().count == 0 {
+            ServiceCaller.askForBaseURL(controller: self)
+        }
         if let indexPath = tableView.indexPathForSelectedRow {
             tableView.deselectRow(at: indexPath, animated: true)
         }

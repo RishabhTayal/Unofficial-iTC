@@ -10,6 +10,7 @@ import UIKit
 
 class ServiceCaller: NSObject {
 
+<<<<<<< HEAD
     private static let BaseUrl: String = {
         #if DEBUG
             return "http://192.168.1.26:4567/"
@@ -17,6 +18,19 @@ class ServiceCaller: NSObject {
             return "https://review-monitor.herokuapp.com/"
         #endif
     }()
+=======
+    static func getBaseUrl() -> String {
+        if let url = UserDefaults.standard.string(forKey: "baseURL") {
+            return url
+        }
+        return ""
+    }
+
+    static func setBaseUrl(url: String) {
+        UserDefaults.standard.set(url, forKey: "baseURL")
+        UserDefaults.standard.synchronize()
+    }
+>>>>>>> upstream/master
 
     private enum EndPoint: String {
         case login = "login/v2"
@@ -36,9 +50,26 @@ class ServiceCaller: NSObject {
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
+    class func askForBaseURL(controller: UIViewController) {
+        let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            let tf = alert.textFields?.first
+            ServiceCaller.setBaseUrl(url: (tf?.text)!)
+        }))
+        alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
+            if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
+                UIApplication.shared.open(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addTextField(configurationHandler: { tf in
+            tf.text = ServiceCaller.getBaseUrl()
+        })
+        controller.present(alert, animated: true, completion: nil)
+    }
+
     class func login(username: String, password: String, completion: CompletionBlock?) {
-        let params = ["username": username, "password": password]
-        makeAPICall(endPoint: .login, params: params, httpMethod: .POST, completionBlock: completion)
+        let header = ["username": username, "password": password]
+        makeAPICall(endPoint: .login, httpMethod: .POST, header: header, completionBlock: completion)
     }
 
     class func getApps(completionBlock: CompletionBlock?) {
@@ -78,18 +109,20 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .processing_builds, params: params, completionBlock: completion)
     }
 
-    private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
-        var params = params
-        var url = BaseUrl + endPoint.rawValue
+    private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, header: [String: String] = [:], completionBlock: CompletionBlock?) {
+        var url = getBaseUrl() + endPoint.rawValue
+        var request = URLRequest(url: URL(string: url)!)
         if let account = AccountManger.getCurrentAccount() {
-            params.updateValue(account.username, forKey: "username")
-            params["password"] = account.password
-            params["team_id"] = account.teamId
+            request.setValue(account.password, forHTTPHeaderField: "password")
+            request.setValue(account.teamId.stringValue, forHTTPHeaderField: "team_id")
+            request.setValue(account.username, forHTTPHeaderField: "username")
+        }
+        for key in header.keys {
+            request.addValue(header[key]!, forHTTPHeaderField: key)
         }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
         print(url)
-        var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in
             if let d = d {
