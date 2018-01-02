@@ -262,7 +262,6 @@
 				E78D79FFCF7520445B4BCCE7 /* [CP] Embed Pods Frameworks */,
 				417724DFEF1130E14BC1158D /* [CP] Copy Pods Resources */,
 				6909EEA71F622F13008221F9 /* Swiftformat */,
-				69A5A4B61F6712DF00A3ED81 /* ShellScript */,
 				69F5A8611F6B2AAB004CAF25 /* ShellScript */,
 			);
 			buildRules = (
@@ -358,19 +357,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/SwiftFormat/CommandLineTool/swiftformat\" \".\" \"--disable\" \"unusedArguments\"";
-		};
-		69A5A4B61F6712DF00A3ED81 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "buildNumber=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${INFOPLIST_FILE}\")\nbuildNumber=$(($buildNumber + 1))\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${INFOPLIST_FILE}\"";
 		};
 		69F5A8611F6B2AAB004CAF25 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -599,7 +585,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 367;
+				CURRENT_PROJECT_VERSION = 471;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
@@ -627,7 +613,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 367;
+				CURRENT_PROJECT_VERSION = 471;
 				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
