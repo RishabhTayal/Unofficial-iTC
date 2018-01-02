@@ -10,14 +10,17 @@ import UIKit
 
 class ServiceCaller: NSObject {
 
-    private static let BaseUrl: String = {
-        /* #if DEBUG
-         return "http://127.0.0.1:4567/"
-         #else
-         return "https://review-monitor.herokuapp.com/"
-         #endif */
-        "https://review-monitor.herokuapp.com/"
-    }()
+    static func getBaseUrl() -> String {
+        if let url = UserDefaults.standard.string(forKey: "baseURL") {
+            return url
+        }
+        return ""
+    }
+
+    static func setBaseUrl(url: String) {
+        UserDefaults.standard.set(url, forKey: "baseURL")
+        UserDefaults.standard.synchronize()
+    }
 
     private enum EndPoint: String {
         case login = "login/v2"
@@ -35,6 +38,23 @@ class ServiceCaller: NSObject {
     }
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
+
+    class func askForBaseURL(controller: UIViewController) {
+        let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            let tf = alert.textFields?.first
+            ServiceCaller.setBaseUrl(url: (tf?.text)!)
+        }))
+        alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
+            if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
+                UIApplication.shared.open(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!, options: [:], completionHandler: nil)
+            }
+        }))
+        alert.addTextField(configurationHandler: { tf in
+            tf.text = ServiceCaller.getBaseUrl()
+        })
+        controller.present(alert, animated: true, completion: nil)
+    }
 
     class func login(username: String, password: String, completion: CompletionBlock?) {
         let params = ["username": username, "password": password]
@@ -72,7 +92,7 @@ class ServiceCaller: NSObject {
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
         var params = params
-        var url = BaseUrl + endPoint.rawValue
+        var url = getBaseUrl() + endPoint.rawValue
         if let account = AccountManger.getCurrentAccount() {
             params.updateValue(account.username, forKey: "username")
             params["password"] = account.password

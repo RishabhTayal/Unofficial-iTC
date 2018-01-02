@@ -37,6 +37,10 @@ class ViewController: UIViewController {
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "accounts"), style: .plain, target: self, action: #selector(manageAccountTapped))
         navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_settings"), style: .plain, target: self, action: #selector(settingsTapped))
         getApps()
+
+        if ServiceCaller.getBaseUrl().count == 0 {
+            ServiceCaller.askForBaseURL(controller: self)
+        }
     }
 
     @objc func settingsTapped() {
