@@ -11,7 +11,11 @@ This project aims to make an iOS app which is more powerful than the Apple's off
 
 # How does it work?
 
-The iOS app communicates with a [server](https://github.com/RishabhTayal/itc-api) hosted on Heroku, which then interacts with the Apple API. This happens using [fastlane](https://fastlane.tools), which is written in Ruby.
+The iOS app communicates with a [server](https://github.com/RishabhTayal/itc-api) hosted on Heroku, which then interacts with the Apple API. First you need to deploy and host the server on heroku. After the server is hosted, you need to specify the server path in the app in the format `https://example.herokuapp.com/`. Then the app will communicate to your hosted server and the hosted server will communicate to the Apple iTunes Connect.
+
+**Your iTunes Connect credentails and any other sensitive information are not stored/viewed by the app.**
+
+This happens using [fastlane](https://fastlane.tools), which is written in Ruby.
 
 # Download iOS app
 > This app won't be published on the App Store. Apple won't allow an app which asks users to login with their iTunes Connect account and use of unauthorized iTunes Connect web APIs.
