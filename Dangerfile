@@ -18,7 +18,7 @@ if git.modified_files.include?("Podfile.lock") || git.modified_files.include?("P
 end
 
 if !git.modified_files.include?("CHANGELOG.md")
-  fail("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/RishabhTayal/ReviewMonitor/blob/master/CHANGELOG.md).")
+  warn("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/RishabhTayal/ReviewMonitor/blob/master/CHANGELOG.md).")
 end
 
 # Don't let testing shortcuts get into master by accident
