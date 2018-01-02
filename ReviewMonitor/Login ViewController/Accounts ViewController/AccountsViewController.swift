@@ -26,7 +26,7 @@ class AccountsViewController: UIViewController {
 
         tableView.tableFooterView = UIView()
         accounts = AccountManger.getAccountArray()
-        navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(cancelTapped))
     }
 
     @objc func cancelTapped() {
@@ -74,6 +74,7 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
             cancelTapped()
         } else {
             let loginVC = LoginViewController(nibName: "LoginViewController", bundle: nil)
+            loginVC.delegate = self
             present(UINavigationController(rootViewController: loginVC), animated: true, completion: nil)
         }
     }
@@ -94,5 +95,12 @@ extension AccountsViewController: UITableViewDataSource, UITableViewDelegate {
         AccountManger.removeAccount(account: account)
         accounts.remove(at: indexPath.row)
         self.tableView.reloadData()
+    }
+}
+
+extension AccountsViewController: LoginViewControllerDelegate {
+    func loginControllerDidLogin() {
+        accounts = AccountManger.getAccountArray()
+        tableView.reloadData()
     }
 }
