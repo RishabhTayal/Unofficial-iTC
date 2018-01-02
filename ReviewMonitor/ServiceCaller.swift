@@ -10,15 +10,6 @@ import UIKit
 
 class ServiceCaller: NSObject {
 
-<<<<<<< HEAD
-    private static let BaseUrl: String = {
-        #if DEBUG
-            return "http://192.168.1.26:4567/"
-        #else
-            return "https://review-monitor.herokuapp.com/"
-        #endif
-    }()
-=======
     static func getBaseUrl() -> String {
         if let url = UserDefaults.standard.string(forKey: "baseURL") {
             return url
@@ -30,7 +21,6 @@ class ServiceCaller: NSObject {
         UserDefaults.standard.set(url, forKey: "baseURL")
         UserDefaults.standard.synchronize()
     }
->>>>>>> upstream/master
 
     private enum EndPoint: String {
         case login = "login/v2"
@@ -76,12 +66,9 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
     }
 
-    @available(*, deprecated, message: "Use getMeta()")
-    class func getAppInfo(bundleId: String, completionBlock: CompletionBlock?) {}
-
     class func getMeta(bundleId: String, completionBlock: CompletionBlock?) {
         let param = ["bundle_id": bundleId]
-        makeAPICall(endPoint: .meta, params: param, httpMethod: .GET, completionBlock: completionBlock)
+        makeAPICall(endPoint: .meta, params: param, completionBlock: completionBlock)
     }
 
     class func getReviews(app: App, storeFront: String = "", completionBlock: CompletionBlock?) {

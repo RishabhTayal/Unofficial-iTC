@@ -15,10 +15,18 @@ class Meta: NSObject {
     var status: String? = ""
     var live: Bool? = false
 
+    var primaryCategory: String? = ""
+    var primarySubCategory: String? = ""
+    var primarySecSubCategory: String? = ""
+
     init(dict: [String: Any]) {
         version = dict["version"] as? String ?? "-"
         copyright = dict["copyright"] as? String ?? "-"
         status = dict["status"] as? String ?? "-"
         live = dict["live"] as? Bool ?? false
+
+        primaryCategory = dict["prim_categ"] as? String ?? "-"
+        primarySubCategory = dict["prim_sub_categ"] as? String ?? "-"
+        primarySecSubCategory = dict["second_sub_categ"] as? String ?? "-"
     }
 }

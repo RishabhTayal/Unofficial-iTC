@@ -44,7 +44,6 @@ class AppDetailViewController: UIViewController {
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
 
-        metaData()
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -52,20 +51,23 @@ class AppDetailViewController: UIViewController {
         view.addSubview(tableView)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
-        getProcessingBuilds()
+        // getProcessingBuilds()
+        metaData()
     }
 
     var meta: [Meta] = []
     @IBOutlet weak var textBack: UITextView!
-    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n"]
+    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n"]
     func metaData() {
         textBack.isEditable = false
         textBack.isSelectable = false
 
         ServiceCaller.getMeta(bundleId: app.bundleId) { result, e in
             DispatchQueue.main.async {
+                print(result)
 
                 if let result = result as? [[String: Any]] {
+                    print(result)
                     self.meta = []
                     for metaDict in result {
                         let meta = Meta(dict: metaDict)
@@ -90,7 +92,26 @@ class AppDetailViewController: UIViewController {
                         break
                     }
 
-                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))"
+                    guard let primarycat = self.meta[0].primaryCategory else {
+                        return self.phrases[4] = ""
+                    }
+                    if primarycat.contains("MZGenre.") {
+                        primarycat.dropFirst(8)
+                    }
+                    guard let primarySubcat = self.meta[0].primarySubCategory else {
+                        return self.phrases[5] = ""
+                    }
+                    if primarySubcat.contains("MZGenre.") {
+                        primarySubcat.dropFirst(8)
+                    }
+                    guard let primarySecSubcat = self.meta[0].primarySecSubCategory else {
+                        return self.phrases[6] = ""
+                    }
+                    if primarySecSubcat.contains("MZGenre.") {
+                        primarySecSubcat.dropFirst(8)
+                    }
+
+                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[4], primarycat))\(String(format: self.phrases[5], primarySubcat))\(String(format: self.phrases[6], primarySecSubcat))"
                 }
             }
         }
