@@ -1,0 +1,7 @@
+language: swift
+osx_image: xcode9.2
+xcode_workspace: ReviewMonitor.xcworkspace
+xcode_scheme: ReviewMonitor
+script:
+  - bundle exec danger
+  - xcodebuild -workspace ReviewMonitor.xcworkspace -scheme ReviewMonitor -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
