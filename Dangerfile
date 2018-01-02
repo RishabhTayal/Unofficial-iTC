@@ -17,6 +17,10 @@ if git.modified_files.include?("Podfile.lock") || git.modified_files.include?("P
   warn("Podfile was modified.")
 end
 
+if !git.modified_files.include?("CHANGELOG.md")
+  fail("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/RishabhTayal/ReviewMonitor/blob/master/CHANGELOG.md).")
+end
+
 # Don't let testing shortcuts get into master by accident
 fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
 fail("fit left in tests") if `grep -r fit specs/ `.length > 1
