@@ -57,8 +57,8 @@ class ServiceCaller: NSObject {
     }
 
     class func login(username: String, password: String, completion: CompletionBlock?) {
-        let params = ["username": username, "password": password]
-        makeAPICall(endPoint: .login, params: params, httpMethod: .POST, completionBlock: completion)
+        let header = ["username": username, "password": password]
+        makeAPICall(endPoint: .login, httpMethod: .POST, header: header, completionBlock: completion)
     }
 
     class func getApps(completionBlock: CompletionBlock?) {
@@ -90,13 +90,16 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .processing_builds, params: params, completionBlock: completion)
     }
 
-    private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, completionBlock: CompletionBlock?) {
+    private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, header: [String: String] = [:], completionBlock: CompletionBlock?) {
         var url = getBaseUrl() + endPoint.rawValue
         var request = URLRequest(url: URL(string: url)!)
         if let account = AccountManger.getCurrentAccount() {
             request.setValue(account.password, forHTTPHeaderField: "password")
             request.setValue(account.teamId.stringValue, forHTTPHeaderField: "team_id")
             request.setValue(account.username, forHTTPHeaderField: "username")
+        }
+        for key in header.keys {
+            request.addValue(header[key]!, forHTTPHeaderField: key)
         }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
