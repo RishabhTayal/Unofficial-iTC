@@ -22,7 +22,7 @@ Deploy your server and use the server url in the app. Click the Heroku button to
 
 [![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api)
 
-# App Store
+# Why not on App Store?
 This app won't be published on the App Store. Apple won't allow an app which asks users to login with their iTunes Connect account and use of unauthorized iTunes Connect web APIs.
 
 # Contributing
