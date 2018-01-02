@@ -8,7 +8,8 @@ platform :ios do
 
   desc "Runs all the tests"
   lane :test do
-    scan
+    gym(scheme: 'ReviewMonitor')
+    # scan
   end
 
   lane :profiles do

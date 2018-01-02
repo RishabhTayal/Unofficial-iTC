@@ -2,4 +2,4 @@ language: swift
 xcode_workspace: ReviewMonitor.xcworkspace
 xcode_scheme: ReviewMonitor
 script:
-  - bundle exec fastlane gym
+  - bundle exec fastlane test
