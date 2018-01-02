@@ -17,10 +17,14 @@ The iOS app communicates with a [server](https://github.com/RishabhTayal/itc-api
 
 This happens using [fastlane](https://fastlane.tools), which is written in Ruby.
 
-# Download iOS app
-> This app won't be published on the App Store. Apple won't allow an app which asks users to login with their iTunes Connect account and use of unauthorized iTunes Connect web APIs.
+### Deploy your server
+Deploy your server and use the server url in the app. Click the Heroku button to instant deploy.
 
-The app is still available on TestFlight for testing. [Download](https://itc-onboarding.herokuapp.com)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master)
+
+
+# App Store
+This app won't be published on the App Store. Apple won't allow an app which asks users to login with their iTunes Connect account and use of unauthorized iTunes Connect web APIs.
 
 # Contributing
 Want to see something implemented in teh app? We are always looking for some contributors who can help with some more features. Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested. Want to get involved in discussions? Join our [Slack channel](https://itc-manager-slack-invite.herokuapp.com)
