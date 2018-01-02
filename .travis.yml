@@ -1,0 +1,3 @@
+language: swift
+xcode_workspace: ReviewMonitor.xcworkspace
+xcode_scheme: ReviewMonitor
