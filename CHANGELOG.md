@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [Version 1.3(476)] - 2018-01-02
 - login multiple account fix.
 
 ## [Version 1.3(474)] - 2018-01-02
