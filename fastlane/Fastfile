@@ -35,6 +35,8 @@ platform :ios do
     git_pull
 
     version_number = prompt(text: "Please enter the version number")
+    title = prompt(text: 'Title: ')
+
     increment_version_number(
       version_number: version_number
     )
@@ -60,7 +62,6 @@ platform :ios do
     if (github_release || {}).fetch('body', '').length == 0
       changelog = read_changelog
 
-      title = prompt(text: 'Title: ')
       description = changelog
 
       github_release = set_github_release(
