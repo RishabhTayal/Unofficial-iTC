@@ -19,6 +19,9 @@ platform :ios do
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
     match(type: "appstore") # more information: https://codesigning.guide
+    increment_build_number(
+      xcodeproj: "ReviewMonitor.xcodeproj"
+    )
     gym(scheme: 'ReviewMonitor') # Build your app - more options available
     pilot
     version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
@@ -31,6 +34,7 @@ platform :ios do
     ensure_git_branch(branch: 'master')
     git_pull
 
+    increment_version_number
     increment_build_number(
       xcodeproj: "ReviewMonitor.xcodeproj"
     )
