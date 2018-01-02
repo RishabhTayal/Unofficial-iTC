@@ -7,6 +7,9 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - login multiple account fix.
 
+## [Version 1.3(474)] - 2018-01-02
+- login multiple account fix.
+
 ## [Version 1.2(367)] - 2018-01-01
 - Hosted API server
 
