@@ -105,7 +105,7 @@ class ServiceCaller: NSObject {
             request.setValue(account.username, forHTTPHeaderField: "username")
         }
         for key in header.keys {
-            request.addValue(header[key]!, forHTTPHeaderField: key)
+            request.setValue(header[key]!, forHTTPHeaderField: key)
         }
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
