@@ -44,7 +44,6 @@ class AppDetailViewController: UIViewController {
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
 
-
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = UIView()
