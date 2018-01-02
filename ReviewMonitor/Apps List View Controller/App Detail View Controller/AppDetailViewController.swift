@@ -18,7 +18,7 @@ class AppDetailViewController: UIViewController {
     }
 
     struct Rows {
-        static var appstore = ["Reviews"]
+        static var appstore = ["Screenshots", "Reviews"]
         static var testflight = ["Testers"]
     }
 
@@ -117,9 +117,14 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == SectionType.appStore.rawValue {
-            let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
-            reviewVC.app = app
-            navigationController?.pushViewController(reviewVC, animated: true)
+            if indexPath.row == 0 {
+                // show screenshots
+            }
+            if indexPath.row == 1 {
+                let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
+                reviewVC.app = app
+                navigationController?.pushViewController(reviewVC, animated: true)
+            }
         } else if indexPath.section == SectionType.testflight.rawValue {
             let testersVC = TestersViewController()
             testersVC.app = app
