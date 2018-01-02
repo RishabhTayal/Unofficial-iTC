@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/fastlane/fastlane
-  revision: f90d424f4675368884f50484076c00cc81788e0c
+  revision: 4dd2f98aea83a09902eef52082c6f7db78acb14e
   specs:
-    fastlane (2.71.1)
+    fastlane (2.72.0)
       CFPropertyList (>= 2.3, < 3.0.0)
       addressable (>= 2.3, < 3.0.0)
       babosa (>= 1.0.2, < 2.0.0)
