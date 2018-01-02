@@ -5,12 +5,6 @@ default_platform :ios
 ENV['DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS'] = '-t DAV'
 
 platform :ios do
-  before_all do
-    # ENV["SLACK_URL"] = "https://hooks.slack.com/services/..."
-    # ENV['DEVELOPER_DIR'] = '/Applications/Xcode 9.app/Contents/Developer'
-    # cocoapods
-    
-  end
 
   desc "Runs all the tests"
   lane :test do
@@ -24,43 +18,64 @@ platform :ios do
   desc "Submit a new Beta Build to Apple TestFlight"
   desc "This will also make sure the profile is up to date"
   lane :beta do |options|
-    if options[:distribute_external] == nil
-      distribute_external = prompt(text: "Distribute to External Testers?", boolean: true)
-    else
-      distribute_external = options[:distribute_external]
-    end
-    changelog = read_changelog
-    # if options[:release_notes] == nil 
-    #   release_notes = prompt(text: "Enter release notes for TestFlight", multi_line_end_keyword: "END")
-    # else
-    #   release_notes = options[:release_notes]
-    # end
-    # match(type: "appstore") # more information: https://codesigning.guide
+    match(type: "appstore") # more information: https://codesigning.guide
     gym(scheme: 'ReviewMonitor') # Build your app - more options available
-    pilot(distribute_external: distribute_external,
-      skip_waiting_for_build_processing: !distribute_external,
-      changelog: changelog, 
-      groups: 'Review Monitor External Testers')
+    pilot
     version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
     build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
-    if distribute_external 
+  end
+
+  lane :release do |options|
+    verify_env_variables
+    ensure_git_status_clenan
+    ensure_git_branch(brach: 'master')
+    git_pull
+
+    increment_build_number(
+      xcodeproj: "ReviewMonitor.xcodeproj"
+    )
+
+    gym(scheme: 'ReviewMonitor')
+
+    version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
+    build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
+    version = "#{version_number}(#{build_number})"
+    # Then push to git remote
+    #
+    push_to_git_remote
+
+    # Preparing GitHub Release
+    #
+    github_release = get_github_release(url: "RishabhTayal/ReviewMonitor", version: version)
+    if (github_release || {}).fetch('body', '').length == 0
+      changelog = read_changelog
+
+      title = prompt(text: 'Title: ')
+      description = changelog
+
+      github_release = set_github_release(
+        repository_name: "RishabhTayal/ReviewMonitor",
+        name: [version, title].join(" "),
+        tag_name: version,
+        description: description,
+        is_draft: false
+        )
+
+      release_url = github_release['html_url']
+
+      message = [title, description, release_url].join("\n\n")
+
       stamp_changelog(section_identifier: "Version #{version_number}(#{build_number})")
+
     end
   end
 
-  desc "Deploy a new version to the App Store"
-  lane :release do
-    # match(type: "appstore")
-    # snapshot
-    gym # Build your app - more options available
-    deliver(force: true, skip_metadata: true, submit_for_review: true)
-    # frameit
-  end
-
-  error do |lane, exception|
-    # slack(
-    #   message: exception.message,
-    #   success: false
-    # )
+  desc "Ensure all the requirement environment variables are provided"
+  desc "this way the deployment script will fail early (and often)"
+  private_lane :verify_env_variables do
+    ["GITHUB_API_TOKEN"].each do |variable|
+      next if ENV[variable].to_s.length > 0
+      UI.user_error!("Missing ENV variables #{variable}, make sure to provide one for fastlane to be successful")
+    end
   end
 end
