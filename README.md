@@ -1,5 +1,11 @@
 # ReviewMonitor
 
+[![Build Status](https://travis-ci.org/RishabhTayal/ReviewMonitor.svg?branch=master)](https://travis-ci.org/RishabhTayal/ReviewMonitor)
+[![Version](https://img.shields.io/github/release/RishabhTayal/ReviewMonitor.svg)](https://github.com/RishabhTayal/ReviewMonitor/releases/latest)
+[![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/ReviewMonitor/blob/master/LICENSE)
+[![Contact](https://img.shields.io/badge/contact-%40Rishabh_Tayal-3a8fc1.svg)](https://twitter.com/Rishabh_Tayal)
+
+
 ReviewMonitor is an iOS app to manage your iTunes Connect account on the go. The Apple iTunes Connect iOS app is nice, but lacks lot of features like:
 
 - TestFlight build management.
