@@ -5,6 +5,7 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+- You can now remove account from the accounts list (https://github.com/RishabhTayal/ReviewMonitor/pull/69) By Rishabh Tayal
 
 ## [Version 1.3(476)] - 2018-01-02
 - login multiple account fix.
