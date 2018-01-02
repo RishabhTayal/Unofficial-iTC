@@ -1,5 +1,5 @@
 language: swift
-osx_image: xcode9 
+osx_image: xcode9.2
 xcode_workspace: ReviewMonitor.xcworkspace
 xcode_scheme: ReviewMonitor
 script:
