@@ -20,6 +20,10 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
         view.addGestureRecognizer(tap)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         if ServiceCaller.getBaseUrl().count == 0 {
             ServiceCaller.askForBaseURL(controller: self)
         }
