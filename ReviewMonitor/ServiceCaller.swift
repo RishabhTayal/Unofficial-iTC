@@ -18,6 +18,10 @@ class ServiceCaller: NSObject {
     }
 
     static func setBaseUrl(url: String) {
+        var url = url
+        if url.last != "/" {
+            url = url + "/"
+        }
         UserDefaults.standard.set(url, forKey: "baseURL")
         UserDefaults.standard.synchronize()
     }
