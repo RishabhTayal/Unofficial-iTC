@@ -5,7 +5,7 @@ default_platform :ios
 ENV['DELIVER_ITMSTRANSPORTER_ADDITIONAL_UPLOAD_PARAMETERS'] = '-t DAV'
 
 platform :ios do
-
+  
   desc "Runs all the tests"
   lane :test do
     scan
@@ -77,6 +77,17 @@ platform :ios do
 
       message = [title, description, release_url].join("\n\n")
 
+    end
+
+    if ENV['SLACK_URL']
+      slack_message = "Successfully released [ReviewMonitor #{version}](#{release_url}) :rocket:"
+      slack(
+        channel: "general",
+        message: slack_message,
+        payload: {
+          "New" => description
+        }
+      )
     end
   end
 
