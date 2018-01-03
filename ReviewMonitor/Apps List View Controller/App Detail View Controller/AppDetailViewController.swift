@@ -13,7 +13,7 @@ import Presentr
 class AppDetailViewController: UIViewController {
 
     let presenter: Presentr = {
-        let presenter = Presentr(presentationType: .bottomHalf)
+        let presenter = Presentr(presentationType: .dynamic(center: .bottomCenter))
         presenter.transitionType = TransitionType.coverVertical
         presenter.dismissOnSwipe = true
         presenter.blurBackground = true
