@@ -1,7 +1,7 @@
 # Contributing to *ReviewMonitor*
 Thanks for taking interest in contributing! 👌
 
-Before submitting a new issu, make sure to
+Before submitting a new issue, make sure to
 
 - Check out [README](https://github.com/RishabhTayal/ReviewMonitor/blob/master/README.md) on this repo
 - Sears for [existing Github issues](https://github.com/RishabhTayal/ReviewMonitor/issues)

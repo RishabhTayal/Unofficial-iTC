@@ -35,6 +35,7 @@
 		69C845A91F6393E100C65AB2 /* AccountsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69C845A71F6393E100C65AB2 /* AccountsViewController.swift */; };
 		69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 69C845A81F6393E100C65AB2 /* AccountsViewController.xib */; };
 		69E3EAAA1F6F867800788918 /* ReviewFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E3EAA91F6F867800788918 /* ReviewFilter.swift */; };
+		69EA5D191FFD8E3900EFDB8C /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA5D181FFD8E3900EFDB8C /* AppHelper.swift */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
 		C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97D38D01FF902F600EBFA35 /* AuthCell.xib */; };
 		C9A3D85E1FFD287500285106 /* AppMetadataViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */; };
@@ -73,6 +74,7 @@
 		69C845A71F6393E100C65AB2 /* AccountsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountsViewController.swift; sourceTree = "<group>"; };
 		69C845A81F6393E100C65AB2 /* AccountsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountsViewController.xib; sourceTree = "<group>"; };
 		69E3EAA91F6F867800788918 /* ReviewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilter.swift; sourceTree = "<group>"; };
+		69EA5D181FFD8E3900EFDB8C /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
 		C97D38D01FF902F600EBFA35 /* AuthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthCell.xib; sourceTree = "<group>"; };
 		C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataViewController.swift.swift; sourceTree = "<group>"; };
@@ -157,6 +159,7 @@
 			isa = PBXGroup;
 			children = (
 				693F5FA61F61F23F00FD8859 /* AppDelegate.swift */,
+				69EA5D181FFD8E3900EFDB8C /* AppHelper.swift */,
 				690DA55E1F621EEC000DD28F /* ServiceCaller.swift */,
 				694282941F64747F0053BBF3 /* AccountManger.swift */,
 				6909EEA81F622F59008221F9 /* Model */,
@@ -441,6 +444,7 @@
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
 				69BBC5A01FF58EBF00A41450 /* SettingsViewController.swift in Sources */,
 				C9A3D8611FFD2C9F00285106 /* AppMetadata.swift in Sources */,
+				69EA5D191FFD8E3900EFDB8C /* AppHelper.swift in Sources */,
 				696235D81F6F7AB600176A60 /* ReviewFilterViewController.swift in Sources */,
 				69591E111F7A0DE4003D7E27 /* TestersViewController.swift in Sources */,
 				694282931F6464690053BBF3 /* Account.swift in Sources */,
