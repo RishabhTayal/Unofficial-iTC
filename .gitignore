@@ -3,7 +3,7 @@ ReviewMonitor.xcodeproj/xcuserdata/
 
 */xcuserdata/
 
-Pods/
+#Pods/
 
 fastlane/report.xml
 
