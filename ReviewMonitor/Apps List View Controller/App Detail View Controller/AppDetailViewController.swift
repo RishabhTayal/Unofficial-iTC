@@ -8,7 +8,17 @@
 
 import UIKit
 
+import Presentr
+
 class AppDetailViewController: UIViewController {
+
+    let presenter: Presentr = {
+        let presenter = Presentr(presentationType: .bottomHalf)
+        presenter.transitionType = TransitionType.coverVertical
+        presenter.dismissOnSwipe = true
+        presenter.blurBackground = true
+        return presenter
+    }()
 
     enum SectionType: Int {
         case appStore
@@ -54,29 +64,24 @@ class AppDetailViewController: UIViewController {
         metaData()
     }
 
-    @IBOutlet weak var textBack: UITextView!
-    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n", "Languages: %@\n", "%@ on  Watch.\n", "Keywords %@\n", "Support url %@\n", "Marketing url %@\n"]
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var bundleLabel: UILabel!
+    @IBOutlet weak var langLabel: UILabel!
+    @IBOutlet weak var aw: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+
+    let meta = Meta()
     var langs = Array<Any>()
     func metaData() {
-        textBack.isEditable = false
-        textBack.isSelectable = false
-
         ServiceCaller.getMeta(bundleId: app.bundleId) { result, error in
             // print(result)
             if let r = result as? Dictionary<String, Any> {
 
-                guard let ver = r["version"] as? String else {
-                    return self.phrases[0] = ""
-                }
-
-                guard let copyright = r["copyright"] as? String else {
-                    return self.phrases[1] = ""
-                }
-
-                guard let status = r["status"] as? String else {
-                    return self.phrases[2] = ""
-                }
-
+                let ver = r["version"] as? String ?? "-"
+                let copyright = r["copyright"] as? String ?? "-"
+                let status = r["status"] as? String ?? "-"
                 let lang = r["lang"] as! Array<Dictionary<String, Any>>
 
                 for x in 0 ..< lang.count {
@@ -85,51 +90,52 @@ class AppDetailViewController: UIViewController {
                     self.langs.append(l)
                 }
 
-                guard let keyw = r["keywords"] as? String else {
-                    return self.phrases[9] = ""
-                }
-
-                guard let supportUrl = r["support"] as? String else {
-                    return self.phrases[10] = ""
-                }
-
-                guard let marketingUrl = r["marketing"] as? String else {
-                    return self.phrases[11] = ""
-                }
-
+                let keyw = r["keywords"] as? String ?? "-"
+                let supportUrl = r["support"] as? String ?? "-"
+                let marketingUrl = r["marketing"] as? String ?? "-"
                 let avail = (r["islive"] as? Bool)! ? "Available" : "Not Available"
-                let watchos = (r["watchos"] as? Bool)! ? "Runs" : "Doesn't run"
+                let watchos = (r["watchos"] as? Bool)! ? "Yes" : "No"
                 let beta = (r["betaTesting"] as? Bool)! ? "Beta Testing Enabled\n" : "No Beta Testing\n"
 
-                /*                 guard let primarycat = self.meta[0].primaryCategory else {
-                 return self.phrases[4] = ""
-                 }
-                 if primarycat.contains("MZGenre.") {
-                 primarycat.dropFirst(8)
-                 }
-                 guard let primarySubcat = self.meta[0].primarySubCategory else {
-                 return self.phrases[5] = ""
-                 }
-                 if primarySubcat.contains("MZGenre.") {
-                 primarySubcat.dropFirst(8)
-                 }
-                 guard let primarySecSubcat = self.meta[0].primarySecSubCategory else {
-                 return self.phrases[6] = ""
-                 }
-                 if primarySecSubcat.contains("MZGenre.") {
-                 primarySecSubcat.dropFirst(8)
-                 } */
+                var primarycat = r["primarycat"] as? String ?? "-"
+                primarycat.replace("MZGenre.", with: "")
+                var primarySubcat = r["primarycatfirstsub"] as? String ?? "-"
+                primarySubcat.replace("MZGenre.", with: "")
+                var primarySubSeccat = r["primarycatsecondsub"] as? String ?? "-"
+                primarySubSeccat.replace("MZGenre.", with: "")
+
+                var secondarycat = r["secondarycat"] as? String ?? "-"
+                secondarycat.replace("MZGenre.", with: "")
+                var secondarySubcat = r["secondarycatfirstsub"] as? String ?? "-"
+                secondarySubcat.replace("MZGenre.", with: "")
+                var secondarySubSeccat = r["secondarycatsecondsub"] as? String ?? "-"
+                secondarySubSeccat.replace("MZGenre.", with: "")
 
                 DispatchQueue.main.async {
                     let lng = self.langs
                         .map { String(describing: $0) }
                         .joined(separator: ", ")
 
-                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[7], String(describing: lng)))\(String(format: self.phrases[8], watchos))\(beta)\(String(format: self.phrases[10], supportUrl))\(String(format: self.phrases[11], marketingUrl))\(String(format: self.phrases[9], keyw))"
+                    self.nameLabel.text = avail
+                    self.versionLabel.text = ver
+                    self.statusLabel.text = status
+                    self.bundleLabel.text = self.app.bundleId
+                    self.langLabel.text = lng
+                    self.aw.text = watchos
+
+                    self.meta.set(self.app.name, version: ver, copyright: copyright, status: status, languages: lng, keywords: keyw, support: supportUrl, marketing: marketingUrl, available: avail, watchos: watchos, beta: beta, bundleId: self.app.bundleId, primaryCateg: primarycat, primaryCategSub1: primarySubcat, primaryCategSub2: primarySubSeccat, secondaryCateg: secondarycat, secondaryCategSub1: secondarySubcat, secondaryCategSub2: secondarySubSeccat)
+
+                    self.moreButton.addTarget(self, action: #selector(self.viewAllMeta), for: .touchUpInside)
                 }
-                // \(String(format: self.phrases[3], avail))\(String(format: self.phrases[4], primarycat))\(String(format: self.phrases[5], primarySubcat))\(String(format: self.phrases[6], primarySecSubcat))
             }
         }
+    }
+
+    @objc func viewAllMeta() {
+        let metaVC = MetaViewController(nibName: "MetaViewController", bundle: nil)
+        metaVC.m = meta
+        let navC = UINavigationController(rootViewController: metaVC)
+        customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
 
     @objc func viewInAppStoreTapped() {
@@ -206,5 +212,11 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+extension String {
+    mutating func replace(_ originalString: String, with newString: String) {
+        self = replacingOccurrences(of: originalString, with: newString)
     }
 }
