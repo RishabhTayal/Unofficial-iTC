@@ -66,7 +66,7 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
     }
 
-    class func getMeta(bundleId: String, completionBlock: CompletionBlock?) {
+    class func getAppMetadata(bundleId: String, completionBlock: CompletionBlock?) {
         let param = ["bundle_id": bundleId]
         makeAPICall(endPoint: .meta, params: param, completionBlock: completionBlock)
     }
@@ -109,7 +109,6 @@ class ServiceCaller: NSObject {
         for key in header.keys {
             request.setValue(header[key]!, forHTTPHeaderField: key)
         }
-        print(url)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in
             if let d = d {

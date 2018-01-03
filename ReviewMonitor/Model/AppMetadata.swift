@@ -8,7 +8,7 @@
 
 import UIKit
 
-class Meta: NSObject {
+class AppMetadata: NSObject {
     var name = String()
     var version = String()
     var copyright = String()
@@ -27,7 +27,7 @@ class Meta: NSObject {
     var secondaryCateg = String()
     var secondaryCategSub1 = String()
     var secondaryCategSub2 = String()
-
+    
     func set(_ name: String, version: String, copyright: String, status: String, languages: String, keywords: String, support: String, marketing: String, available: String, watchos: String, beta: String, bundleId: String, primaryCateg: String, primaryCategSub1: String, primaryCategSub2: String, secondaryCateg: String, secondaryCategSub1: String, secondaryCategSub2: String) {
         self.name = name
         self.version = version

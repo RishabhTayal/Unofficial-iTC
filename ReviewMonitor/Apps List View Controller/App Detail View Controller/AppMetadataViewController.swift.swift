@@ -8,15 +8,15 @@
 
 import UIKit
 
-protocol MetaViewControllerDelegate: class {
+protocol AppMetadataViewControllerDelegate: class {
     func metaControllerDidDismiss()
 }
 
-class MetaViewController: UIViewController {
+class AppMetadataViewController: UIViewController {
 
-    weak var delegate: AccountsViewControllerDelegate?
+    weak var delegate: AppMetadataViewControllerDelegate?
 
-    var m = Meta()
+    var metadata = AppMetadata()
 
     @IBOutlet weak var name: UILabel!
     @IBOutlet weak var version: UILabel!
@@ -37,33 +37,29 @@ class MetaViewController: UIViewController {
     @IBOutlet weak var secondaryCategSub1: UILabel!
     @IBOutlet weak var secondaryCategSub2: UILabel!
 
-    //    var m = Meta()
-
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        print(m)
-
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(cancelTapped))
 
-        name.text = m.name
-        version.text = m.version
-        copyright.text = m.copyright
-        status.text = m.status
-        language.text = m.languages
-        keyword.text = m.keywords
-        support.text = m.support
-        marketing.text = m.marketing
-        available.text = m.available
-        watchos.text = m.watchos
-        beta.text = m.beta
-        bundleId.text = m.bundleID
-        primaryCateg.text = m.primaryCateg
-        primaryCategSub1.text = m.primaryCategSub1
-        primaryCategSub2.text = m.primaryCategSub2
-        secondaryCateg.text = m.secondaryCateg
-        secondaryCategSub1.text = m.secondaryCategSub1
-        secondaryCategSub2.text = m.secondaryCategSub2
+        name.text = metadata.name
+        version.text = metadata.version
+        copyright.text = metadata.copyright
+        status.text = metadata.status
+        language.text = metadata.languages
+        keyword.text = metadata.keywords
+        support.text = metadata.support
+        marketing.text = metadata.marketing
+        available.text = metadata.available
+        watchos.text = metadata.watchos
+        beta.text = metadata.beta
+        bundleId.text = metadata.bundleID
+        primaryCateg.text = metadata.primaryCateg
+        primaryCategSub1.text = metadata.primaryCategSub1
+        primaryCategSub2.text = metadata.primaryCategSub2
+        secondaryCateg.text = metadata.secondaryCateg
+        secondaryCategSub1.text = metadata.secondaryCategSub1
+        secondaryCategSub2.text = metadata.secondaryCategSub2
 
         // Do any additional setup after loading the view.
     }

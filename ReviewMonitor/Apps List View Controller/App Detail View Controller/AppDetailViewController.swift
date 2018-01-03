@@ -72,11 +72,10 @@ class AppDetailViewController: UIViewController {
     @IBOutlet weak var aw: UILabel!
     @IBOutlet weak var moreButton: UIButton!
 
-    let meta = Meta()
+    let meta = AppMetadata()
     var langs = Array<Any>()
     func metaData() {
-        ServiceCaller.getMeta(bundleId: app.bundleId) { result, error in
-            // print(result)
+        ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
             if let r = result as? Dictionary<String, Any> {
 
                 let ver = r["version"] as? String ?? "-"
@@ -126,14 +125,17 @@ class AppDetailViewController: UIViewController {
                     self.meta.set(self.app.name, version: ver, copyright: copyright, status: status, languages: lng, keywords: keyw, support: supportUrl, marketing: marketingUrl, available: avail, watchos: watchos, beta: beta, bundleId: self.app.bundleId, primaryCateg: primarycat, primaryCategSub1: primarySubcat, primaryCategSub2: primarySubSeccat, secondaryCateg: secondarycat, secondaryCategSub1: secondarySubcat, secondaryCategSub2: secondarySubSeccat)
 
                     self.moreButton.addTarget(self, action: #selector(self.viewAllMeta), for: .touchUpInside)
+                    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.viewAllMeta))
+                    swipeUp.direction = .up
+                    self.view.addGestureRecognizer(swipeUp)
                 }
             }
         }
     }
 
     @objc func viewAllMeta() {
-        let metaVC = MetaViewController(nibName: "MetaViewController", bundle: nil)
-        metaVC.m = meta
+        let metaVC = AppMetadataViewController(nibName: "AppMetadataViewController", bundle: nil)
+        metaVC.metadata = meta
         let navC = UINavigationController(rootViewController: metaVC)
         customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
