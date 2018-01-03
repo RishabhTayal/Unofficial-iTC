@@ -14,6 +14,7 @@ class App: NSObject {
     var bundleId: String = ""
     var appId: String = ""
     var platforms: [String] = []
+    var lastModified: NSNumber = 0
 
     init(dict: [String: Any]) {
         name = dict["name"] as! String
@@ -21,5 +22,6 @@ class App: NSObject {
         previewUrl = dict["app_icon_preview_url"] as? String
         platforms = dict["platforms"] as! [String]
         appId = dict["apple_id"] as! String
+        lastModified = dict["last_modified"] as! NSNumber
     }
 }
