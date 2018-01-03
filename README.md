@@ -44,6 +44,4 @@ Want to see something implemented in the app? We are always looking for some con
 
 Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested. 
 
-Want to get involved in discussions? Join our <script async defer src="https://slack.itcmanager.com/slackin.js"></script>
-
-[Slack channel](https://itc-manager-slack-invite.herokuapp.com)
+Want to get involved in discussions? Join our [Slack channel](https://itc-manager-slack-invite.herokuapp.com)
