@@ -26,6 +26,7 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var appImageView: UIImageView!
     @IBOutlet var appNameLabel: UILabel!
     @IBOutlet var platformLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
 
     var app: App!
     var processingBuildCount = 0
@@ -43,6 +44,7 @@ class AppDetailViewController: UIViewController {
         }
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
+        statusLabel.text = ""
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -50,7 +52,9 @@ class AppDetailViewController: UIViewController {
         view.addSubview(tableView)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
+
         getProcessingBuilds()
+        getAppStatus()
     }
 
     @objc func viewInAppStoreTapped() {
@@ -60,13 +64,22 @@ class AppDetailViewController: UIViewController {
         }
     }
 
-    func getProcessingBuilds() {
+    private func getProcessingBuilds() {
         ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
             DispatchQueue.main.async {
                 if let r = result as? [[String: Any]] {
                     self.processingBuildCount = r.count
                     self.tableView.reloadData()
                 }
+            }
+        }
+    }
+
+    private func getAppStatus() {
+        ServiceCaller.getAppStatus(bundleId: app.bundleId) { result, e in
+            DispatchQueue.main.async {
+                guard let r = result as? [String: Any] else { return }
+                self.statusLabel.text = r["app_status"] as? String
             }
         }
     }

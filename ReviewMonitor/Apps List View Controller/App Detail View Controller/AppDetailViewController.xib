@@ -16,6 +16,7 @@
                 <outlet property="appImageView" destination="UK3-cV-9Sh" id="4DC-4w-JZU"/>
                 <outlet property="appNameLabel" destination="bEb-OM-ZwP" id="e4d-EG-RZz"/>
                 <outlet property="platformLabel" destination="TK8-2E-OAt" id="eeg-M4-Fe6"/>
+                <outlet property="statusLabel" destination="eva-CN-wep" id="fxN-R3-X0A"/>
                 <outlet property="tableView" destination="5fl-4l-MK8" id="CNO-nC-Vr8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -36,7 +37,7 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3WC-yO-bcQ">
-                            <rect key="frame" x="89" y="0.0" width="375" height="44.5"/>
+                            <rect key="frame" x="89" y="0.0" width="375" height="64"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-OM-ZwP">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="24"/>
@@ -48,6 +49,12 @@
                                     <rect key="frame" x="0.0" y="24" width="375" height="20.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eva-CN-wep">
+                                    <rect key="frame" x="0.0" y="44.5" width="375" height="19.5"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                    <color key="textColor" red="0.19215686269999999" green="0.19215686269999999" blue="0.19215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                             </subviews>
