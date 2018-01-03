@@ -55,7 +55,7 @@ class AppDetailViewController: UIViewController {
     }
 
     @IBOutlet weak var textBack: UITextView!
-    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n", "Languages: %@\n", "%@ on  Watch."]
+    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n", "Languages: %@\n", "%@ on  Watch.\n", "Keywords %@\n", "Support url %@\n", "Marketing url %@\n"]
     var langs = Array<Any>()
     func metaData() {
         textBack.isEditable = false
@@ -85,10 +85,21 @@ class AppDetailViewController: UIViewController {
                     self.langs.append(l)
                 }
 
+                guard let keyw = r["keywords"] as? String else {
+                    return self.phrases[9] = ""
+                }
+
+                guard let supportUrl = r["support"] as? String else {
+                    return self.phrases[10] = ""
+                }
+
+                guard let marketingUrl = r["marketing"] as? String else {
+                    return self.phrases[11] = ""
+                }
+
                 let avail = (r["islive"] as? Bool)! ? "Available" : "Not Available"
                 let watchos = (r["watchos"] as? Bool)! ? "Runs" : "Doesn't run"
                 let beta = (r["betaTesting"] as? Bool)! ? "Beta Testing Enabled\n" : "No Beta Testing\n"
-
 
                 /*                 guard let primarycat = self.meta[0].primaryCategory else {
                  return self.phrases[4] = ""
@@ -113,8 +124,8 @@ class AppDetailViewController: UIViewController {
                     let lng = self.langs
                         .map { String(describing: $0) }
                         .joined(separator: ", ")
-                    
-                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[7], String(describing: lng)))\(String(format: self.phrases[8], watchos))\(beta)"
+
+                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[7], String(describing: lng)))\(String(format: self.phrases[8], watchos))\(beta)\(String(format: self.phrases[10], supportUrl))\(String(format: self.phrases[11], marketingUrl))\(String(format: self.phrases[9], keyw))"
                 }
                 // \(String(format: self.phrases[3], avail))\(String(format: self.phrases[4], primarycat))\(String(format: self.phrases[5], primarySubcat))\(String(format: self.phrases[6], primarySecSubcat))
             }
