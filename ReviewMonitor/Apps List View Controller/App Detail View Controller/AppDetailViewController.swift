@@ -133,7 +133,7 @@ class AppDetailViewController: UIViewController {
     }
 
     @objc func viewInAppStoreTapped() {
-        let url = URL(string: "https://itunes.apple.com/us/app/app/" + app.appId)!
+        let url = URL(string: "https://itunes.apple.com/us/app/app/id" + app.appId)!
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
