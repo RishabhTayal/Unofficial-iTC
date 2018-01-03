@@ -29,6 +29,7 @@ class ServiceCaller: NSObject {
         case response
         case testers
         case processing_builds
+        case app_status
     }
 
     private enum HTTPMethod: String {
@@ -88,6 +89,11 @@ class ServiceCaller: NSObject {
     class func getProcessingBuilds(bundleId: String, completion: CompletionBlock?) {
         let params = ["bundle_id": bundleId]
         makeAPICall(endPoint: .processing_builds, params: params, completionBlock: completion)
+    }
+
+    class func getAppStatus(bundleId: String, completion: CompletionBlock?) {
+        let params = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .app_status, params: params, completionBlock: completion)
     }
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, header: [String: String] = [:], completionBlock: CompletionBlock?) {
