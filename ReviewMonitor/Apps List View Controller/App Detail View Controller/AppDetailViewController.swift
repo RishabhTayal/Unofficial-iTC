@@ -54,64 +54,69 @@ class AppDetailViewController: UIViewController {
         metaData()
     }
 
-    var meta: [Meta] = []
     @IBOutlet weak var textBack: UITextView!
-    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n"]
+    var phrases = ["Version: %@\n", "Copyright: %@\n", "Status: %@\n", "%@ on store\n", "Primary Category: %@\n", "     Sub Category: %@\n", "     Second Sub Category: %@\n", "Languages: %@\n", "%@ on  Watch."]
+    var langs = Array<Any>()
     func metaData() {
         textBack.isEditable = false
         textBack.isSelectable = false
 
-        ServiceCaller.getMeta(bundleId: app.bundleId) { result, e in
-            DispatchQueue.main.async {
-                print(result)
+        ServiceCaller.getMeta(bundleId: app.bundleId) { result, error in
+            // print(result)
+            if let r = result as? Dictionary<String, Any> {
 
-                if let result = result as? [[String: Any]] {
-                    print(result)
-                    self.meta = []
-                    for metaDict in result {
-                        let meta = Meta(dict: metaDict)
-                        self.meta.append(meta)
-                    }
-                    guard let ver = self.meta[0].version else {
-                        return self.phrases[0] = ""
-                    }
-                    guard let copyright = self.meta[0].copyright else {
-                        return self.phrases[1] = ""
-                    }
-                    guard let status = self.meta[0].status else {
-                        return self.phrases[2] = ""
-                    }
-                    var avail = ""
-                    switch self.meta[0].live {
-                    case true?:
-                        avail = "Available"
-                    case false?:
-                        avail = "Not Available"
-                    case .none:
-                        break
-                    }
-
-                    guard let primarycat = self.meta[0].primaryCategory else {
-                        return self.phrases[4] = ""
-                    }
-                    if primarycat.contains("MZGenre.") {
-                        primarycat.dropFirst(8)
-                    }
-                    guard let primarySubcat = self.meta[0].primarySubCategory else {
-                        return self.phrases[5] = ""
-                    }
-                    if primarySubcat.contains("MZGenre.") {
-                        primarySubcat.dropFirst(8)
-                    }
-                    guard let primarySecSubcat = self.meta[0].primarySecSubCategory else {
-                        return self.phrases[6] = ""
-                    }
-                    if primarySecSubcat.contains("MZGenre.") {
-                        primarySecSubcat.dropFirst(8)
-                    }
-
-                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[4], primarycat))\(String(format: self.phrases[5], primarySubcat))\(String(format: self.phrases[6], primarySecSubcat))"
+                guard let ver = r["version"] as? String else {
+                    return self.phrases[0] = ""
                 }
+
+                guard let copyright = r["copyright"] as? String else {
+                    return self.phrases[1] = ""
+                }
+
+                guard let status = r["status"] as? String else {
+                    return self.phrases[2] = ""
+                }
+
+                let lang = r["lang"] as! Array<Dictionary<String, Any>>
+
+                for x in 0 ..< lang.count {
+                    let l = lang[x]["language"] as! String
+
+                    self.langs.append(l)
+                }
+
+                let avail = (r["islive"] as? Bool)! ? "Available" : "Not Available"
+                let watchos = (r["watchos"] as? Bool)! ? "Runs" : "Doesn't run"
+                let beta = (r["betaTesting"] as? Bool)! ? "Beta Testing Enabled\n" : "No Beta Testing\n"
+
+
+                /*                 guard let primarycat = self.meta[0].primaryCategory else {
+                 return self.phrases[4] = ""
+                 }
+                 if primarycat.contains("MZGenre.") {
+                 primarycat.dropFirst(8)
+                 }
+                 guard let primarySubcat = self.meta[0].primarySubCategory else {
+                 return self.phrases[5] = ""
+                 }
+                 if primarySubcat.contains("MZGenre.") {
+                 primarySubcat.dropFirst(8)
+                 }
+                 guard let primarySecSubcat = self.meta[0].primarySecSubCategory else {
+                 return self.phrases[6] = ""
+                 }
+                 if primarySecSubcat.contains("MZGenre.") {
+                 primarySecSubcat.dropFirst(8)
+                 } */
+
+                DispatchQueue.main.async {
+                    let lng = self.langs
+                        .map { String(describing: $0) }
+                        .joined(separator: ", ")
+                    
+                    self.textBack.text = "\(String(format: self.phrases[0], ver))\(String(format: self.phrases[1], copyright))\(String(format: self.phrases[2], status))\(String(format: self.phrases[3], avail))\(String(format: self.phrases[7], String(describing: lng)))\(String(format: self.phrases[8], watchos))\(beta)"
+                }
+                // \(String(format: self.phrases[3], avail))\(String(format: self.phrases[4], primarycat))\(String(format: self.phrases[5], primarySubcat))\(String(format: self.phrases[6], primarySecSubcat))
             }
         }
     }
