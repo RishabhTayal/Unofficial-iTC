@@ -3,8 +3,6 @@ ReviewMonitor.xcodeproj/xcuserdata/
 
 */xcuserdata/
 
-#Pods/
-
 fastlane/report.xml
 
 ReviewMonitor.app.dSYM.zip
