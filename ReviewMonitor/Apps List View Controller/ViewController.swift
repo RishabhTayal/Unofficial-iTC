@@ -21,7 +21,7 @@ class ViewController: UIViewController {
     let presenter: Presentr = {
         let presenter = Presentr(presentationType: .bottomHalf)
         presenter.transitionType = TransitionType.coverVertical
-        presenter.dismissOnSwipe = true
+        presenter.dismissOnSwipe = false
         presenter.blurBackground = true
         return presenter
     }()
