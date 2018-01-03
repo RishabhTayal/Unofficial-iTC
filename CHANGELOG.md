@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - You can now remove account from the accounts list. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Fixed App store link. [@Rishabh Tayal](https://github.com/RishabhTayal)
+- Added Metadata Screen.
 
 ## [Version 1.3(476)] - 2018-01-02
 - login multiple account fix.
