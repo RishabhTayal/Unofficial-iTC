@@ -44,7 +44,8 @@ class AppDetailViewController: UIViewController {
         }
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
-        updateLastModifiedDate(from: app.lastModified.doubleValue)
+        let date = Date(timeIntervalSince1970: app.lastModified.doubleValue / 1000)
+        lastModifiedLabel.text = "Last modified: \(date.formatDate(format: .MMMddyyy))"
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -60,13 +61,6 @@ class AppDetailViewController: UIViewController {
         if UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
-    }
-
-    private func updateLastModifiedDate(from timestamp: Double) {
-        let date = Date(timeIntervalSince1970: timestamp / 1000)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        lastModifiedLabel.text = "Last modified: \(formatter.string(from: date))"
     }
 
     func getProcessingBuilds() {

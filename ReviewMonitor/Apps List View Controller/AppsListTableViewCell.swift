@@ -27,13 +27,8 @@ class AppsListTableViewCell: UITableViewCell {
             appIconImageView.image = UIImage(named: "empty_app_icon")
         }
         appNameLabel.text = app.name
-        updateLastModifiedDate(from: app.lastModified.doubleValue)
-    }
-
-    private func updateLastModifiedDate(from timestamp: Double) {
-        let date = Date(timeIntervalSince1970: timestamp / 1000)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        lastModifiedLabel.text = formatter.string(from: date)
+        
+        let date = Date(timeIntervalSince1970: app.lastModified.doubleValue / 1000)
+        lastModifiedLabel.text = date.formatDate(format: .MMMddyyy)
     }
 }
