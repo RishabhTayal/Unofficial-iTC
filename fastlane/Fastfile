@@ -44,7 +44,7 @@ platform :ios do
       xcodeproj: "ReviewMonitor.xcodeproj"
     )
 
-    gym(scheme: 'ReviewMonitor')
+    gym(scheme: 'ReviewMonitor', export_method: 'app-store')
 
     version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
     build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
