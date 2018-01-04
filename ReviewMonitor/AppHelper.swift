@@ -89,3 +89,9 @@ extension Date {
         return formatter.string(from: self)
     }
 }
+
+extension String {
+    mutating func replace(_ originalString: String, with newString: String) {
+        self = replacingOccurrences(of: originalString, with: newString)
+    }
+}
