@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [Version 1.4.0(480)] - 2018-01-04
 - You can now remove account from the accounts list. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Fixed App store link. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Added Metadata Screen.
