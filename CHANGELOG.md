@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 - Fixed App store link. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Added Metadata Screen.
 - Server url formatting fix. [@Rishabh Tayal](https://github.com/RishabhTayal)
+- Show time stamp on apps list. [@Vladimirs Matusevics](https://github.com/vlondon)
 
 ## [Version 1.3(476)] - 2018-01-02
 - login multiple account fix.
