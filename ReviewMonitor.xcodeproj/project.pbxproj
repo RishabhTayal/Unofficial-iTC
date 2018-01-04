@@ -610,7 +610,7 @@
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6e70d091-e9b3-4e74-afb7-3bb557edbb67";
+				PROVISIONING_PROFILE = "4624bff6-7366-444d-9c99-b054efbb8ba4";
 				PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
