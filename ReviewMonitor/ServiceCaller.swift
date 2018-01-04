@@ -17,13 +17,26 @@ class ServiceCaller: NSObject {
         return ""
     }
 
-    static func setBaseUrl(url: String) {
+    /// Saves server base url in user defaults. It also verifies if the specified url is the [itc hosted server](https://github.com/RishabhTayal/itc-api) url.
+    ///
+    /// - Parameter url: base url of the hosted server.
+    /// - Returns: return `true` if the server is itc hosted server.
+    static func setBaseUrlAndValidate(url: String) -> Bool {
         var url = url
         if url.last != "/" {
             url = url + "/"
         }
-        UserDefaults.standard.set(url, forKey: "baseURL")
-        UserDefaults.standard.synchronize()
+        do {
+            let data = try Data(contentsOf: URL(string: url)!)
+            let json = try JSONSerialization.jsonObject(with: data, options: JSONSerialization.ReadingOptions.allowFragments) as! [String: Any]
+            if let _ = json["itc_api"] {
+                UserDefaults.standard.set(url, forKey: "baseURL")
+                UserDefaults.standard.synchronize()
+                return true
+            }
+        } catch {}
+
+        return false
     }
 
     private enum EndPoint: String {
@@ -48,7 +61,14 @@ class ServiceCaller: NSObject {
         let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
             let tf = alert.textFields?.first
-            ServiceCaller.setBaseUrl(url: (tf?.text)!)
+            let isValid = ServiceCaller.setBaseUrlAndValidate(url: (tf?.text)!)
+            if !isValid {
+                let errorAlert = UIAlertController(title: "These are not the droid you're looking for 🤖", message: "The hosted server url you provided is not the correct url. Please enter again", preferredStyle: .alert)
+                errorAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+                    askForBaseURL(controller: controller)
+                }))
+                controller.present(errorAlert, animated: true, completion: nil)
+            }
         }))
         alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
             if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
