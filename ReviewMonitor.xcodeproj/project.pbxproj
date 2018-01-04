@@ -37,7 +37,9 @@
 		69E3EAAA1F6F867800788918 /* ReviewFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69E3EAA91F6F867800788918 /* ReviewFilter.swift */; };
 		69EA5D191FFD8E3900EFDB8C /* AppHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 69EA5D181FFD8E3900EFDB8C /* AppHelper.swift */; };
 		8DCB75247AD737334707187A /* Pods_ReviewMonitor.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E8E287C5517B3179FAD951AD /* Pods_ReviewMonitor.framework */; };
+		C94BEB881FFE8D020069B3A2 /* Offline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94BEB871FFE8D020069B3A2 /* Offline.swift */; };
 		C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97D38D01FF902F600EBFA35 /* AuthCell.xib */; };
+		C99D85BF1FFEC7E0001DD508 /* Offline.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99D85BE1FFEC7E0001DD508 /* Offline.xib */; };
 		C9A3D85E1FFD287500285106 /* AppMetadataViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */; };
 		C9A3D85F1FFD287500285106 /* AppMetadataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A3D85D1FFD287500285106 /* AppMetadataViewController.xib */; };
 		C9A3D8611FFD2C9F00285106 /* AppMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3D8601FFD2C9F00285106 /* AppMetadata.swift */; };
@@ -76,7 +78,9 @@
 		69E3EAA91F6F867800788918 /* ReviewFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewFilter.swift; sourceTree = "<group>"; };
 		69EA5D181FFD8E3900EFDB8C /* AppHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppHelper.swift; sourceTree = "<group>"; };
 		9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReviewMonitor.release.xcconfig"; path = "Pods/Target Support Files/Pods-ReviewMonitor/Pods-ReviewMonitor.release.xcconfig"; sourceTree = "<group>"; };
+		C94BEB871FFE8D020069B3A2 /* Offline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline.swift; sourceTree = "<group>"; };
 		C97D38D01FF902F600EBFA35 /* AuthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthCell.xib; sourceTree = "<group>"; };
+		C99D85BE1FFEC7E0001DD508 /* Offline.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Offline.xib; sourceTree = "<group>"; };
 		C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataViewController.swift.swift; sourceTree = "<group>"; };
 		C9A3D85D1FFD287500285106 /* AppMetadataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppMetadataViewController.xib; sourceTree = "<group>"; };
 		C9A3D8601FFD2C9F00285106 /* AppMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadata.swift; sourceTree = "<group>"; };
@@ -168,6 +172,7 @@
 				6918E3821F6321E300709F2F /* Apps List View Controller */,
 				69BCAD2B1F63288900C65305 /* Reviews List View Controller */,
 				694C9D881F7A140400736F5A /* Testers View Controller */,
+				C94BEB891FFE8D110069B3A2 /* Offline */,
 				69C0ED3C1FF34C42008C7B23 /* Supporting Files */,
 			);
 			path = ReviewMonitor;
@@ -260,6 +265,15 @@
 			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C94BEB891FFE8D110069B3A2 /* Offline */ = {
+			isa = PBXGroup;
+			children = (
+				C94BEB871FFE8D020069B3A2 /* Offline.swift */,
+				C99D85BE1FFEC7E0001DD508 /* Offline.xib */,
+			);
+			path = Offline;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -297,7 +311,7 @@
 				TargetAttributes = {
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = CEBY93VF85;
+						DevelopmentTeam = ENLH686A45;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
@@ -335,6 +349,7 @@
 				693F5FAE1F61F23F00FD8859 /* Assets.xcassets in Resources */,
 				693F5FAC1F61F23F00FD8859 /* Main.storyboard in Resources */,
 				6967954B1F7AA02F00955A3E /* AppDetailViewController.xib in Resources */,
+				C99D85BF1FFEC7E0001DD508 /* Offline.xib in Resources */,
 				C9A3D85F1FFD287500285106 /* AppMetadataViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,6 +457,7 @@
 				693F5FA91F61F23F00FD8859 /* ViewController.swift in Sources */,
 				69A6276C1F633EFB00415AC8 /* DeveloperResponse.swift in Sources */,
 				690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */,
+				C94BEB881FFE8D020069B3A2 /* Offline.swift in Sources */,
 				69BBC5A01FF58EBF00A41450 /* SettingsViewController.swift in Sources */,
 				C9A3D8611FFD2C9F00285106 /* AppMetadata.swift in Sources */,
 				69EA5D191FFD8E3900EFDB8C /* AppHelper.swift in Sources */,
@@ -603,15 +619,15 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 480;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CEBY93VF85;
+				DEVELOPMENT_TEAM = ENLH686A45;
 				INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "6e70d091-e9b3-4e74-afb7-3bb557edbb67";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
+				PROVISIONING_PROFILE = "2799bab1-ab1b-46ab-8fa2-b8b8ecd16aaf";
+				PROVISIONING_PROFILE_SPECIFIER = WWEliottDev;
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
