@@ -181,9 +181,3 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
 }
-
-extension String {
-    mutating func replace(_ originalString: String, with newString: String) {
-        self = replacingOccurrences(of: originalString, with: newString)
-    }
-}
