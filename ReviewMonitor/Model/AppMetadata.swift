@@ -28,24 +28,42 @@ class AppMetadata: NSObject {
     var secondaryCategSub1 = String()
     var secondaryCategSub2 = String()
 
-    func set(_ name: String, version: String, copyright: String, status: String, languages: String, keywords: String, support: String, marketing: String, available: String, watchos: String, beta: String, bundleId: String, primaryCateg: String, primaryCategSub1: String, primaryCategSub2: String, secondaryCateg: String, secondaryCategSub1: String, secondaryCategSub2: String) {
+    override init() {
+    }
+
+    init(name: String, bundleId: String, dict: [String: Any]) {
         self.name = name
-        self.version = version
-        self.copyright = copyright
-        self.status = status
-        self.languages = languages
-        self.keywords = keywords
-        self.support = support
-        self.marketing = marketing
-        self.available = available
-        self.watchos = watchos
-        self.beta = beta
+        version = dict["version"] as? String ?? "-"
+        copyright = dict["copyright"] as? String ?? "-"
+        status = dict["status"] as? String ?? "-"
+
+        let lang = dict["lang"] as! Array<Dictionary<String, Any>>
+        for x in 0 ..< lang.count {
+            let l = lang[x]["language"] as! String
+            languages.append(l)
+        }
+        languages
+            .map { String(describing: $0) }
+            .joined(separator: ", ")
+        keywords = dict["keywords"] as? String ?? "-"
+        support = dict["support"] as? String ?? "-"
+        marketing = dict["marketing"] as? String ?? "-"
+        available = (dict["islive"] as? Bool)! ? "Available" : "Not Available"
+        watchos = (dict["watchos"] as? Bool)! ? "Yes" : "No"
+        beta = (dict["betaTesting"] as? Bool)! ? "Beta Testing Enabled\n" : "No Beta Testing\n"
         bundleID = bundleId
-        self.primaryCateg = primaryCateg
-        self.primaryCategSub1 = primaryCategSub1
-        self.primaryCategSub2 = primaryCategSub2
-        self.secondaryCateg = secondaryCateg
-        self.secondaryCategSub1 = secondaryCategSub1
-        self.secondaryCategSub2 = secondaryCategSub2
+        primaryCateg = dict["primarycat"] as? String ?? "-"
+        primaryCateg.replace("MZGenre.", with: "")
+        primaryCategSub1 = dict["primarycatfirstsub"] as? String ?? "-"
+        primaryCategSub1.replace("MZGenre.", with: "")
+        primaryCategSub2 = dict["primarycatsecondsub"] as? String ?? "-"
+        primaryCategSub2.replace("MZGenre.", with: "")
+
+        secondaryCateg = dict["secondarycat"] as? String ?? "-"
+        secondaryCateg.replace("MZGenre.", with: "")
+        secondaryCategSub1 = dict["secondarycatfirstsub"] as? String ?? "-"
+        secondaryCategSub1.replace("MZGenre.", with: "")
+        secondaryCategSub2 = dict["secondarycatsecondsub"] as? String ?? "-"
+        secondaryCategSub2.replace("MZGenre.", with: "")
     }
 }
