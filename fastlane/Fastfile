@@ -79,7 +79,7 @@ platform :ios do
 
     end
 
-    if ENV['SLACK_URL']
+    # if ENV['SLACK_URL']
       slack_message = "Successfully released [ReviewMonitor #{version}](#{release_url}) :rocket:"
       slack(
         channel: "general",
@@ -88,13 +88,13 @@ platform :ios do
           "New" => description
         }
       )
-    end
+    # end
   end
 
   desc "Ensure all the requirement environment variables are provided"
   desc "this way the deployment script will fail early (and often)"
   private_lane :verify_env_variables do
-    ["GITHUB_API_TOKEN"].each do |variable|
+    ["SLACK_URL,GITHUB_API_TOKEN"].each do |variable|
       next if ENV[variable].to_s.length > 0
       UI.user_error!("Missing ENV variables #{variable}, make sure to provide one for fastlane to be successful")
     end
