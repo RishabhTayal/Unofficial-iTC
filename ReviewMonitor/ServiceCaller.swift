@@ -121,9 +121,11 @@ class ServiceCaller: NSObject {
     }
 
     private class func makeAPICall(endPoint: EndPoint, params: [String: Any] = [:], httpMethod: HTTPMethod = .GET, header: [String: String] = [:], completionBlock: CompletionBlock?) {
+
         var url = getBaseUrl() + endPoint.rawValue
         url += "?" + convertToUrlParameter(params)
         url = url.addingPercentEncoding(withAllowedCharacters: CharacterSet.urlQueryAllowed)!
+
         var request = URLRequest(url: URL(string: url)!)
         if let account = AccountManger.getCurrentAccount() {
             request.setValue(account.password, forHTTPHeaderField: "password")

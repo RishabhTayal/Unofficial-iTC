@@ -40,6 +40,7 @@
 		C94BEB881FFE8D020069B3A2 /* Offline.swift in Sources */ = {isa = PBXBuildFile; fileRef = C94BEB871FFE8D020069B3A2 /* Offline.swift */; };
 		C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = C97D38D01FF902F600EBFA35 /* AuthCell.xib */; };
 		C99D85BF1FFEC7E0001DD508 /* Offline.xib in Resources */ = {isa = PBXBuildFile; fileRef = C99D85BE1FFEC7E0001DD508 /* Offline.xib */; };
+		C99D85C11FFEEAA5001DD508 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = C99D85C01FFEEAA5001DD508 /* Reachability.swift */; };
 		C9A3D85E1FFD287500285106 /* AppMetadataViewController.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */; };
 		C9A3D85F1FFD287500285106 /* AppMetadataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = C9A3D85D1FFD287500285106 /* AppMetadataViewController.xib */; };
 		C9A3D8611FFD2C9F00285106 /* AppMetadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9A3D8601FFD2C9F00285106 /* AppMetadata.swift */; };
@@ -81,6 +82,7 @@
 		C94BEB871FFE8D020069B3A2 /* Offline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offline.swift; sourceTree = "<group>"; };
 		C97D38D01FF902F600EBFA35 /* AuthCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthCell.xib; sourceTree = "<group>"; };
 		C99D85BE1FFEC7E0001DD508 /* Offline.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Offline.xib; sourceTree = "<group>"; };
+		C99D85C01FFEEAA5001DD508 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		C9A3D85C1FFD287500285106 /* AppMetadataViewController.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataViewController.swift.swift; sourceTree = "<group>"; };
 		C9A3D85D1FFD287500285106 /* AppMetadataViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppMetadataViewController.xib; sourceTree = "<group>"; };
 		C9A3D8601FFD2C9F00285106 /* AppMetadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadata.swift; sourceTree = "<group>"; };
@@ -268,6 +270,7 @@
 		C94BEB891FFE8D110069B3A2 /* Offline */ = {
 			isa = PBXGroup;
 			children = (
+				C99D85C01FFEEAA5001DD508 /* Reachability.swift */,
 				C94BEB871FFE8D020069B3A2 /* Offline.swift */,
 				C99D85BE1FFEC7E0001DD508 /* Offline.xib */,
 			);
@@ -477,6 +480,7 @@
 				69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */,
 				6918E3841F6321F800709F2F /* AppsListTableViewCell.swift in Sources */,
 				C9A3D85E1FFD287500285106 /* AppMetadataViewController.swift.swift in Sources */,
+				C99D85C11FFEEAA5001DD508 /* Reachability.swift in Sources */,
 				6967954A1F7AA02F00955A3E /* AppDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

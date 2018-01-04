@@ -50,21 +50,12 @@ class SettingsViewController: UIViewController {
 
         title = "Settings"
 
-        //        let test: Offline = Offline.loadFromNibNamed(nibNamed: "Offline")! as! Offline
-        //        test.frame = CGRect(x: 62.5, y: 50, width: 250, height: 60)
-
         tableView = UITableView(frame: view.bounds, style: .grouped)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.tableFooterView = tableFooterView()
         tableView.register(AuthCell.nib, forCellReuseIdentifier: "auth")
         view.addSubview(tableView)
-
-        let offline = Offline.instanceFromNib()
-        let screenw = UIScreen.main.bounds.width - 200
-        offline.frame = CGRect(x: screenw / 2, y: 25, width: 200, height: 48)
-        let window = UIApplication.shared.keyWindow
-        window?.addSubview(offline)
 
         navigationItem.leftBarButtonItem = UIBarButtonItem(image: UIImage(named: "ic_close"), style: .plain, target: self, action: #selector(cancelTapped))
     }

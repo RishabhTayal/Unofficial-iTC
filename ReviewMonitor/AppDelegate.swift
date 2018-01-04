@@ -84,7 +84,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addBlurView()
     }
 
+    func applicationDidBecomeActive(_ application: UIApplication) {
+        ReachabilityManager.shared.startMonitoring()
+    }
+
     func applicationWillEnterForeground(_ application: UIApplication) {
+        ReachabilityManager.shared.stopMonitoring()
+
         if Date().timeIntervalSince(startBack) >= 30 && UserDefaults.standard.bool(forKey: "useBiometrics") {
             let context = LAContext()
             var error: NSError?
