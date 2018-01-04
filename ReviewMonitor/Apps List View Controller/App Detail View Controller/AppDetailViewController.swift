@@ -8,7 +8,17 @@
 
 import UIKit
 
+import Presentr
+
 class AppDetailViewController: UIViewController {
+
+    let presenter: Presentr = {
+        let presenter = Presentr(presentationType: .dynamic(center: .bottomCenter))
+        presenter.transitionType = TransitionType.coverVertical
+        presenter.dismissOnSwipe = true
+        presenter.blurBackground = true
+        return presenter
+    }()
 
     enum SectionType: Int {
         case appStore
@@ -53,7 +63,84 @@ class AppDetailViewController: UIViewController {
         view.addSubview(tableView)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
-        getProcessingBuilds()
+        // getProcessingBuilds()
+        metaData()
+    }
+
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var versionLabel: UILabel!
+    @IBOutlet weak var statusLabel: UILabel!
+    @IBOutlet weak var bundleLabel: UILabel!
+    @IBOutlet weak var langLabel: UILabel!
+    @IBOutlet weak var aw: UILabel!
+    @IBOutlet weak var moreButton: UIButton!
+
+    let meta = AppMetadata()
+    var langs = Array<Any>()
+    func metaData() {
+        ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
+            if let r = result as? Dictionary<String, Any> {
+
+                let ver = r["version"] as? String ?? "-"
+                let copyright = r["copyright"] as? String ?? "-"
+                let status = r["status"] as? String ?? "-"
+                let lang = r["lang"] as! Array<Dictionary<String, Any>>
+
+                for x in 0 ..< lang.count {
+                    let l = lang[x]["language"] as! String
+
+                    self.langs.append(l)
+                }
+
+                let keyw = r["keywords"] as? String ?? "-"
+                let supportUrl = r["support"] as? String ?? "-"
+                let marketingUrl = r["marketing"] as? String ?? "-"
+                let avail = (r["islive"] as? Bool)! ? "Available" : "Not Available"
+                let watchos = (r["watchos"] as? Bool)! ? "Yes" : "No"
+                let beta = (r["betaTesting"] as? Bool)! ? "Beta Testing Enabled\n" : "No Beta Testing\n"
+
+                var primarycat = r["primarycat"] as? String ?? "-"
+                primarycat.replace("MZGenre.", with: "")
+                var primarySubcat = r["primarycatfirstsub"] as? String ?? "-"
+                primarySubcat.replace("MZGenre.", with: "")
+                var primarySubSeccat = r["primarycatsecondsub"] as? String ?? "-"
+                primarySubSeccat.replace("MZGenre.", with: "")
+
+                var secondarycat = r["secondarycat"] as? String ?? "-"
+                secondarycat.replace("MZGenre.", with: "")
+                var secondarySubcat = r["secondarycatfirstsub"] as? String ?? "-"
+                secondarySubcat.replace("MZGenre.", with: "")
+                var secondarySubSeccat = r["secondarycatsecondsub"] as? String ?? "-"
+                secondarySubSeccat.replace("MZGenre.", with: "")
+
+                DispatchQueue.main.async {
+                    let lng = self.langs
+                        .map { String(describing: $0) }
+                        .joined(separator: ", ")
+
+                    self.nameLabel.text = avail
+                    self.versionLabel.text = ver
+                    self.statusLabel.text = status
+                    self.bundleLabel.text = self.app.bundleId
+                    self.langLabel.text = lng
+                    self.aw.text = watchos
+
+                    self.meta.set(self.app.name, version: ver, copyright: copyright, status: status, languages: lng, keywords: keyw, support: supportUrl, marketing: marketingUrl, available: avail, watchos: watchos, beta: beta, bundleId: self.app.bundleId, primaryCateg: primarycat, primaryCategSub1: primarySubcat, primaryCategSub2: primarySubSeccat, secondaryCateg: secondarycat, secondaryCategSub1: secondarySubcat, secondaryCategSub2: secondarySubSeccat)
+
+                    self.moreButton.addTarget(self, action: #selector(self.viewAllMeta), for: .touchUpInside)
+                    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.viewAllMeta))
+                    swipeUp.direction = .up
+                    self.view.addGestureRecognizer(swipeUp)
+                }
+            }
+        }
+    }
+
+    @objc func viewAllMeta() {
+        let metaVC = AppMetadataViewController(nibName: "AppMetadataViewController", bundle: nil)
+        metaVC.metadata = meta
+        let navC = UINavigationController(rootViewController: metaVC)
+        customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
 
     @objc func viewInAppStoreTapped() {
@@ -130,5 +217,11 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
+    }
+}
+
+extension String {
+    mutating func replace(_ originalString: String, with newString: String) {
+        self = replacingOccurrences(of: originalString, with: newString)
     }
 }

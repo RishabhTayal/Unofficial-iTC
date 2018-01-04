@@ -44,15 +44,13 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     DispatchQueue.main.async {
                         if success {
                             self.removeBlurView()
-                            print("Success")
                         } else {
-                            print("FAIL")
+                            // Blurred, need changes
                         }
                     }
                 }
             } else {
                 removeBlurView()
-                print("NO Biometrics")
             }
         }
         window?.makeKeyAndVisible()
@@ -82,14 +80,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var startBack = Date()
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print(Date())
         startBack = Date()
         addBlurView()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         if Date().timeIntervalSince(startBack) >= 30 && UserDefaults.standard.bool(forKey: "useBiometrics") {
-            print("Auth")
             let context = LAContext()
             var error: NSError?
 
@@ -102,9 +98,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     DispatchQueue.main.async {
                         if success {
                             self.removeBlurView()
-                            print("Success")
                         } else {
-                            print("FAIL")
+                            // Still blurred
                             //                            let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
                             //                            ac.addAction(UIAlertAction(title: "OK", style: .default))
                             //                            self.present(ac, animated: true)
@@ -113,11 +108,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             } else {
                 removeBlurView()
-                print("NO Biometrics")
             }
         } else {
             removeBlurView()
         }
-        print(Date().timeIntervalSince(startBack))
     }
 }

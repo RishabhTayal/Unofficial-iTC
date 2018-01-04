@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 ## [Unreleased]
 - You can now remove account from the accounts list. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Fixed App store link. [@Rishabh Tayal](https://github.com/RishabhTayal)
+- Added Metadata Screen.
 - Server url formatting fix. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Show time stamp on apps list. [@Vladimirs Matusevics](https://github.com/vlondon)
 

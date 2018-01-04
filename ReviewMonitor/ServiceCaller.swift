@@ -33,6 +33,7 @@ class ServiceCaller: NSObject {
         case response
         case testers
         case processing_builds
+        case meta = "app/metadata"
     }
 
     private enum HTTPMethod: String {
@@ -67,6 +68,11 @@ class ServiceCaller: NSObject {
 
     class func getApps(completionBlock: CompletionBlock?) {
         makeAPICall(endPoint: .apps, completionBlock: completionBlock)
+    }
+
+    class func getAppMetadata(bundleId: String, completionBlock: CompletionBlock?) {
+        let param = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .meta, params: param, completionBlock: completionBlock)
     }
 
     class func getReviews(app: App, storeFront: String = "", completionBlock: CompletionBlock?) {
@@ -107,7 +113,6 @@ class ServiceCaller: NSObject {
         for key in header.keys {
             request.setValue(header[key]!, forHTTPHeaderField: key)
         }
-        print(url)
         request.httpMethod = httpMethod.rawValue
         URLSession.shared.dataTask(with: request) { d, r, e in
             if let d = d {
