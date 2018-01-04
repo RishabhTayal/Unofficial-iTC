@@ -26,6 +26,7 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var appImageView: UIImageView!
     @IBOutlet var appNameLabel: UILabel!
     @IBOutlet var platformLabel: UILabel!
+    @IBOutlet var lastModifiedLabel: UILabel!
 
     var app: App!
     var processingBuildCount = 0
@@ -43,6 +44,8 @@ class AppDetailViewController: UIViewController {
         }
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
+        let date = Date(timeIntervalSince1970: app.lastModified.doubleValue / 1000)
+        lastModifiedLabel.text = "Last modified: \(date.formatDate(format: .MMMddyyy))"
 
         tableView.dataSource = self
         tableView.delegate = self
