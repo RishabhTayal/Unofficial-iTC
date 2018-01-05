@@ -25,8 +25,6 @@ class ReachabilityManager: NSObject {
         }, completion: nil)
         perform(#selector(removeOfflineView), with: nil, afterDelay: 5)
         tap = UITapGestureRecognizer(target: self, action: #selector(removeOfflineView))
-        tap.numberOfTapsRequired = 1
-        tap.numberOfTouchesRequired = 1
         offlineView.addGestureRecognizer(tap)
     }
 
@@ -36,7 +34,6 @@ class ReachabilityManager: NSObject {
         }, completion: nil)
         DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
             offlineView.removeFromSuperview()
-            offlineView.removeGestureRecognizer(tap)
         }
     }
 
