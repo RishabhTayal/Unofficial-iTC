@@ -90,9 +90,8 @@ class ServiceCaller: NSObject {
             }
         }))
         alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
-            if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
-                UIApplication.shared.open(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!, options: [:], completionHandler: nil)
-            }
+            let safari = SFSafariViewController(url: URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!)
+            controller.present(safari, animated: true, completion: nil)
         }))
         alert.addTextField(configurationHandler: { tf in
             tf.text = ServiceCaller.getBaseUrl()
