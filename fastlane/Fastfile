@@ -23,9 +23,12 @@ platform :ios do
       xcodeproj: "ReviewMonitor.xcodeproj"
     )
     gym(scheme: 'ReviewMonitor') # Build your app - more options available
-    pilot
-    version_number = get_version_number(xcodeproj: 'ReviewMonitor.xcodeproj', target: "ReviewMonitor") # Get version number
-    build_number = get_build_number(xcodeproj: 'ReviewMonitor.xcodeproj') # Get build number
+    pilot(skip_waiting_for_build_processing: true)
+
+    # Then push to git remote
+    #
+    git_commit(path: ".", message: "Version Bump")
+    push_to_git_remote
   end
 
   lane :release do |options|
