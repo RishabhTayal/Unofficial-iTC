@@ -8,6 +8,8 @@
 
 import UIKit
 
+import SystemConfiguration
+
 enum DateFormat: String {
     case MMMddyyy = "MMM dd, yyyy"
 }
@@ -22,6 +24,13 @@ extension UIView {
         layoutIfNeeded()
         layer.cornerRadius = radius
         clipsToBounds = true
+    }
+
+    class func loadFromNibNamed(nibNamed: String, bundle: Bundle? = nil) -> UIView? {
+        return UINib(
+            nibName: nibNamed,
+            bundle: bundle
+        ).instantiate(withOwner: nil, options: nil)[0] as? UIView
     }
 }
 

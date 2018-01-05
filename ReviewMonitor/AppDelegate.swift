@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var blurEffectView: UIVisualEffectView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        ReachabilityManager.shared.startMonitoring()
+
         window = UIWindow(frame: UIScreen.main.bounds)
 
         #if DEBUG
