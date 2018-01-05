@@ -19,13 +19,20 @@ class ReachabilityManager: NSObject {
         offlineView.frame = CGRect(x: screenw / 2, y: -55, width: 200, height: 48)
         let window = UIApplication.shared.keyWindow
         window?.addSubview(offlineView)
-        UIView.animate(withDuration: 1.5, animations: {
+        UIView.animate(withDuration: 0.75, animations: {
             offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
         }, completion: nil)
     }
 
     public class func removeOfflineView() {
-        offlineView.removeFromSuperview()
+        let screenw = UIScreen.main.bounds.width - 200
+        UIView.animate(withDuration: 0.75, animations: {
+            offlineView.frame = CGRect(x: screenw / 2, y: -55, width: 200, height: 48)
+        }, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1, execute: {
+            offlineView.removeFromSuperview()
+
+        })
     }
 
     static let shared = ReachabilityManager()
