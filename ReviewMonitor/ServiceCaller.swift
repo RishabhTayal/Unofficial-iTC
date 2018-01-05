@@ -40,6 +40,7 @@ class ServiceCaller: NSObject {
     }
 
     private enum EndPoint: String {
+        case apiVersion = "is_latest_api_version"
         case login = "login/v2"
         case apps
         case ratings
@@ -69,6 +70,10 @@ class ServiceCaller: NSObject {
             } else {
             }
         }.resume()
+    }
+
+    class func checkForAPIVersion(completion: CompletionBlock?) {
+        makeAPICall(endPoint: .apiVersion, completionBlock: completion)
     }
 
     class func askForBaseURL(controller: UIViewController) {

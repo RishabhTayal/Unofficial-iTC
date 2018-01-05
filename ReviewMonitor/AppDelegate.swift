@@ -61,22 +61,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         ServiceCaller.checkForNewVersion { r, e in
             if let json = r as? [String: Any] {
                 let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
-                let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
-                if let tag = json["tag_name"] as? String, tag != appVersionString + "(" + buildNumber + ")" {
-                    print("show app update")
-                    DispatchQueue.main.async {
+                if let tag = json["tag_name"] as? String {
+                    let index = tag.index(of: "(")!
+                    let version = tag[..<index]
+                    if version != appVersionString {
+                        print("show app update")
+                        DispatchQueue.main.async {
 
-                        let alert = UIAlertController(title: "App update available 🎉", message: "There is a new version available on Github.", preferredStyle: .alert)
-                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                        alert.addAction(UIAlertAction(title: "What's new? 🤔", style: .default, handler: { action in
-                            let safari = SFSafariViewController(url: URL(string: json["html_url"] as! String)!)
-                            self.window?.rootViewController?.present(safari, animated: true, completion: nil)
-                        }))
-                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                            let alert = UIAlertController(title: "App update available 🎉", message: "There is a new version available on Github.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "What's new? 🤔", style: .default, handler: { action in
+                                let safari = SFSafariViewController(url: URL(string: json["html_url"] as! String)!)
+                                self.window?.rootViewController?.present(safari, animated: true, completion: nil)
+                            }))
+                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                        }
                     }
                 }
             }
         }
+
+        checkAPIVersion()
+
         return true
     }
 
@@ -135,5 +141,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         } else {
             removeBlurView()
         }
+    }
+
+    func checkAPIVersion() {
+        ServiceCaller.checkForAPIVersion { r, e in
+            DispatchQueue.main.async {
+                if let usingLatestVersion = r as? Bool {
+                    if !usingLatestVersion {
+                        let alert = UIAlertController(title: "New api server version available.", message: nil, preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Deploy to Heroku", style: .default, handler: { action in
+                            let safari = SFSafariViewController(url: URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!)
+                            safari.delegate = self
+                            self.window?.rootViewController?.present(safari, animated: true, completion: nil)
+                        }))
+                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
+    }
+}
+
+extension AppDelegate: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        ServiceCaller.askForBaseURL(controller: (window?.rootViewController)!)
     }
 }
