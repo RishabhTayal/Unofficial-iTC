@@ -13,16 +13,28 @@ class ReachabilityManager: NSObject {
     static let offlineView = UIView.loadFromNibNamed(nibNamed: "OfflineView")!
     let reachability = Reachability()!
     var reachabilityStatus: Reachability.Connection = .none
+    static var tap = UITapGestureRecognizer()
+    static let screenw = UIScreen.main.bounds.width - 200
 
     public class func createOfflineView() {
-        let screenw = UIScreen.main.bounds.width - 200
-        offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
+        offlineView.frame = CGRect(x: screenw / 2, y: -55, width: 200, height: 48)
         let window = UIApplication.shared.keyWindow
         window?.addSubview(offlineView)
+        UIView.animate(withDuration: 0.75, animations: {
+            offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
+        }, completion: nil)
+        perform(#selector(removeOfflineView), with: nil, afterDelay: 5)
+        tap = UITapGestureRecognizer(target: self, action: #selector(removeOfflineView))
+        offlineView.addGestureRecognizer(tap)
     }
 
-    public class func removeOfflineView() {
-        offlineView.removeFromSuperview()
+    @objc public class func removeOfflineView() {
+        UIView.animate(withDuration: 0.75, animations: {
+            offlineView.frame = CGRect(x: screenw / 2, y: -55, width: 200, height: 48)
+        }, completion: nil)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            offlineView.removeFromSuperview()
+        }
     }
 
     static let shared = ReachabilityManager()
