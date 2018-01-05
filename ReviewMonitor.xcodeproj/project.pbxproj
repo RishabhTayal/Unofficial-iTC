@@ -616,34 +616,34 @@
 			};
 			name = Release;
 		};
-		693F5FB61F61F23F00FD8859 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CODE_SIGN_STYLE = Manual;
-				CURRENT_PROJECT_VERSION = 480;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = CEBY93VF85;
-				INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
-				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2799bab1-ab1b-46ab-8fa2-b8b8ecd16aaf";
-				PROVISIONING_PROFILE_SPECIFIER = WWEliottDev;
-				SWIFT_OBJC_BRIDGING_HEADER = "";
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
-				SWIFT_VERSION = 4.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
+        693F5FB61F61F23F00FD8859 /* Debug */ = {
+            isa = XCBuildConfiguration;
+            baseConfigurationReference = EB8F24CEC9ABC525BDB39609 /* Pods-ReviewMonitor.debug.xcconfig */;
+            buildSettings = {
+                ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+                CLANG_ENABLE_MODULES = YES;
+                CODE_SIGN_IDENTITY = "iPhone Developer";
+                "CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+                CODE_SIGN_STYLE = Manual;
+                CURRENT_PROJECT_VERSION = 481;
+                DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+                DEVELOPMENT_TEAM = CEBY93VF85;
+                INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
+                IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+                LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+                OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
+                PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
+                PRODUCT_NAME = "$(TARGET_NAME)";
+                PROVISIONING_PROFILE = "4624bff6-7366-444d-9c99-b054efbb8ba4";
+                PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
+                SWIFT_OBJC_BRIDGING_HEADER = "";
+                SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+                SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+                SWIFT_VERSION = 4.0;
+                VERSIONING_SYSTEM = "apple-generic";
+            };
+            name = Debug;
+        };
 		693F5FB71F61F23F00FD8859 /* Release */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9FAFE25272698412BDB5AAA2 /* Pods-ReviewMonitor.release.xcconfig */;
