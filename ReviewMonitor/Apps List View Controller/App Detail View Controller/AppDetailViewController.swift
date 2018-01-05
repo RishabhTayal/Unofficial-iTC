@@ -67,7 +67,7 @@ class AppDetailViewController: UIViewController {
         getMetaData()
     }
 
-    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var availableLabel: UILabel!
     @IBOutlet weak var versionLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
     @IBOutlet weak var bundleLabel: UILabel!
@@ -75,23 +75,23 @@ class AppDetailViewController: UIViewController {
     @IBOutlet weak var aw: UILabel!
     @IBOutlet weak var moreButton: UIButton!
 
-    var meta = AppMetadata()
+    var metadata = AppMetadata()
     var langs = Array<Any>()
 
     func getMetaData() {
         ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
             if let r = result as? Dictionary<String, Any> {
                 DispatchQueue.main.async {
-                    self.meta = AppMetadata(name: self.app.name, bundleId: self.app.bundleId, dict: r)
-                    self.nameLabel.text = self.meta.available
-                    self.versionLabel.text = self.meta.version
-                    self.statusLabel.text = self.meta.status
+                    self.metadata = AppMetadata(name: self.app.name, bundleId: self.app.bundleId, dict: r)
+                    self.availableLabel.text = self.metadata.available
+                    self.versionLabel.text = self.metadata.version
+                    self.statusLabel.text = self.metadata.status
                     self.bundleLabel.text = self.app.bundleId
-                    self.langLabel.text = self.meta.languages
-                    self.aw.text = self.meta.watchos
+                    self.langLabel.text = self.metadata.languages
+                    self.aw.text = self.metadata.watchos
 
-                    self.moreButton.addTarget(self, action: #selector(self.viewAllMeta), for: .touchUpInside)
-                    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.viewAllMeta))
+                    self.moreButton.addTarget(self, action: #selector(self.viewAllMetadata), for: .touchUpInside)
+                    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.viewAllMetadata))
                     swipeUp.direction = .up
                     self.view.addGestureRecognizer(swipeUp)
                 }
@@ -99,9 +99,9 @@ class AppDetailViewController: UIViewController {
         }
     }
 
-    @objc func viewAllMeta() {
+    @objc func viewAllMetadata() {
         let metaVC = AppMetadataViewController(nibName: "AppMetadataViewController", bundle: nil)
-        metaVC.metadata = meta
+        metaVC.metadata = metadata
         let navC = UINavigationController(rootViewController: metaVC)
         customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
@@ -113,16 +113,16 @@ class AppDetailViewController: UIViewController {
         }
     }
 
-    func getProcessingBuilds() {
-        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
-            DispatchQueue.main.async {
-                if let r = result as? [[String: Any]] {
-                    self.processingBuildCount = r.count
-                    self.tableView.reloadData()
-                }
-            }
-        }
-    }
+    //    func getProcessingBuilds() {
+    //        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
+    //            DispatchQueue.main.async {
+    //                if let r = result as? [[String: Any]] {
+    //                    self.processingBuildCount = r.count
+    //                    self.tableView.reloadData()
+    //                }
+    //            }
+    //        }
+    //    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

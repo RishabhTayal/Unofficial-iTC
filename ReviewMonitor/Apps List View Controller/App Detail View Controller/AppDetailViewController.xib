@@ -1,10 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -15,12 +11,12 @@
             <connections>
                 <outlet property="appImageView" destination="UK3-cV-9Sh" id="4DC-4w-JZU"/>
                 <outlet property="appNameLabel" destination="bEb-OM-ZwP" id="e4d-EG-RZz"/>
+                <outlet property="availableLabel" destination="Teu-gb-uSh" id="37Q-xn-flW"/>
                 <outlet property="aw" destination="gQX-Lr-Q5u" id="aId-pd-ks6"/>
                 <outlet property="bundleLabel" destination="iPO-w0-c28" id="Lgf-zM-4yx"/>
                 <outlet property="langLabel" destination="GyQ-V0-t3W" id="ZQy-UO-sD6"/>
-                <outlet property="moreButton" destination="WQN-ZV-ecI" id="6zI-UI-Uwr"/>
-                <outlet property="nameLabel" destination="Teu-gb-uSh" id="37Q-xn-flW"/>
                 <outlet property="lastModifiedLabel" destination="dKS-Zs-izd" id="Vdx-Gv-DaK"/>
+                <outlet property="moreButton" destination="WQN-ZV-ecI" id="6zI-UI-Uwr"/>
                 <outlet property="platformLabel" destination="TK8-2E-OAt" id="eeg-M4-Fe6"/>
                 <outlet property="statusLabel" destination="5gV-eR-DYL" id="FFf-bQ-pQ8"/>
                 <outlet property="tableView" destination="5fl-4l-MK8" id="CNO-nC-Vr8"/>
@@ -44,7 +40,7 @@
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="3WC-yO-bcQ">
-                            <rect key="frame" x="89" y="0.0" width="375" height="58"/>
+                            <rect key="frame" x="89" y="0.0" width="266" height="58"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bEb-OM-ZwP">
                                     <rect key="frame" x="0.0" y="0.0" width="266" height="24"/>
@@ -53,13 +49,13 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKS-Zs-izd">
-                                    <rect key="frame" x="0.0" y="24" width="375" height="14.5"/>
+                                    <rect key="frame" x="0.0" y="24" width="266" height="14.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                     <color key="textColor" red="0.26051741839999998" green="0.2605243921" blue="0.260520637" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TK8-2E-OAt">
-                                    <rect key="frame" x="0.0" y="38.5" width="375" height="19.5"/>
+                                    <rect key="frame" x="0.0" y="38.5" width="266" height="19.5"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
