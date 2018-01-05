@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [Version 1.4.1(484)] - 2018-01-05
 - Added validation for server url. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Added No Network indication. [@Eliottiosdevs](https://github.com/Eliottiosdevs)
 
