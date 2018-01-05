@@ -40,6 +40,7 @@ class ServiceCaller: NSObject {
     }
 
     private enum EndPoint: String {
+        case apiVersion = "is_latest_api_version"
         case login = "login/v2"
         case apps
         case ratings
@@ -58,6 +59,24 @@ class ServiceCaller: NSObject {
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
+    class func checkForNewVersion(completion: CompletionBlock?) {
+        URLSession.shared.dataTask(with: URL(string: "https://api.github.com/repos/RishabhTayal/ReviewMonitor/releases/latest")!) { d, r, e in
+            if let d = d {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String: Any]
+                    print(json)
+                    completion!(json, nil)
+                } catch {
+                }
+            } else {
+            }
+        }.resume()
+    }
+
+    class func checkForAPIVersion(completion: CompletionBlock?) {
+        makeAPICall(endPoint: .apiVersion, completionBlock: completion)
+    }
+
     class func askForBaseURL(controller: UIViewController) {
         let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
@@ -72,9 +91,8 @@ class ServiceCaller: NSObject {
             }
         }))
         alert.addAction(UIAlertAction(title: "Haven't deployed yet.", style: .default, handler: { action in
-            if UIApplication.shared.canOpenURL(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!) {
-                UIApplication.shared.open(URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!, options: [:], completionHandler: nil)
-            }
+            let safari = SFSafariViewController(url: URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!)
+            controller.present(safari, animated: true, completion: nil)
         }))
         alert.addTextField(configurationHandler: { tf in
             tf.text = ServiceCaller.getBaseUrl()
