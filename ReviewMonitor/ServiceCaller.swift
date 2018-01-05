@@ -57,6 +57,20 @@ class ServiceCaller: NSObject {
 
     typealias CompletionBlock = ((_ result: Any?, _ error: Error?) -> Void)
 
+    class func checkForNewVersion(completion: CompletionBlock?) {
+        URLSession.shared.dataTask(with: URL(string: "https://api.github.com/repos/RishabhTayal/ReviewMonitor/releases/latest")!) { d, r, e in
+            if let d = d {
+                do {
+                    let json = try JSONSerialization.jsonObject(with: d, options: .allowFragments) as! [String: Any]
+                    print(json)
+                    completion!(json, nil)
+                } catch {
+                }
+            } else {
+            }
+        }.resume()
+    }
+
     class func askForBaseURL(controller: UIViewController) {
         let alert = UIAlertController(title: "Enter server url", message: "This is the url of your hosted server on Heroku. If you haven't done it yet, you need to host your server first. You can do so by clicking \"Haven't deployed yet\"", preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in

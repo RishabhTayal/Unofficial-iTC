@@ -56,6 +56,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             }
         }
         window?.makeKeyAndVisible()
+
+        ServiceCaller.checkForNewVersion { r, e in
+            if let json = r as? [String: Any] {
+                let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+                let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
+                if let tag = json["tag_name"] as? String, tag != appVersionString + "(" + buildNumber + ")" {
+                    print("show app update")
+                    let alert = UIAlertController(title: "App update available", message: "There is a new version available on Github.", preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                }
+            }
+        }
         return true
     }
 
