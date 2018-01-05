@@ -10,6 +10,7 @@ import UIKit
 import LocalAuthentication
 import Fabric
 import Crashlytics
+import SafariServices
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -63,9 +64,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 let buildNumber: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleVersion") as! String
                 if let tag = json["tag_name"] as? String, tag != appVersionString + "(" + buildNumber + ")" {
                     print("show app update")
-                    let alert = UIAlertController(title: "App update available", message: "There is a new version available on Github.", preferredStyle: .alert)
-                    alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-                    self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    DispatchQueue.main.async {
+
+                        let alert = UIAlertController(title: "App update available 🎉", message: "There is a new version available on Github.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                        alert.addAction(UIAlertAction(title: "What's new? 🤔", style: .default, handler: { action in
+                            let safari = SFSafariViewController(url: URL(string: json["html_url"] as! String)!)
+                            self.window?.rootViewController?.present(safari, animated: true, completion: nil)
+                        }))
+                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
                 }
             }
         }
