@@ -9,26 +9,26 @@
 import UIKit
 
 class ReachabilityManager: NSObject {
-    static let offline = Offline.instanceFromNib()
+
+    static let offlineView = UIView.loadFromNibNamed(nibNamed: "OfflineView")!
+    let reachability = Reachability()!
+    var reachabilityStatus: Reachability.Connection = .none
 
     public class func createOfflineView() {
         let screenw = UIScreen.main.bounds.width - 200
-        offline.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
+        offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
         let window = UIApplication.shared.keyWindow
-        window?.addSubview(offline)
+        window?.addSubview(offlineView)
     }
 
     public class func removeOfflineView() {
-        offline.removeFromSuperview()
+        offlineView.removeFromSuperview()
     }
 
     static let shared = ReachabilityManager()
     var isNetworkAvailable: Bool {
         return reachabilityStatus != .none
     }
-
-    let reachability = Reachability()!
-    var reachabilityStatus: Reachability.Connection = .none
 
     @objc func reachabilityChanged(_ notification: Notification) {
         let reachability = notification.object as! Reachability
@@ -41,8 +41,7 @@ class ReachabilityManager: NSObject {
     }
 
     func startMonitoring() {
-
-        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: Notification.Name.reachabilityChanged, object: reachability)
+        NotificationCenter.default.addObserver(self, selector: #selector(reachabilityChanged), name: .reachabilityChanged, object: reachability)
         do {
             try reachability.startNotifier()
         } catch {
@@ -51,7 +50,6 @@ class ReachabilityManager: NSObject {
 
     func stopMonitoring() {
         reachability.stopNotifier()
-        NotificationCenter.default.removeObserver(self, name: Notification.Name.reachabilityChanged,
-                                                  object: reachability)
+        NotificationCenter.default.removeObserver(self, name: Notification.Name.reachabilityChanged, object: reachability)
     }
 }
