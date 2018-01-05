@@ -16,9 +16,12 @@ class ReachabilityManager: NSObject {
 
     public class func createOfflineView() {
         let screenw = UIScreen.main.bounds.width - 200
-        offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
+        offlineView.frame = CGRect(x: screenw / 2, y: -55, width: 200, height: 48)
         let window = UIApplication.shared.keyWindow
         window?.addSubview(offlineView)
+        UIView.animate(withDuration: 1.5, animations: {
+            offlineView.frame = CGRect(x: screenw / 2, y: 35, width: 200, height: 48)
+        }, completion: nil)
     }
 
     public class func removeOfflineView() {
