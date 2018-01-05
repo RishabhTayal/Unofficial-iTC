@@ -339,7 +339,7 @@
 				TargetAttributes = {
 					693F5FA21F61F23F00FD8859 = {
 						CreatedOnToolsVersion = 8.3.2;
-						DevelopmentTeam = ENLH686A45;
+						DevelopmentTeam = CEBY93VF85;
 						LastSwiftMigration = 0900;
 						ProvisioningStyle = Manual;
 					};
@@ -651,15 +651,15 @@
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 485;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = ENLH686A45;
+				DEVELOPMENT_TEAM = CEBY93VF85;
 				INFOPLIST_FILE = "ReviewMonitor/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\" \"COCOAPODS\" -DDEBUG";
 				PRODUCT_BUNDLE_IDENTIFIER = io.rtayal.ReviewMonitor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2799bab1-ab1b-46ab-8fa2-b8b8ecd16aaf";
-				PROVISIONING_PROFILE_SPECIFIER = WWEliottDev;
+				PROVISIONING_PROFILE = "4624bff6-7366-444d-9c99-b054efbb8ba4";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development io.rtayal.ReviewMonitor";
 				SWIFT_OBJC_BRIDGING_HEADER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
