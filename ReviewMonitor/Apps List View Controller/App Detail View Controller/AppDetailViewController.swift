@@ -23,13 +23,26 @@ class AppDetailViewController: UIViewController {
     enum SectionType: Int {
         case appStore
         case testflight
+        case metadata
 
-        static var numberOfSections = 2
+        var description: String {
+            switch self {
+            case .appStore:
+                return "App Store"
+            case .testflight:
+                return "TestFlight"
+            case .metadata:
+                return "App Information"
+            }
+        }
+
+        static var numberOfSections = 3
     }
 
     struct Rows {
-        static var appstore = ["Reviews"]
+        static var appstore = ["iOS", "Reviews"]
         static var testflight = ["Testers"]
+        static var metadata = [Any]()
     }
 
     @IBOutlet var tableView: UITableView!
@@ -39,7 +52,7 @@ class AppDetailViewController: UIViewController {
     @IBOutlet var lastModifiedLabel: UILabel!
 
     var app: App!
-    var processingBuildCount = 0
+    var metadata: AppMetadata?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,47 +76,19 @@ class AppDetailViewController: UIViewController {
         view.addSubview(tableView)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
-        // getProcessingBuilds()
+
         getMetaData()
     }
-
-    @IBOutlet weak var availableLabel: UILabel!
-    @IBOutlet weak var versionLabel: UILabel!
-    @IBOutlet weak var statusLabel: UILabel!
-    @IBOutlet weak var bundleLabel: UILabel!
-    @IBOutlet weak var langLabel: UILabel!
-    @IBOutlet weak var aw: UILabel!
-    @IBOutlet weak var moreButton: UIButton!
-
-    var metadata = AppMetadata()
-    var langs = Array<Any>()
 
     func getMetaData() {
         ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
             if let r = result as? Dictionary<String, Any> {
                 DispatchQueue.main.async {
                     self.metadata = AppMetadata(name: self.app.name, bundleId: self.app.bundleId, dict: r)
-                    self.availableLabel.text = self.metadata.available
-                    self.versionLabel.text = self.metadata.version
-                    self.statusLabel.text = self.metadata.status
-                    self.bundleLabel.text = self.app.bundleId
-                    self.langLabel.text = self.metadata.languages
-                    self.aw.text = self.metadata.watchos
-
-                    self.moreButton.addTarget(self, action: #selector(self.viewAllMetadata), for: .touchUpInside)
-                    let swipeUp = UISwipeGestureRecognizer(target: self, action: #selector(self.viewAllMetadata))
-                    swipeUp.direction = .up
-                    self.view.addGestureRecognizer(swipeUp)
+                    self.tableView.reloadData()
                 }
             }
         }
-    }
-
-    @objc func viewAllMetadata() {
-        let metaVC = AppMetadataViewController(nibName: "AppMetadataViewController", bundle: nil)
-        metaVC.metadata = metadata
-        let navC = UINavigationController(rootViewController: metaVC)
-        customPresentViewController(presenter, viewController: navC, animated: true, completion: nil)
     }
 
     @objc func viewInAppStoreTapped() {
@@ -112,17 +97,6 @@ class AppDetailViewController: UIViewController {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-
-    //    func getProcessingBuilds() {
-    //        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
-    //            DispatchQueue.main.async {
-    //                if let r = result as? [[String: Any]] {
-    //                    self.processingBuildCount = r.count
-    //                    self.tableView.reloadData()
-    //                }
-    //            }
-    //        }
-    //    }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -141,28 +115,42 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == SectionType.appStore.rawValue {
             return Rows.appstore.count
+        } else if section == SectionType.testflight.rawValue {
+            return Rows.testflight.count
+        } else if section == SectionType.metadata.rawValue {
+            if metadata == nil { return 0 }
+            return 1
         }
-        return Rows.testflight.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == SectionType.appStore.rawValue {
-            return "App Store"
-        }
-        return "TestFlight"
+        let sectionType = SectionType(rawValue: section)
+        return sectionType?.description
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
         if indexPath.section == SectionType.appStore.rawValue {
             cell?.textLabel?.text = Rows.appstore[indexPath.row]
+            if indexPath.row == Rows.appstore.index(of: "iOS") {
+                if let metadata = self.metadata {
+                    cell?.detailTextLabel?.text = metadata.liveVersion
+                }
+            }
         } else if indexPath.section == SectionType.testflight.rawValue {
             cell?.textLabel?.text = Rows.testflight[indexPath.row]
         } else {
+            var metadataCell: AppMetadataTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "AppMetadataTableViewCell") as? AppMetadataTableViewCell
+            if metadataCell == nil {
+                metadataCell = UIView.loadFromNibNamed(nibNamed: "AppMetadataTableViewCell") as? AppMetadataTableViewCell
+            }
+            metadataCell?.configureView(metadata: metadata!)
+            return metadataCell!
         }
 
         return cell!
@@ -170,9 +158,16 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == SectionType.appStore.rawValue {
-            let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
-            reviewVC.app = app
-            navigationController?.pushViewController(reviewVC, animated: true)
+            if indexPath.row == Rows.appstore.index(of: "Reviews") {
+                let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
+                reviewVC.app = app
+                navigationController?.pushViewController(reviewVC, animated: true)
+            } else if indexPath.row == Rows.appstore.index(of: "iOS") {
+                let appVersionDetailVC = AppVersionDetailViewController()
+                appVersionDetailVC.app = app
+                appVersionDetailVC.appMetadata = metadata
+                navigationController?.pushViewController(appVersionDetailVC, animated: true)
+            }
         } else if indexPath.section == SectionType.testflight.rawValue {
             let testersVC = TestersViewController()
             testersVC.app = app
