@@ -64,7 +64,7 @@ class AppDetailViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
         // getProcessingBuilds()
-        metaData()
+        getMetaData()
     }
 
     @IBOutlet weak var nameLabel: UILabel!
@@ -77,7 +77,8 @@ class AppDetailViewController: UIViewController {
 
     var meta = AppMetadata()
     var langs = Array<Any>()
-    func metaData() {
+
+    func getMetaData() {
         ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
             if let r = result as? Dictionary<String, Any> {
                 DispatchQueue.main.async {
