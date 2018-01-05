@@ -163,10 +163,14 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
                 reviewVC.app = app
                 navigationController?.pushViewController(reviewVC, animated: true)
             } else if indexPath.row == Rows.appstore.index(of: "iOS") {
-                let appVersionDetailVC = AppVersionDetailViewController()
-                appVersionDetailVC.app = app
-                appVersionDetailVC.appMetadata = metadata
-                navigationController?.pushViewController(appVersionDetailVC, animated: true)
+                let alert = UIAlertController(title: "Coming soon", message: "This feature is still under development.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+
+                //                let appVersionDetailVC = AppVersionDetailViewController()
+                //                appVersionDetailVC.app = app
+                //                appVersionDetailVC.appMetadata = metadata
+                //                navigationController?.pushViewController(appVersionDetailVC, animated: true)
             }
         } else if indexPath.section == SectionType.testflight.rawValue {
             let testersVC = TestersViewController()
