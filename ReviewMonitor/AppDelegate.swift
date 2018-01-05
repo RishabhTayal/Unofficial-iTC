@@ -148,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             DispatchQueue.main.async {
                 if let usingLatestVersion = r as? Bool {
                     if !usingLatestVersion {
-                        let alert = UIAlertController(title: "New api server version available.", message: nil, preferredStyle: .alert)
+                        let alert = UIAlertController(title: "New api server version available.", message: "Tap on 'Deploy to Heroku' to get the latest code from Github and deploy to Heroku.", preferredStyle: .alert)
                         alert.addAction(UIAlertAction(title: "Deploy to Heroku", style: .default, handler: { action in
                             let safari = SFSafariViewController(url: URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!)
                             safari.delegate = self
