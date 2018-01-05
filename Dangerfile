@@ -21,6 +21,9 @@ if !git.modified_files.include?("CHANGELOG.md")
   warn("Please include a CHANGELOG entry. \nYou can find it at [CHANGELOG.md](https://github.com/RishabhTayal/ReviewMonitor/blob/master/CHANGELOG.md).")
 end
 
+# - > +
+message("Good job on cleaning the code") if git.deletions > git.insertions
+
 # Don't let testing shortcuts get into master by accident
 fail("fdescribe left in tests") if `grep -r fdescribe specs/ `.length > 1
 fail("fit left in tests") if `grep -r fit specs/ `.length > 1
