@@ -19,6 +19,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var blurEffectView: UIVisualEffectView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        ReachabilityManager.shared.startMonitoring()
+
         window = UIWindow(frame: UIScreen.main.bounds)
 
         #if DEBUG
@@ -84,13 +86,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         addBlurView()
     }
 
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        ReachabilityManager.shared.startMonitoring()
-    }
-
     func applicationWillEnterForeground(_ application: UIApplication) {
-        ReachabilityManager.shared.stopMonitoring()
-
         if Date().timeIntervalSince(startBack) >= 30 && UserDefaults.standard.bool(forKey: "useBiometrics") {
             let context = LAContext()
             var error: NSError?
