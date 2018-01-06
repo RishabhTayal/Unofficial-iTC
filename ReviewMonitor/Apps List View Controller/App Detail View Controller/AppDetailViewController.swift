@@ -166,7 +166,11 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
                 let appVersionDetailVC = AppVersionDetailViewController()
                 appVersionDetailVC.app = app
                 appVersionDetailVC.appMetadata = metadata
-                appVersionDetailVC.appVersionType = .live
+                //                if metadata?.liveVersion != nil {
+                //
+                //                }
+                //                if
+                appVersionDetailVC.appVersionType = .edit
                 navigationController?.pushViewController(appVersionDetailVC, animated: true)
             }
         } else if indexPath.section == SectionType.testflight.rawValue {

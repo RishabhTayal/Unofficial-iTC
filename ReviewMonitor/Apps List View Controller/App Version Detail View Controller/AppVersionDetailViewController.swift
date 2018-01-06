@@ -36,6 +36,7 @@ class AppVersionDetailViewController: UIViewController {
             getLiveVersion()
         } else if appVersionType == .edit {
             // Get edit version details
+            getEditVersion()
         }
     }
 
@@ -50,9 +51,9 @@ class AppVersionDetailViewController: UIViewController {
 
     func getEditVersion() {
         ServiceCaller.getAppEditVersionMetadata(bundleId: (app?.bundleId)!) { result, error in
-            if let result = result {
+            if let result = result as? [String: Any] {
                 print(result)
-                //                let
+                self.appVersionMetadata = AppVersion(dict: result)
             }
         }
     }
