@@ -144,7 +144,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
             present(safari, animated: true, completion: nil)
         }
         if indexPath.row == 3 {
-            let shareSheet = UIActivityViewController(activityItems: ["Download ReviewMonitor, an iTunes Connect manager app from TestFlight.\nhttp://itc-onboarding.herokuapp.com"], applicationActivities: nil)
+            let shareSheet = UIActivityViewController(activityItems: ["An iTunes Connect manager app for iOS.\n\nhttps://github.com/RishabhTayal/ReviewMonitor"], applicationActivities: nil)
             present(shareSheet, animated: true, completion: nil)
         }
     }
