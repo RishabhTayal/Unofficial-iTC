@@ -50,6 +50,7 @@ class ServiceCaller: NSObject {
         case processing_builds
         case meta = "app/metadata"
         case app_live_version_metadata = "/app/live_version_metadata"
+        case app_edit_version_metadata = "/app/edit_version_metadata"
     }
 
     private enum HTTPMethod: String {
@@ -115,9 +116,14 @@ class ServiceCaller: NSObject {
         makeAPICall(endPoint: .meta, params: param, completionBlock: completionBlock)
     }
 
-    class func getAppVersionMetadata(bundleId: String, completionBlock: CompletionBlock?) {
+    class func getAppLiveVersionMetadata(bundleId: String, completionBlock: CompletionBlock?) {
         let param = ["bundle_id": bundleId]
         makeAPICall(endPoint: .app_live_version_metadata, params: param, completionBlock: completionBlock)
+    }
+
+    class func getAppEditVersionMetadata(bundleId: String, completionBlock: CompletionBlock?) {
+        let param = ["bundle_id": bundleId]
+        makeAPICall(endPoint: .app_edit_version_metadata, params: param, completionBlock: completionBlock)
     }
 
     class func getReviews(app: App, storeFront: String = "", completionBlock: CompletionBlock?) {

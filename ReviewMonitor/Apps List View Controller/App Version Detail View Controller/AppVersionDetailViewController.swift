@@ -8,10 +8,19 @@
 
 import UIKit
 
+enum AppVersionType {
+    case live
+    case edit
+    case other
+}
+
 class AppVersionDetailViewController: UIViewController {
 
+    var appVersionType: AppVersionType = .other
     var app: App?
     var appMetadata: AppMetadata?
+
+    var appVersionMetadata: AppVersion?
 
     init() {
         super.init(nibName: "AppVersionDetailViewController", bundle: nil)
@@ -23,14 +32,27 @@ class AppVersionDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        getLiveVersion()
+        if appVersionType == .live {
+            getLiveVersion()
+        } else if appVersionType == .edit {
+            // Get edit version details
+        }
     }
 
     func getLiveVersion() {
-        ServiceCaller.getAppVersionMetadata(bundleId: (app?.bundleId)!) { result, error in
+        ServiceCaller.getAppLiveVersionMetadata(bundleId: (app?.bundleId)!) { result, error in
+            if let result = result as? [String: Any] {
+                print(result)
+                self.appVersionMetadata = AppVersion(dict: result)
+            }
+        }
+    }
+
+    func getEditVersion() {
+        ServiceCaller.getAppEditVersionMetadata(bundleId: (app?.bundleId)!) { result, error in
             if let result = result {
                 print(result)
+                //                let
             }
         }
     }
