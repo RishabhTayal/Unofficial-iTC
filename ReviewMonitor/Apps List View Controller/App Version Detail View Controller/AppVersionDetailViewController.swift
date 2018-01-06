@@ -8,19 +8,14 @@
 
 import UIKit
 
-enum AppVersionType {
-    case live
-    case edit
-    case other
-}
-
 class AppVersionDetailViewController: UIViewController {
 
-    var appVersionType: AppVersionType = .other
     var app: App?
     var appMetadata: AppMetadata?
 
     var appVersionMetadata: AppVersion?
+
+    @IBOutlet weak var versionSegmentControl: UISegmentedControl!
 
     init() {
         super.init(nibName: "AppVersionDetailViewController", bundle: nil)
@@ -32,11 +27,19 @@ class AppVersionDetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if appVersionType == .live {
+
+        var segments: [String] = []
+        if appMetadata?.liveVersion != nil {
             getLiveVersion()
-        } else if appVersionType == .edit {
+            segments.append((appMetadata?.liveVersion)!)
+        } else if appMetadata?.editVersion != nil {
             // Get edit version details
             getEditVersion()
+            segments.append((appMetadata?.editVersion)!)
+        }
+        versionSegmentControl.removeAllSegments()
+        for (i, item) in segments.enumerated() {
+            versionSegmentControl.insertSegment(withTitle: item, at: i, animated: true)
         }
     }
 
@@ -56,5 +59,8 @@ class AppVersionDetailViewController: UIViewController {
                 self.appVersionMetadata = AppVersion(dict: result)
             }
         }
+    }
+
+    @IBAction func versionSegmentControlChanged(_ sender: UISegmentedControl) {
     }
 }

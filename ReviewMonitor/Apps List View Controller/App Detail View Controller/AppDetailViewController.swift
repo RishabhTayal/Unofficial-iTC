@@ -170,7 +170,6 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
                 //
                 //                }
                 //                if
-                appVersionDetailVC.appVersionType = .edit
                 navigationController?.pushViewController(appVersionDetailVC, animated: true)
             }
         } else if indexPath.section == SectionType.testflight.rawValue {
