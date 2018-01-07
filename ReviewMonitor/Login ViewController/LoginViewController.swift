@@ -34,7 +34,13 @@ class LoginViewController: UIViewController {
         super.viewDidAppear(animated)
         if ServiceCaller.getBaseUrl().count == 0 {
             ServiceCaller.askForBaseURL(controller: self)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .edit, target: self, action: #selector(editBaseUrl))
         }
+    }
+
+    @objc func editBaseUrl() {
+        ServiceCaller.askForBaseURL(controller: self)
     }
 
     @objc func tappedOnView() {
