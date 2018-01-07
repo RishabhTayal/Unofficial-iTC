@@ -6,6 +6,7 @@ and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
 - Fixed app share link. [@Rishabh Tayal](https://github.com/RishabhTayal)
+- Added Edit server url on login. [@Eliottiosdevs](https://github.com/Eliottiosdevs)
 
 ## [Version 1.4.1(484)] - 2018-01-05
 - Added validation for server url. [@Rishabh Tayal](https://github.com/RishabhTayal)
