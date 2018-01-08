@@ -49,8 +49,8 @@ class ServiceCaller: NSObject {
         case testers
         case processing_builds
         case meta = "app/metadata"
-        case app_live_version_metadata = "/app/live_version_metadata"
-        case app_edit_version_metadata = "/app/edit_version_metadata"
+        case app_live_version_metadata = "app/live_version_metadata"
+        case app_edit_version_metadata = "app/edit_version_metadata"
     }
 
     private enum HTTPMethod: String {

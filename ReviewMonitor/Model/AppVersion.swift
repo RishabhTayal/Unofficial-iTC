@@ -23,6 +23,8 @@ class AppVersion: NSObject {
     var support: String = ""
     var marketing: String = ""
 
+    var screenshots: [AppScreenshot] = []
+
     override init() {
     }
 
@@ -36,5 +38,10 @@ class AppVersion: NSObject {
         support = dict["support"] as! String
         version = dict["version"] as! String
         watchos = dict["watchos"] as! Bool
+
+        for screenshot in dict["screenshots"] as! [[String: Any]] {
+            let ss = AppScreenshot(dict: screenshot)
+            screenshots.append(ss)
+        }
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SDWebImage
 
 class AppVersionDetailViewController: UIViewController {
 
@@ -16,6 +17,8 @@ class AppVersionDetailViewController: UIViewController {
     var appVersionMetadata: AppVersion?
 
     @IBOutlet weak var versionSegmentControl: UISegmentedControl!
+    
+    @IBOutlet var imageView: UIImageView!
 
     init() {
         super.init(nibName: "AppVersionDetailViewController", bundle: nil)
@@ -38,8 +41,10 @@ class AppVersionDetailViewController: UIViewController {
             segments.append((appMetadata?.editVersion)!)
         }
         versionSegmentControl.removeAllSegments()
-        for (i, item) in segments.enumerated() {
-            versionSegmentControl.insertSegment(withTitle: item, at: i, animated: true)
+        if segments.count > 1 {
+            for (i, item) in segments.enumerated() {
+                versionSegmentControl.insertSegment(withTitle: item, at: i, animated: true)
+            }
         }
     }
 
@@ -48,6 +53,9 @@ class AppVersionDetailViewController: UIViewController {
             if let result = result as? [String: Any] {
                 print(result)
                 self.appVersionMetadata = AppVersion(dict: result)
+                DispatchQueue.main.async {
+                    self.imageView.sd_setImage(with: URL(string: (self.appVersionMetadata?.screenshots.first?.url)!), completed: nil)
+                }
             }
         }
     }
