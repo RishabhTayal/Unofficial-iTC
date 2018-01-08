@@ -1,0 +1,52 @@
+PODS:
+  - Crashlytics (3.8.6):
+    - Fabric (~> 1.6.3)
+  - DZNEmptyDataSet (1.8.1)
+  - Fabric (1.6.13)
+  - FlagKit (2.0.1)
+  - HCSStarRatingView (1.5)
+  - MBProgressHUD (1.0.0)
+  - Presentr (1.2.3)
+  - SDWebImage (4.1.0):
+    - SDWebImage/Core (= 4.1.0)
+  - SDWebImage/Core (4.1.0)
+  - SwiftFormat/CLI (0.29.5)
+  - TTRangeSlider (1.0.5)
+
+DEPENDENCIES:
+  - Crashlytics
+  - DZNEmptyDataSet
+  - Fabric
+  - FlagKit
+  - HCSStarRatingView
+  - MBProgressHUD
+  - Presentr (from `https://github.com/fpg1503/Presentr.git`, branch `swift4`)
+  - SDWebImage
+  - SwiftFormat/CLI
+  - TTRangeSlider
+
+EXTERNAL SOURCES:
+  Presentr:
+    :branch: swift4
+    :git: https://github.com/fpg1503/Presentr.git
+
+CHECKOUT OPTIONS:
+  Presentr:
+    :commit: c879bb0b2ece1160d5013409fe9efd3e44b4bf6c
+    :git: https://github.com/fpg1503/Presentr.git
+
+SPEC CHECKSUMS:
+  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
+  DZNEmptyDataSet: 9525833b9e68ac21c30253e1d3d7076cc828eaa7
+  Fabric: 2fb5676bc811af011a04513451f463dac6803206
+  FlagKit: 75c64346179f254d1753bebdc5b1f9cbe7890748
+  HCSStarRatingView: 1d18f79654735514cd6f00e6d90e38cb6320dc31
+  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  Presentr: e8ebcc64a85b9ab7b939825e7a8456fa395f680a
+  SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
+  SwiftFormat: 9aadf994b01d08400d3d1b0112116d50e468ebd7
+  TTRangeSlider: 2f2ce4a33b32bb323c6575b9f5161c4664459c58
+
+PODFILE CHECKSUM: f890e4ed5d9efe99f97e83b28aede2a24efceb05
+
+COCOAPODS: 1.3.1

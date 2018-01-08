@@ -9,10 +9,16 @@
 import UIKit
 import MBProgressHUD
 
+protocol LoginViewControllerDelegate: class {
+    func loginControllerDidLogin()
+}
+
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var userNameTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
+
+    weak var delegate: LoginViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,13 +26,21 @@ class LoginViewController: UIViewController {
         let tap = UITapGestureRecognizer(target: self, action: #selector(tappedOnView))
         view.addGestureRecognizer(tap)
         navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .cancel, target: self, action: #selector(cancelTapped))
+
+        userNameTextField.becomeFirstResponder()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if ServiceCaller.getBaseUrl().count == 0 {
             ServiceCaller.askForBaseURL(controller: self)
+        } else {
+            navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit URL", style: .plain, target: self, action: #selector(editBaseUrl))
         }
+    }
+
+    @objc func editBaseUrl() {
+        ServiceCaller.askForBaseURL(controller: self)
     }
 
     @objc func tappedOnView() {
@@ -65,6 +79,7 @@ class LoginViewController: UIViewController {
                         let appDelegate = UIApplication.shared.delegate as! AppDelegate
                         appDelegate.showAppView()
                     }
+                    self.delegate?.loginControllerDidLogin()
                 } else {
                     let alert = UIAlertController(title: "Login error", message: "Could not login. Please check your username and password.", preferredStyle: .alert)
                     alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))

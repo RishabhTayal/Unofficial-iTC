@@ -37,9 +37,7 @@ class ReviewsListTableViewCell: UITableViewCell {
     func config(review: Review) {
         titleLabel.text = review.title
         let date = Date(timeIntervalSince1970: review.lastModified.doubleValue / 1000)
-        let formatter = DateFormatter()
-        formatter.dateFormat = "MMM dd, yyyy"
-        timeStampLabel.text = formatter.string(from: date)
+        timeStampLabel.text = date.formatDate(format: .MMMddyyy)
         authorLabel.text = review.storeFront
         countryImageView.image = Flag(countryCode: review.storeFront!)?.originalImage
         reviewLabel.text = review.review

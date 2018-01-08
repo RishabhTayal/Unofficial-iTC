@@ -10,6 +10,7 @@ import UIKit
 import LocalAuthentication
 import Fabric
 import Crashlytics
+import SafariServices
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -19,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var blurEffectView: UIVisualEffectView?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        ReachabilityManager.shared.startMonitoring()
+
         window = UIWindow(frame: UIScreen.main.bounds)
 
         #if DEBUG
@@ -44,18 +47,42 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     DispatchQueue.main.async {
                         if success {
                             self.removeBlurView()
-                            print("Success")
                         } else {
-                            print("FAIL")
+                            // Blurred, need changes
                         }
                     }
                 }
             } else {
                 removeBlurView()
-                print("NO Biometrics")
             }
         }
         window?.makeKeyAndVisible()
+
+        ServiceCaller.checkForNewVersion { r, e in
+            if let json = r as? [String: Any] {
+                let appVersionString: String = Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+                if let tag = json["tag_name"] as? String {
+                    let index = tag.index(of: "(")!
+                    let version = tag[..<index]
+                    if version != appVersionString {
+                        print("show app update")
+                        DispatchQueue.main.async {
+
+                            let alert = UIAlertController(title: "App update available 🎉", message: "There is a new version available on Github.", preferredStyle: .alert)
+                            alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                            alert.addAction(UIAlertAction(title: "What's new? 🤔", style: .default, handler: { action in
+                                let safari = SFSafariViewController(url: URL(string: json["html_url"] as! String)!)
+                                self.window?.rootViewController?.present(safari, animated: true, completion: nil)
+                            }))
+                            self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                        }
+                    }
+                }
+            }
+        }
+
+        checkAPIVersion()
+
         return true
     }
 
@@ -82,14 +109,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var startBack = Date()
     func applicationDidEnterBackground(_ application: UIApplication) {
-        print(Date())
         startBack = Date()
         addBlurView()
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         if Date().timeIntervalSince(startBack) >= 30 && UserDefaults.standard.bool(forKey: "useBiometrics") {
-            print("Auth")
             let context = LAContext()
             var error: NSError?
 
@@ -102,9 +127,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                     DispatchQueue.main.async {
                         if success {
                             self.removeBlurView()
-                            print("Success")
                         } else {
-                            print("FAIL")
+                            // Still blurred
                             //                            let ac = UIAlertController(title: "Authentication failed", message: "Sorry!", preferredStyle: .alert)
                             //                            ac.addAction(UIAlertAction(title: "OK", style: .default))
                             //                            self.present(ac, animated: true)
@@ -113,24 +137,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 }
             } else {
                 removeBlurView()
-                print("NO Biometrics")
             }
         } else {
             removeBlurView()
         }
-        print(Date().timeIntervalSince(startBack))
+    }
+
+    func checkAPIVersion() {
+        ServiceCaller.checkForAPIVersion { r, e in
+            DispatchQueue.main.async {
+                if let usingLatestVersion = r as? Bool {
+                    if !usingLatestVersion {
+                        let alert = UIAlertController(title: "New api server version available.", message: "Tap on 'Deploy to Heroku' to get the latest code from Github and deploy to Heroku.", preferredStyle: .alert)
+                        alert.addAction(UIAlertAction(title: "Deploy to Heroku", style: .default, handler: { action in
+                            let safari = SFSafariViewController(url: URL(string: "https://heroku.com/deploy?template=https://github.com/RishabhTayal/itc-api/tree/master")!)
+                            safari.delegate = self
+                            self.window?.rootViewController?.present(safari, animated: true, completion: nil)
+                        }))
+                        self.window?.rootViewController?.present(alert, animated: true, completion: nil)
+                    }
+                }
+            }
+        }
     }
 }
 
-extension UIView {
-    public func addBorder(_ width: CGFloat, color: UIColor) {
-        layer.borderColor = color.cgColor
-        layer.borderWidth = width
-    }
-
-    public func cornerRadius(_ radius: CGFloat) {
-        layoutIfNeeded()
-        layer.cornerRadius = radius
-        clipsToBounds = true
+extension AppDelegate: SFSafariViewControllerDelegate {
+    func safariViewControllerDidFinish(_ controller: SFSafariViewController) {
+        ServiceCaller.askForBaseURL(controller: (window?.rootViewController)!)
     }
 }

@@ -12,6 +12,7 @@ class AppsListTableViewCell: UITableViewCell {
 
     @IBOutlet weak var appIconImageView: UIImageView!
     @IBOutlet weak var appNameLabel: UILabel!
+    @IBOutlet weak var lastModifiedLabel: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,5 +27,8 @@ class AppsListTableViewCell: UITableViewCell {
             appIconImageView.image = UIImage(named: "empty_app_icon")
         }
         appNameLabel.text = app.name
+
+        let date = Date(timeIntervalSince1970: app.lastModified.doubleValue / 1000)
+        lastModifiedLabel.text = date.formatDate(format: .MMMddyyy)
     }
 }

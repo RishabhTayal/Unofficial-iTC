@@ -8,27 +8,51 @@
 
 import UIKit
 
+import Presentr
+
 class AppDetailViewController: UIViewController {
+
+    let presenter: Presentr = {
+        let presenter = Presentr(presentationType: .dynamic(center: .bottomCenter))
+        presenter.transitionType = TransitionType.coverVertical
+        presenter.dismissOnSwipe = true
+        presenter.blurBackground = true
+        return presenter
+    }()
 
     enum SectionType: Int {
         case appStore
         case testflight
+        case metadata
 
-        static var numberOfSections = 2
+        var description: String {
+            switch self {
+            case .appStore:
+                return "App Store"
+            case .testflight:
+                return "TestFlight"
+            case .metadata:
+                return "App Information"
+            }
+        }
+
+        static var numberOfSections = 3
     }
 
     struct Rows {
-        static var appstore = ["Screenshots", "Reviews"]
+        static var appstore = ["iOS", "Reviews"]
         static var testflight = ["Testers"]
+        static var metadata = [Any]()
     }
 
     @IBOutlet var tableView: UITableView!
     @IBOutlet var appImageView: UIImageView!
     @IBOutlet var appNameLabel: UILabel!
     @IBOutlet var platformLabel: UILabel!
+    @IBOutlet var lastModifiedLabel: UILabel!
 
     var app: App!
-    var processingBuildCount = 0
+    var metadata: AppMetadata?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,6 +67,8 @@ class AppDetailViewController: UIViewController {
         }
         appNameLabel.text = app.name
         platformLabel.text = app.platforms.joined(separator: ", ")
+        let date = Date(timeIntervalSince1970: app.lastModified.doubleValue / 1000)
+        lastModifiedLabel.text = "Last modified: \(date.formatDate(format: .MMMddyyy))"
 
         tableView.dataSource = self
         tableView.delegate = self
@@ -50,24 +76,25 @@ class AppDetailViewController: UIViewController {
         view.addSubview(tableView)
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "View in App Store", style: .plain, target: self, action: #selector(viewInAppStoreTapped))
-        getProcessingBuilds()
+
+        getMetaData()
     }
 
-    @objc func viewInAppStoreTapped() {
-        let url = URL(string: "https://itunes.apple.com/us/app/app/" + app.appId)!
-        if UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url, options: [:], completionHandler: nil)
-        }
-    }
-
-    func getProcessingBuilds() {
-        ServiceCaller.getProcessingBuilds(bundleId: app.bundleId) { result, e in
-            DispatchQueue.main.async {
-                if let r = result as? [[String: Any]] {
-                    self.processingBuildCount = r.count
+    func getMetaData() {
+        ServiceCaller.getAppMetadata(bundleId: app.bundleId) { result, error in
+            if let r = result as? Dictionary<String, Any> {
+                DispatchQueue.main.async {
+                    self.metadata = AppMetadata(name: self.app.name, bundleId: self.app.bundleId, dict: r)
                     self.tableView.reloadData()
                 }
             }
+        }
+    }
+
+    @objc func viewInAppStoreTapped() {
+        let url = URL(string: "https://itunes.apple.com/us/app/app/id" + app.appId)!
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
 
@@ -88,28 +115,42 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if section == SectionType.appStore.rawValue {
             return Rows.appstore.count
+        } else if section == SectionType.testflight.rawValue {
+            return Rows.testflight.count
+        } else if section == SectionType.metadata.rawValue {
+            if metadata == nil { return 0 }
+            return 1
         }
-        return Rows.testflight.count
+        return 0
     }
 
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if section == SectionType.appStore.rawValue {
-            return "App Store"
-        }
-        return "TestFlight"
+        let sectionType = SectionType(rawValue: section)
+        return sectionType?.description
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var cell: UITableViewCell? = tableView.dequeueReusableCell(withIdentifier: "cell")
         if cell == nil {
-            cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+            cell = UITableViewCell(style: .value1, reuseIdentifier: "cell")
             cell?.accessoryType = .disclosureIndicator
         }
         if indexPath.section == SectionType.appStore.rawValue {
             cell?.textLabel?.text = Rows.appstore[indexPath.row]
+            if indexPath.row == Rows.appstore.index(of: "iOS") {
+                if let metadata = self.metadata {
+                    cell?.detailTextLabel?.text = metadata.liveVersion
+                }
+            }
         } else if indexPath.section == SectionType.testflight.rawValue {
             cell?.textLabel?.text = Rows.testflight[indexPath.row]
         } else {
+            var metadataCell: AppMetadataTableViewCell? = tableView.dequeueReusableCell(withIdentifier: "AppMetadataTableViewCell") as? AppMetadataTableViewCell
+            if metadataCell == nil {
+                metadataCell = UIView.loadFromNibNamed(nibNamed: "AppMetadataTableViewCell") as? AppMetadataTableViewCell
+            }
+            metadataCell?.configureView(metadata: metadata!)
+            return metadataCell!
         }
 
         return cell!
@@ -117,13 +158,19 @@ extension AppDetailViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if indexPath.section == SectionType.appStore.rawValue {
-            if indexPath.row == 0 {
-                // show screenshots
-            }
-            if indexPath.row == 1 {
+            if indexPath.row == Rows.appstore.index(of: "Reviews") {
                 let reviewVC = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "ReviewsViewController") as! ReviewsViewController
                 reviewVC.app = app
                 navigationController?.pushViewController(reviewVC, animated: true)
+            } else if indexPath.row == Rows.appstore.index(of: "iOS") {
+                let alert = UIAlertController(title: "Coming soon", message: "This feature is still under development.", preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+                present(alert, animated: true, completion: nil)
+
+                //                let appVersionDetailVC = AppVersionDetailViewController()
+                //                appVersionDetailVC.app = app
+                //                appVersionDetailVC.appMetadata = metadata
+                //                navigationController?.pushViewController(appVersionDetailVC, animated: true)
             }
         } else if indexPath.section == SectionType.testflight.rawValue {
             let testersVC = TestersViewController()
