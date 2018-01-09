@@ -46,7 +46,7 @@ class AddTesterViewController: UIViewController {
             DispatchQueue.main.async {
                 self.navigationItem.rightBarButtonItem?.isEnabled = true
                 self.navigationItem.leftBarButtonItem?.isEnabled = true
-                MBProgressHUD.hide(for: self.view, animated: true) 
+                MBProgressHUD.hide(for: self.view, animated: true)
                 self.dismiss(animated: true, completion: nil)
             }
         }
