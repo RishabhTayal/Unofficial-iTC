@@ -17,6 +17,8 @@ class ViewController: UIViewController {
 
     var list: [App] = []
     var refreshControl = UIRefreshControl()
+    let ud = UserDefaults()
+    let hasFav = UserDefaults.standard.integer(forKey: "noOfFav")
 
     let presenter: Presentr = {
         let presenter = Presentr(presentationType: .bottomHalf)
@@ -86,26 +88,75 @@ class ViewController: UIViewController {
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    @available(iOS 11.0, *)
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        let favourite = UIContextualAction(style: .normal, title: "Favourite") { contextAction, view, isSuccess in
+            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.list[indexPath.row])
+            print(self.list[indexPath.row])
+            let no = self.ud.integer(forKey: "noOfFav")
+            self.ud.set(encodedData, forKey: "favourites\(no)")
+            print(encodedData)
+            self.ud.set(no + 1, forKey: "noOfFav")
+            self.ud.synchronize()
+
+            isSuccess(true)
+        }
+
+        return UISwipeActionsConfiguration(actions: [favourite])
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 80
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        if hasFav > 0 {
+            return 2
+        }
+        return 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        if hasFav > 0 {
+            if section == 0 {
+                return hasFav
+            }
+            return list.count
+        }
         return list.count
+    }
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if hasFav > 0 && section == 0 {
+            return "Favourites"
+        }
+        return "Your Apps"
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell") as! AppsListTableViewCell
         cell.accessoryType = .disclosureIndicator
-        cell.configure(app: list[indexPath.row])
+
+        if hasFav > 0 && indexPath.section == 0 {
+            let favouriteUD = ud.data(forKey: "favourites\(indexPath.row)")
+            let favApp = NSKeyedUnarchiver.unarchiveObject(with: favouriteUD!) as! App
+            cell.configure(app: favApp)
+        } else {
+            cell.configure(app: list[indexPath.row])
+        }
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-
         let appDetail = AppDetailViewController(nibName: "AppDetailViewController", bundle: nil)
-        appDetail.app = list[indexPath.row]
+
+        if hasFav > 0 && indexPath.section == 0 {
+            let favouriteUD = ud.data(forKey: "favourites\(indexPath.row)")
+            let favApp = NSKeyedUnarchiver.unarchiveObject(with: favouriteUD!) as! App
+            appDetail.app = favApp
+        } else {
+            appDetail.app = list[indexPath.row]
+        }
         navigationController?.pushViewController(appDetail, animated: true)
     }
 }
