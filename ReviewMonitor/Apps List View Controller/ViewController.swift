@@ -90,16 +90,33 @@ class ViewController: UIViewController {
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
     @available(iOS 11.0, *)
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
-        let favourite = UIContextualAction(style: .normal, title: "Favourite") { contextAction, view, isSuccess in
-            let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.list[indexPath.row])
-            print(self.list[indexPath.row])
-            let no = self.ud.integer(forKey: "noOfFav")
-            self.ud.set(encodedData, forKey: "favourites\(no)")
-            print(encodedData)
-            self.ud.set(no + 1, forKey: "noOfFav")
-            self.ud.synchronize()
-
-            isSuccess(true)
+        var favourite = UIContextualAction()
+        if hasFav > 0 && indexPath.section == 0 {
+            favourite = UIContextualAction(style: .normal, title: "Unfavourite") { contextAction, view, isSuccess in
+                let ac = UIAlertController(title: "Can't Unfavourite", message: "This feature is still in development", preferredStyle: .alert)
+                let ok = UIAlertAction(title: "Close", style: .cancel, handler: nil)
+                ac.addAction(ok)
+                self.present(ac, animated: true, completion: nil)
+                /*                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.list[indexPath.row])
+                 print(self.list[indexPath.row])
+                 let no = self.ud.integer(forKey: "noOfFav")
+                 self.ud.set(encodedData, forKey: "favourites\(no)")
+                 print(encodedData)
+                 self.ud.set(no - 1, forKey: "noOfFav")
+                 self.ud.synchronize()*/
+                isSuccess(true)
+            }
+        } else {
+            favourite = UIContextualAction(style: .normal, title: "Favourite") { contextAction, view, isSuccess in
+                let encodedData: Data = NSKeyedArchiver.archivedData(withRootObject: self.list[indexPath.row])
+                print(self.list[indexPath.row])
+                let no = self.ud.integer(forKey: "noOfFav")
+                self.ud.set(encodedData, forKey: "favourites\(no)")
+                print(encodedData)
+                self.ud.set(no + 1, forKey: "noOfFav")
+                self.ud.synchronize()
+                isSuccess(true)
+            }
         }
 
         return UISwipeActionsConfiguration(actions: [favourite])
