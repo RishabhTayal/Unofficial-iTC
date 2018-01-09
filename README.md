@@ -1,6 +1,7 @@
 # ReviewMonitor
 
-[![Build Status](https://travis-ci.org/RishabhTayal/ReviewMonitor.svg?branch=master)](https://travis-ci.org/RishabhTayal/ReviewMonitor)
+<!--[![Build Status](https://travis-ci.org/RishabhTayal/ReviewMonitor.svg?branch=master)](https://travis-ci.org/RishabhTayal/ReviewMonitor)-->
+[![Build Status](https://www.bitrise.io/app/099415a1bcf4a25a/status.svg?token=VuY22jFJYDnnR9Fmrg83EA)](https://www.bitrise.io/app/099415a1bcf4a25a)
 [![Version](https://img.shields.io/github/release/RishabhTayal/ReviewMonitor.svg)](https://github.com/RishabhTayal/ReviewMonitor/releases/latest)
 [![GitHub contributors](https://img.shields.io/github/contributors/RishabhTayal/ReviewMonitor.svg)](https://GitHub.com/RishabhTayal/ReviewMonitor/graphs/contributors/)
 [![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/ReviewMonitor/blob/master/LICENSE)

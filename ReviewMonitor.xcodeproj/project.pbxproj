@@ -14,6 +14,8 @@
 		690DA5631F622142000DD28F /* ReviewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5621F622142000DD28F /* ReviewsViewController.swift */; };
 		690DA5651F622177000DD28F /* Review.swift in Sources */ = {isa = PBXBuildFile; fileRef = 690DA5641F622177000DD28F /* Review.swift */; };
 		6918E3841F6321F800709F2F /* AppsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6918E3831F6321F800709F2F /* AppsListTableViewCell.swift */; };
+		692A6C53200552B900121637 /* AddTesterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 692A6C51200552B900121637 /* AddTesterViewController.swift */; };
+		692A6C54200552B900121637 /* AddTesterViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 692A6C52200552B900121637 /* AddTesterViewController.xib */; };
 		6934BC8D1FFFD887003A87E6 /* AppVersion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6934BC8C1FFFD887003A87E6 /* AppVersion.swift */; };
 		6934BC901FFFE284003A87E6 /* AppMetadataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6934BC8E1FFFE284003A87E6 /* AppMetadataTableViewCell.swift */; };
 		6934BC911FFFE284003A87E6 /* AppMetadataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6934BC8F1FFFE284003A87E6 /* AppMetadataTableViewCell.xib */; };
@@ -57,6 +59,8 @@
 		690DA5621F622142000DD28F /* ReviewsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewsViewController.swift; sourceTree = "<group>"; };
 		690DA5641F622177000DD28F /* Review.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Review.swift; sourceTree = "<group>"; };
 		6918E3831F6321F800709F2F /* AppsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppsListTableViewCell.swift; sourceTree = "<group>"; };
+		692A6C51200552B900121637 /* AddTesterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTesterViewController.swift; sourceTree = "<group>"; };
+		692A6C52200552B900121637 /* AddTesterViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddTesterViewController.xib; sourceTree = "<group>"; };
 		6934BC8C1FFFD887003A87E6 /* AppVersion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppVersion.swift; sourceTree = "<group>"; };
 		6934BC8E1FFFE284003A87E6 /* AppMetadataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppMetadataTableViewCell.swift; sourceTree = "<group>"; };
 		6934BC8F1FFFE284003A87E6 /* AppMetadataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppMetadataTableViewCell.xib; sourceTree = "<group>"; };
@@ -219,6 +223,8 @@
 			isa = PBXGroup;
 			children = (
 				69591E101F7A0DE4003D7E27 /* TestersViewController.swift */,
+				692A6C51200552B900121637 /* AddTesterViewController.swift */,
+				692A6C52200552B900121637 /* AddTesterViewController.xib */,
 			);
 			path = "Testers View Controller";
 			sourceTree = "<group>";
@@ -371,6 +377,7 @@
 				69015E1A1F69FE0100D2EFF2 /* ResponseEditorViewController.xib in Resources */,
 				69A627701F6343D600415AC8 /* LoginViewController.xib in Resources */,
 				696235D91F6F7AB600176A60 /* ReviewFilterViewController.xib in Resources */,
+				692A6C54200552B900121637 /* AddTesterViewController.xib in Resources */,
 				69C845AA1F6393E100C65AB2 /* AccountsViewController.xib in Resources */,
 				6934BC961FFFEB7D003A87E6 /* AppVersionDetailViewController.xib in Resources */,
 				C97D38D11FF902F600EBFA35 /* AuthCell.xib in Resources */,
@@ -506,6 +513,7 @@
 				6934BC8D1FFFD887003A87E6 /* AppVersion.swift in Sources */,
 				694282951F64747F0053BBF3 /* AccountManger.swift in Sources */,
 				69A6276F1F6343D600415AC8 /* LoginViewController.swift in Sources */,
+				692A6C53200552B900121637 /* AddTesterViewController.swift in Sources */,
 				6918E3841F6321F800709F2F /* AppsListTableViewCell.swift in Sources */,
 				C99F436F1FFF7DF70053E421 /* ReachabilityManager.swift in Sources */,
 				C99D85C11FFEEAA5001DD508 /* Reachability.swift in Sources */,

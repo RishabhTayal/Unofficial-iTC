@@ -8,3 +8,5 @@ fastlane/report.xml
 ReviewMonitor.app.dSYM.zip
 
 ReviewMonitor.ipa
+
+.DS_Store

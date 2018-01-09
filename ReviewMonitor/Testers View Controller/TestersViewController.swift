@@ -31,6 +31,12 @@ class TestersViewController: UIViewController {
         tableView.tableFooterView = UIView()
         tableView.autoresizingMask = UIViewAutoresizing(rawValue: UIViewAutoresizing.RawValue(UInt8(UIViewAutoresizing.flexibleWidth.rawValue) | UInt8(UIViewAutoresizing.flexibleHeight.rawValue)))
         view.addSubview(tableView)
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(addTesterTapped(_:)))
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
         getTesters()
     }
 
@@ -51,6 +57,12 @@ class TestersViewController: UIViewController {
                 MBProgressHUD.hide(for: self.view, animated: true)
             }
         }
+    }
+
+    @objc func addTesterTapped(_ sender: Any) {
+        let addTester = AddTesterViewController()
+        addTester.app = app
+        present(UINavigationController(rootViewController: addTester), animated: true, completion: nil)
     }
 }
 
