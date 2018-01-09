@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](http://keepachangelog.com/)
 and this project adheres to [Semantic Versioning](http://semver.org/).
 
 ## [Unreleased]
+
+## [Version 1.5.0(486)] - 2018-01-09
 - Add new Testflight testers. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Fixed app share link. [@Rishabh Tayal](https://github.com/RishabhTayal)
 - Added Edit server url on login. [@Eliottiosdevs](https://github.com/Eliottiosdevs)
