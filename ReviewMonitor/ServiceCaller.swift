@@ -47,6 +47,7 @@ class ServiceCaller: NSObject {
         case ratings
         case response
         case testers
+        case addTester = "tester"
         case processing_builds
         case meta = "app/metadata"
         case app_live_version_metadata = "/app/live_version_metadata"
@@ -138,6 +139,11 @@ class ServiceCaller: NSObject {
     class func getTesters(bundleId: String, completion: CompletionBlock?) {
         let params = ["bundle_id": bundleId]
         makeAPICall(endPoint: .testers, params: params, completionBlock: completion)
+    }
+
+    class func addNewTester(bundleId: String, firstName: String, lastName: String, email: String, completion: CompletionBlock?) {
+        let params = ["bundle_id": bundleId, "email": email, "first_name": firstName, "last_name": lastName]
+        makeAPICall(endPoint: .addTester, params: params, httpMethod: .POST, completionBlock: completion)
     }
 
     class func getProcessingBuilds(bundleId: String, completion: CompletionBlock?) {
