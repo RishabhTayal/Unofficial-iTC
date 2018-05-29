@@ -42,7 +42,7 @@ This app won't be published on the App Store. Apple won't allow an app which ask
 ![Sad](https://media.giphy.com/media/NTY1kHmcLsCsg/giphy.gif)
 
 # Contributing
-Want to see something implemented in the app? We are always looking for some contributors who can help with some more features. Read the [Contribution Guideline](https://github.com/RishabhTayal/ReviewMonitor/blob/master/.github/CONTRIBUTING.md). We usually tags issues that are ready to be worked on and easily accessible for new contributors with the [“you can do this” label](https://github.com/RishabhTayal/ReviewMonitor/issues?q=is%3Aopen+is%3Aissue+label%3A%22you+can+do+it%22).
+Want to see something implemented in the app? We are always looking for some contributors who can help with some more features. Read the [Contribution Guideline](https://github.com/RishabhTayal/ReviewMonitor/blob/master/.github/CONTRIBUTING.md). We usually tags issues that are ready to be worked on and easily accessible for new contributors with the ["you can do this" label](https://github.com/RishabhTayal/ReviewMonitor/issues?q=is%3Aopen+is%3Aissue+label%3A%22you+can+do+it%22).
 
 
 
