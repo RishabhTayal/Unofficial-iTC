@@ -2,13 +2,13 @@
 
 <!--[![Build Status](https://travis-ci.org/RishabhTayal/ReviewMonitor.svg?branch=master)](https://travis-ci.org/RishabhTayal/ReviewMonitor)-->
 [![Build Status](https://www.bitrise.io/app/099415a1bcf4a25a/status.svg?token=VuY22jFJYDnnR9Fmrg83EA)](https://www.bitrise.io/app/099415a1bcf4a25a)
-[![Version](https://img.shields.io/github/release/RishabhTayal/ReviewMonitor.svg)](https://github.com/RishabhTayal/ReviewMonitor/releases/latest)
-[![GitHub contributors](https://img.shields.io/github/contributors/RishabhTayal/ReviewMonitor.svg)](https://GitHub.com/RishabhTayal/ReviewMonitor/graphs/contributors/)
-[![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/ReviewMonitor/blob/master/LICENSE)
+[![Version](https://img.shields.io/github/release/RishabhTayal/ReviewMonitor.svg)](https://github.com/RishabhTayal/Unofficial-iTC/releases/latest)
+[![GitHub contributors](https://img.shields.io/github/contributors/RishabhTayal/ReviewMonitor.svg)](https://GitHub.com/RishabhTayal/Unofficial-iTC/graphs/contributors/)
+[![License](https://img.shields.io/badge/license-MIT-999999.svg)](https://github.com/RishabhTayal/Unofficial-iTC/blob/master/LICENSE)
 [![Contact](https://img.shields.io/badge/contact-%40Rishabh_Tayal-3a8fc1.svg)](https://twitter.com/Rishabh_Tayal)
 
-# What is ReviewMonitor?
-ReviewMonitor is an iOS app to **manage** your iTunes Connect account on the go. The Apple iTunes Connect iOS app is nice, but lacks features like:
+# What is Unofficial-iTC?
+Unofficial-iTC is an iOS app to **manage** your iTunes Connect account on the go. The Apple iTunes Connect iOS app is nice, but lacks features like:
 
 - TestFlight build management.
 - Submitting build for App Store/TestFlight review.
@@ -42,10 +42,10 @@ This app won't be published on the App Store. Apple won't allow an app which ask
 ![Sad](https://media.giphy.com/media/NTY1kHmcLsCsg/giphy.gif)
 
 # Contributing
-Want to see something implemented in the app? We are always looking for some contributors who can help with some more features. Read the [Contribution Guideline](https://github.com/RishabhTayal/ReviewMonitor/blob/master/.github/CONTRIBUTING.md). We usually tags issues that are ready to be worked on and easily accessible for new contributors with the ["you can do this" label](https://github.com/RishabhTayal/ReviewMonitor/issues?q=is%3Aopen+is%3Aissue+label%3A%22you+can+do+it%22).
+Want to see something implemented in the app? We are always looking for some contributors who can help with some more features. Read the [Contribution Guideline](https://github.com/RishabhTayal/Unofficial-iTC/blob/master/.github/CONTRIBUTING.md). We usually tags issues that are ready to be worked on and easily accessible for new contributors with the ["you can do this" label](https://github.com/RishabhTayal/Unofficial-iTC/issues?q=is%3Aopen+is%3Aissue+label%3A%22you+can+do+it%22).
 
 
 
-Create an [issue](https://github.com/RishabhTayal/ReviewMonitor/issues/new) or [PR](https://github.com/RishabhTayal/ReviewMonitor/compare) if you are interested. 
+Create an [issue](https://github.com/RishabhTayal/Unofficial-iTC/issues/new) or [PR](https://github.com/RishabhTayal/Unofficial-iTC/compare) if you are interested. 
 
 Want to get involved in discussions? Join our [Slack channel](https://itc-manager-slack-invite.herokuapp.com)
