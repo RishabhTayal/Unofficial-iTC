@@ -1,4 +1,4 @@
-# ReviewMonitor for iOS, [Android](https://github.com/RishabhTayal/itc-android)
+# Unofficial-iTC for iOS, [Android](https://github.com/RishabhTayal/itc-android)
 
 <!--[![Build Status](https://travis-ci.org/RishabhTayal/ReviewMonitor.svg?branch=master)](https://travis-ci.org/RishabhTayal/ReviewMonitor)-->
 [![Build Status](https://www.bitrise.io/app/099415a1bcf4a25a/status.svg?token=VuY22jFJYDnnR9Fmrg83EA)](https://www.bitrise.io/app/099415a1bcf4a25a)
