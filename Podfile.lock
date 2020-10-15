@@ -33,7 +33,7 @@ EXTERNAL SOURCES:
 CHECKOUT OPTIONS:
   Presentr:
     :commit: c879bb0b2ece1160d5013409fe9efd3e44b4bf6c
-    :git: https://github.com/fpg1503/Presentr.git
+    :git: https://git.heroku.com/itunesconnectstore.git
 
 SPEC CHECKSUMS:
   Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
