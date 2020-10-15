@@ -5,3 +5,5 @@ xcode_scheme: ReviewMonitor
 script:
   - bundle exec danger
   - xcodebuild -workspace ReviewMonitor.xcworkspace -scheme ReviewMonitor -sdk iphonesimulator ONLY_ACTIVE_ARCH=NO
+- name: Fastlane Action
+  uses: maierj/fastlane-action@v1.4.0
